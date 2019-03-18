@@ -1,0 +1,91 @@
+<!DOCTYPE html5>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta >
+	<title>lostpet | login</title>
+	<link rel="stylesheet" type="text/css" href="../css/lost.css">
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	
+	<div class="area flex_padrao">
+		<div class="conteudo flex_padrao">
+			<div class="btn_big" id="btn_perdi"></div>
+		</div>
+		<div class="login flex_padrao">
+			<div class="area_login">
+				<input class="input_text" placeholder="usuário" type="text" name="">
+				<input class="input_text" placeholder="senha" type="password" name="">
+				<div id="btn_cadastro" class="btn">ser caçador</div>
+				<div class="btn">entrar</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="viewRegister" class="registerOff">
+		<div id="fecharViewLostPet" onclick="viewRegister()" class="fechar"></div>
+		<p id="titulo_pagina">ser caçador</p>
+		<div>
+			<form class="area_viewRegister">
+				<div class="divisao_form_register-foto">
+					<div class="foto_register"></div>
+				</div>
+				<div class="divisao_form_register-input">				
+					<input class="input_text_register" placeholder="seu nome" type="text" >
+					<input class="input_text_register" placeholder="e-mail" type="text">
+					<input class="input_text_register" placeholder="senha" type="password">
+					<input class="input_text_register" placeholder="telefone" type="text">
+				</div>
+				<div class="divisao_form_register_dados-rua">				
+					<div class="divisao_metade">					
+						<input class="input_text_register" placeholder="cidade" type="text">
+						<input class="input_text_register" placeholder="rua" type="text">
+					</div>
+					<div class="divisao_metade">
+						<input class="input_text_register" placeholder="bairro" type="text">
+						<input class="input_text_register" placeholder="número da casa" type="text">
+					</div>					
+				</div>
+				<div class="divisao_form_register_confirmar">
+					<button type="submit" class="confirmar"></button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="viewLostPet" class="lostOff">
+		<div id="fecharViewLostPet" onclick="viewLostPet()" class="fechar"></div>
+		<p id="titulo_pagina">registrar pet perdido</p>
+		<div>
+			<form class="area_viewLostPet">
+				<div class="divisao_form_lost_pet-foto">
+					<div class="foto_pet"></div>
+				</div>
+				<div class="divisao_form_lost_pet-input">				
+					<input class="input_text_register" placeholder="seu nome" type="text">
+					<input class="input_text_register" placeholder="e-mail" type="text">
+					<input class="input_text_register" placeholder="telefone" type="text">
+				</div>
+				<div class="divisao_form_lost_pet-dados">				
+					<div class="divisao_metade">
+						<select>
+							<option>selecione</option>
+						</select>
+						<input class="input_text_register" placeholder="nome do animal" type="text">
+					</div>
+					<div class="divisao_metade">
+						<textarea placeholder="descreva seu animal"></textarea>
+					</div>				
+				</div>
+				<div class="divisao_form_lost_pet_confirmar">
+					<button type="submit" class="confirmar"></button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<script type="text/javascript" src="../js/login.js"></script>
+</body>
+</html>
