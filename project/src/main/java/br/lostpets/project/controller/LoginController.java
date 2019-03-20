@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,14 +30,18 @@ public class LoginController {
 		return "loginPage";
 	}
 	
-	@PostMapping("/Dashboard")
-	public String logar(@ModelAttribute Credenciais credenciais) {
+	@PostMapping("/LostPets")
+	public String logar(@ModelAttribute Credenciais credenciais, ModelMap model) {
 		
 		if(seguranca.permitirAcesso(credenciais)) {
 			System.out.println(dataHora(credenciais));
-			return "paginaPrincipal";
+			model.addAttribute("isTrue", false);
+			return "/Dashboard";
 		}
-		else return "paginaErro";
+		else {
+			model.addAttribute("isTrue", true);
+			return "loginPage";
+		}
 		
 	}
 	
