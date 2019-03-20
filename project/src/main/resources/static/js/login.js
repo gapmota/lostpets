@@ -28,3 +28,5 @@ document.getElementById("btn_perdi").onclick = function (){
 document.getElementById("btn_cadastro").onclick = function (){
 	viewRegister();
 };
+
+

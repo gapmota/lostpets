@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta>
 <title>lostpet | login</title>
-<link rel="stylesheet" type="text/css" href="../css/lost.css">
-<link rel="stylesheet" type="text/css" href="../css/login.css">
+<link rel="stylesheet" type="text/css" href="../static/css/lost.css">
+<link rel="stylesheet" type="text/css" href="../static/css/login.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -20,8 +20,9 @@
 				<div class="area_login">
 					<input class="input_text" placeholder="usuário" type="text" th:field="*{login}" id="login">
 					<input class="input_text" placeholder="senha" type="password" th:field="*{senha}" id="senha">
-					<div id="btn_cadastro" class="btn">ser caçador</div>
-					<input type="submit" value="Entrar">
+					
+					<input id="btn_cadastro" type="submit" value="ser caçador" class="btn">
+					<input type="submit" value="entrar" class="btn">
 				</div>
 			</form>
 		</div>
