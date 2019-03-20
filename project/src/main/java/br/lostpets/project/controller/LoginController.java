@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,25 +23,28 @@ public class LoginController {
 		this.seguranca = seguranca;
 	}
 	
-	@GetMapping("/login")
-	public String openLogin() {
+	@GetMapping("/LostPets")
+	public String openLogin(Model model) {
+		model.addAttribute(new Credenciais(null, null));
 		return "loginPage";
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/Dashboard")
 	public String logar(@ModelAttribute Credenciais credenciais) {
 		
 		if(seguranca.permitirAcesso(credenciais)) {
-			Date dataHoraAtual = new Date();
-			String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
-			String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-			System.out.println("data: "+data);
-			System.out.println("hora: "+hora);
-			String log = credenciais.getLogin()+" | "+data+" | "+" | "+hora;
-			System.out.println("log: "+log);
+			System.out.println(dataHora(credenciais));
 			return "paginaPrincipal";
 		}
 		else return "paginaErro";
+		
+	}
+	
+	public String dataHora(Credenciais credenciais) {
+		Date dataHoraAtual = new Date();
+		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+		String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+		return credenciais.getLogin()+" | "+data+" | "+hora;
 		
 	}
 	
