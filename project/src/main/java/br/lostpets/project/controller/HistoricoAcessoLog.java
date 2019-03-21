@@ -9,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class HistoricoAcessoLog {
 	File arquivo;
 	FileReader fileReader;

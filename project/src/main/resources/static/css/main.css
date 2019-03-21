@@ -85,10 +85,12 @@ table{
 }
 
 .foto_pet{
+	background-size: 100% 100%;
 	position: relative;
-	width: 200px;
-	height: 150px;
+	width: 230px;
+	height: 195px;
 	background-color: #fff;
+	border: solid 2px black;
 }
 
 input[class=input_text]{

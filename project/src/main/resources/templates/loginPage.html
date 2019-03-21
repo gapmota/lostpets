@@ -15,13 +15,13 @@
 			<div class="btn_big" id="btn_perdi"></div>
 		</div>
 		<div class="login flex_padrao">
-			<form th:action="@{/Dashboard}" th:object="${credenciais}" method="post"
+			<form th:action="@{/LostPets}" th:object="${credenciais}" method="post"
 				onsubmit="return validarPreenchimento(this);">
 				<div class="area_login">
 					<input class="input_text" placeholder="usuário" type="text" th:field="*{login}" id="login">
 					<input class="input_text" placeholder="senha" type="password" th:field="*{senha}" id="senha">
 					
-					<div class="btn">ser caçador</div> 
+					<div class="btn" id="btn_cadastro">ser caçador</div> 
 					<input type="submit" value="entrar" class="btn">
 				</div>
 			</form>

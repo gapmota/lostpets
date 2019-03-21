@@ -13,44 +13,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import br.lostpets.project.infra.SegurancaAplicacao;
 
-
 @Controller
 public class LoginController {
 
+	String[][] acesso = new String[1][3];
 	private SegurancaAplicacao seguranca;
-	
+
 	@Autowired
 	public LoginController(SegurancaAplicacao seguranca) {
 		this.seguranca = seguranca;
 	}
-	
+
 	@GetMapping("/LostPets")
 	public String openLogin(Model model) {
 		model.addAttribute(new Credenciais(null, null));
 		return "loginPage";
 	}
-	
+
 	@PostMapping("/LostPets")
-	public String logar(@ModelAttribute Credenciais credenciais, ModelMap model) {
-		
-		if(seguranca.permitirAcesso(credenciais)) {
-			System.out.println(dataHora(credenciais));
-			model.addAttribute("isTrue", false);
-			return "/Dashboard";
-		}
-		else {
-			model.addAttribute("isTrue", true);
+	public String logar(@ModelAttribute Credenciais credenciais) {
+
+		if (seguranca.permitirAcesso(credenciais)) {
+			dataHora(credenciais);
+			return "redirect:/Dashboard";
+		} else {
 			return "loginPage";
 		}
-		
+
 	}
-	
-	public String dataHora(Credenciais credenciais) {
+
+	public void dataHora(Credenciais credenciais) {
 		Date dataHoraAtual = new Date();
 		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
 		String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-		return credenciais.getLogin()+" | "+data+" | "+hora;
-		
+
+		acesso[0][0] = credenciais.getLogin();
+		acesso[0][1] = data;
+		acesso[0][2] = hora;
+		new HistoricoAcessoLog().escreverLog(acesso);
+
 	}
-	
+
 }
