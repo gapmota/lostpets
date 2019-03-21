@@ -14,15 +14,11 @@ public class ProjectApplication {
 		HistoricoAcessoLog hal = new HistoricoAcessoLog();
 		String[][] acesso = new String[1][3];
 		// Setar a matriz com os dados: acesso[dados][dados]
-		acesso[0][0] = "Nome";
-		acesso[0][1] = "Data";
-		acesso[0][2] = "Hora";
-		for (int l = 0; l < acesso.length; l++) {
-			hal.pularLinha();
-			for (int c = 0; c < acesso[l].length; c++) {
-				hal.escreverLog(acesso[l][c]);
-			}
-		}
+		acesso[0][0] = "Josue";
+		acesso[0][1] = "21/03/2019";
+		acesso[0][2] = "10:30";
+
+		hal.escreverLog(acesso);
 	}
 
 }

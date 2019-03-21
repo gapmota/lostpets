@@ -16,7 +16,7 @@ public class HistoricoAcessoLog {
 	FileWriter fileWriter;
 	BufferedWriter bufferedWriter;
 
-	public void escreverLog(String historicoAcesso) {
+	public void escreverLog(String historicoAcesso[][]) {
 
 		try {
 			arquivo = new File("log/historico_acesso.log");
@@ -28,45 +28,24 @@ public class HistoricoAcessoLog {
 			}
 			fileWriter = new FileWriter(arquivo);
 			bufferedWriter = new BufferedWriter(fileWriter);
-			for (int i = 0; i < texto.size(); i++) {
-				bufferedWriter.write(texto.get(i).toString() + " | ");
+
+			for (int l = 0; l < historicoAcesso.length; l++) {
+				for (int i = 0; i < texto.size(); i++) {
+					bufferedWriter.write(texto.get(i).toString() + "\t");
+					bufferedWriter.newLine();
+				}
+				for (int c = 0; c < historicoAcesso[l].length; c++) {
+					bufferedWriter.write(historicoAcesso[l][c] + "\t");
+				}
 			}
-			bufferedWriter.write(historicoAcesso);
-			bufferedWriter.close();
 			bufferedReader.close();
+			bufferedWriter.close();
 			System.out.println("Arquivo gerado com sucesso!");
 		} catch (FileNotFoundException e) {
 
 			try {
 				arquivo.createNewFile();
 				escreverLog(historicoAcesso);
-			} catch (IOException e1) {
-				System.out.println("Deu ruim 1");
-				System.exit(0);
-			}
-		} catch (IOException er) {
-			System.out.println("Deu ruim 2");
-			System.exit(0);
-		}
-
-	}
-
-	public void pularLinha() {
-
-		try {
-			arquivo = new File("log/historico_acesso.log");
-			fileReader = new FileReader(arquivo);
-			bufferedReader = new BufferedReader(fileReader);
-
-			fileWriter = new FileWriter(arquivo);
-			bufferedWriter = new BufferedWriter(fileWriter);
-			bufferedWriter.newLine();
-			bufferedWriter.close();
-			bufferedReader.close();
-		} catch (FileNotFoundException e) {
-
-			try {
-				arquivo.createNewFile();
 			} catch (IOException e1) {
 				System.out.println("Deu ruim 1");
 				System.exit(0);
