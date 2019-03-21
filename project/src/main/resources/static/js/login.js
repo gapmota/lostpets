@@ -20,6 +20,34 @@ function viewRegister(){
 	}
 }
 
+function validarPreenchimento(form){
+	
+	var validou = false;
+	var campoLogin = form.login;
+	var campoSenha = form.senha;
+	var login = campoLogin.value;
+	var senha = campoSenha.value;
+	
+	if(login.lenght == 0){
+		alert("Login não foi preenchido");
+		campoLogin.focus();
+	} 
+	else if(senha.lenght == 0){
+		alert("Senha não foi preenchido");
+		campoSenha.focus();
+	}
+	else if(login.lenght == 0 && senha.lenght == 0){
+		alert("Os campos devem ser preenchidos")
+		campoLogin.focus();
+	}
+	else {
+		validou = true;
+	}
+	
+	return validou;
+	
+}
+
 document.getElementById("btn_perdi").onclick = function (){
 	viewLostPet();
 };
