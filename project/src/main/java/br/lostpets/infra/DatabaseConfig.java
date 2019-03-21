@@ -25,7 +25,7 @@ public class DatabaseConfig {
 		//dataSource.setUsername("***username***");
 		//dataSource.setPassword("***password***");
 		
-		return DataSourceBuilder.create().build(); // está consumindo info do application.properties
+		return DataSourceBuilder.create().build(); // está consumindo dados do application.properties
 	}
 	
 	@Bean
