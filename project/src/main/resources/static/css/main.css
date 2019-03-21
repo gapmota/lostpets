@@ -16,6 +16,81 @@ div.area{
 	flex-wrap: wrap;
 }
 
+.area_listagem{
+	position: relative;
+	width: 100%;
+	height: calc(100% - 60px);
+	display: flex;
+	background-color: #fff;
+	padding: 50px;
+}
+
+.area_foto{
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.quadro_pet{
+	position: relative;
+	width: 350px;
+	height: 100%;
+	background-color: #6e83d6;
+	padding: 30px;
+	margin: 0px 10px;
+}
+
+table{
+	position: relative;
+	width: 100%;
+}
+
+.desc_pet, .desc_info_pet{
+	font-family: "Century Gothic","Verdana";
+	color: #fff;
+	
+}
+
+.desc_pet{
+	font-size: 18px;
+	font-weight: none;
+	text-align: center;
+	padding: 0px 0px 0px 10px;
+}
+.desc_info_pet{
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	padding: 0px 0px 12px 10px;
+}
+
+table{
+	display: flex;
+	justify-content: center;
+}
+
+.btn_info{
+	position: relative;
+	width: 300px;
+	height: 30px;
+	text-align: center;
+	border: none;
+	outline: none;
+	background-color: #fff;
+	color: #000;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.foto_pet{
+	position: relative;
+	width: 200px;
+	height: 150px;
+	background-color: #fff;
+}
+
 input[class=input_text]{
 	width: calc(100% - 150px);
 	height: 44px;

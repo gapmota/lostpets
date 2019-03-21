@@ -42,7 +42,6 @@ input[class=input_text]{
 }
 
 .btn{
-	position: relative;
 	text-align: center;
 	padding: 10px;
 	font-family: "Century Gothic","Verdana";
