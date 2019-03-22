@@ -4,136 +4,67 @@
 <meta charset="utf-8">
 <meta>
 <title>lostpet | login</title>
-<link rel="stylesheet" type="text/css" href="../css/lost.css">
-<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../static/css/lost.css">
+<link rel="stylesheet" type="text/css" href="../static/css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
 </head>
 <body>
 	<div class="area">
 		<dia class="area_pesquisa">
+			<button id="btn_abrir_nova_view" class="btn_alter">lista</button>
 			<form class="form_pesquisa">
 				<input type="text" class="input_text" placeholder="buscar região">
 				<input type="submit" value="buscar" class="btn">
 			</form>
 		</dia>
-		<div class="area_listagem">
+		<div id="map_area" class="area_listagem_on">
+			<div class="map_style" id="mapContainer"></div>
+		</div>
+		<div id="quadros" class="area_listagem_off">
 			<div class="quadro_pet">
-				<div class="area_foto"><img src="../img/dog.jpg" alt="" class="foto_pet"></div> 
-
+				<div class="area_foto"><img src="../static/img/dog.jpg" alt="" class="foto_pet"></div> 
 				<table>
-					<tr>
-						<td class="desc_pet">nome</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">tobias</td>
-					</tr>
-
-					<tr>
-						<td class="desc_pet">desaparecimento</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">21/03/2019</td>
-					</tr>
-
-					<tr>
-						<td class="desc_pet">região</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">guaianazes-sp</td>
-					</tr>
-
-					<tr>
-						<td>
-							<button class="btn_info">+</button>
-						</td>
-					</tr>
-
-
-				</table>
-
-				
+					<tr><td class="desc_pet">nome</td></tr>
+					<tr><td class="desc_info_pet">tobias</td></tr>
+					<tr><td class="desc_pet">desaparecimento</td></tr>
+					<tr><td class="desc_info_pet">21/03/2019</td></tr>
+					<tr><td class="desc_pet">região</td></tr>
+					<tr><td class="desc_info_pet">guaianazes-sp</td></tr>
+					<tr><td><button class="btn_info">+</button></td></tr>
+				</table>				
 			</div>
-
 		
-		<div class="quadro_pet">
-				<div class="area_foto"><img src="../img/cat.jpg" alt="" class="foto_pet"></div> 
-
+			<div class="quadro_pet">
+				<div class="area_foto"><img src="../static/img/cat.jpg" alt="" class="foto_pet"></div> 
 				<table>
-					<tr>
-						<td class="desc_pet">nome</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">murilo</td>
-					</tr>
-
-					<tr>
-						<td class="desc_pet">desaparecimento</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">01/02/2019</td>
-					</tr>
-
-					<tr>
-						<td class="desc_pet">região</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">itaquera-sp</td>
-					</tr>
-
-					<tr>
-						<td>
-							<button class="btn_info">+</button>
-						</td>
-					</tr>
-
-
-				</table>
-
-				
+					<tr><td class="desc_pet">nome</td></tr>
+					<tr><td class="desc_info_pet">murilo</td></tr>
+					<tr><td class="desc_pet">desaparecimento</td></tr>
+					<tr><td class="desc_info_pet">01/02/2019</td></tr>
+					<tr><td class="desc_pet">região</td></tr>
+					<tr><td class="desc_info_pet">itaquera-sp</td></tr>
+					<tr><td><button class="btn_info">+</button></td></tr>
+				</table>				
 			</div>
 
 			<div class="quadro_pet">
-				<div class="area_foto"><img src="../img/nemo.png" alt="" class="foto_pet"></div> 
-
+				<div class="area_foto"><img src="../static/img/nemo.png" alt="" class="foto_pet"></div> 
 				<table>
-					<tr>
-						<td class="desc_pet">nome</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">nemo</td>
-					</tr>
-
-					<tr>
-						<td class="desc_pet">desaparecimento</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">11/01/2019</td>
-					</tr>
-
-					<tr>
-						<td class="desc_pet">região</td>
-					</tr>
-					<tr>
-						<td class="desc_info_pet">praia grande-sp</td>
-					</tr>
-
-					<tr>
-						<td>
-							<button class="btn_info">+</button>
-						</td>
-					</tr>
-
-
-				</table>
-
-				
+					<tr><td class="desc_pet">nome</td></tr>
+					<tr><td class="desc_info_pet">nemo</td></tr>
+					<tr><td class="desc_pet">desaparecimento</td></tr>
+					<tr><td class="desc_info_pet">11/01/2019</td></tr>
+					<tr><td class="desc_pet">região</td></tr>
+					<tr><td class="desc_info_pet">praia grande-sp</td></tr>
+					<tr><td><button class="btn_info">+</button></td></tr>
+				</table>				
 			</div>
-
-						
-						
-
 		</div>
 	</div>
-	<script type="text/javascript" src="../js/login.js"></script>
+	<script src="../static/js/main.js"></script>
 </body>
 </html>
