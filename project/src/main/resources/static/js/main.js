@@ -44,12 +44,6 @@ function addMarkersToMap(map) {
 //map.addObject(loc);
 }
   
-  
-  
-  /**
-   * Boilerplate map initialization code starts below:
-   */
-  
   //Step 1: initialize communication with the platform
   var platform = new H.service.Platform({
     app_id: 'YxULymX19IjsS2pE7KGo',
@@ -76,19 +70,16 @@ function addMarkersToMap(map) {
   
 
 function addLocalizacaoPet(icon_url, latitude, longitude){
-    var icon = new H.map.Icon(icon_url);
+    var icon = new H.map.Icon(icon_url,{size: {w: 30, h: 30}});
     var marker = new H.map.Marker({ lat:latitude, lng:longitude }, { 
-        icon: icon,
-        content: 'teste'
-     });
-    marker.title = 'teste';
+        icon: icon});
     map.addObject(marker);
 }
 
   
   // Now use the map as required...
-  addLocalizacaoPet("../static/img/dog2.jpg",-23.5766,-46.4098);
-  addLocalizacaoPet("../static/img/cat2.jpg",-23.5344,-46.4515);
-  addLocalizacaoPet("../static/img/nemo2.png",-24.0089,-46.4125);
+  addLocalizacaoPet("../img/dog.jpg",-23.5766,-46.4098);
+  addLocalizacaoPet("../img/cat.jpg",-23.5344,-46.4515);
+  addLocalizacaoPet("../img/nemo.png",-24.0089,-46.4125);
   moveMap(map);
   addMarkersToMap(map);
