@@ -75,7 +75,7 @@ function addMarkersToMap(map) {
   var ui = H.ui.UI.createDefault(map, defaultLayers);
   
 // Create a marker icon from an image URL:
-var icon = new H.map.Icon('../static/img/dog2.jpg');
+var icon = new H.map.Icon('../img/dog2.jpg');
 
 // Create a marker using the previously instantiated icon:
 var marker = new H.map.Marker({ lat:-23.5766, lng:-46.4098 }, { icon: icon });
