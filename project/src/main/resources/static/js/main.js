@@ -74,16 +74,21 @@ function addMarkersToMap(map) {
   // Create the default UI components
   var ui = H.ui.UI.createDefault(map, defaultLayers);
   
-// Create a marker icon from an image URL:
-var icon = new H.map.Icon('../img/dog2.jpg');
 
-// Create a marker using the previously instantiated icon:
-var marker = new H.map.Marker({ lat:-23.5766, lng:-46.4098 }, { icon: icon });
-
-// Add the marker to the map:
-map.addObject(marker);
+function addLocalizacaoPet(icon_url, latitude, longitude){
+    var icon = new H.map.Icon(icon_url);
+    var marker = new H.map.Marker({ lat:latitude, lng:longitude }, { 
+        icon: icon,
+        content: 'teste'
+     });
+    marker.title = 'teste';
+    map.addObject(marker);
+}
 
   
   // Now use the map as required...
+  addLocalizacaoPet("../static/img/dog2.jpg",-23.5766,-46.4098);
+  addLocalizacaoPet("../static/img/cat2.jpg",-23.5344,-46.4515);
+  addLocalizacaoPet("../static/img/nemo2.png",-24.0089,-46.4125);
   moveMap(map);
   addMarkersToMap(map);
