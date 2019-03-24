@@ -1,5 +1,25 @@
+#page_load{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #7379d6;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9 !important;
+}
+
+.gif{
+	position: relative;
+	width: 320px;
+	height: 320px;
+	background-image: url(../img/load.gif);
+	background-size: 100% 100%;
+}
+
 div.area{
 	background-image: url("../img/background.png");
+	overflow-x: hidden;
 }
 
 ::-webkit-input-placeholder{
@@ -19,7 +39,8 @@ div.area{
 .map_style{
 	position: relative;
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 60px);
+	padding: 15px;
 }
 
 
@@ -31,10 +52,10 @@ div.area{
 .area_listagem_on{
 	position: relative;
 	width: 100%;
-	height: calc(100% - 60px);
+	min-height: calc(100% - 60px);
 	display: flex;
+	flex-wrap: wrap;
 	background-color: #fff;
-	padding: 50px;
 }
 
 .area_foto{
@@ -48,10 +69,10 @@ div.area{
 .quadro_pet{
 	position: relative;
 	width: 350px;
-	height: 100%;
+	height: 480px;
 	background-color: #6e83d6;
 	padding: 30px;
-	margin: 0px 10px;
+	margin: 15px 15px 0px 15px;
 }
 
 table{
@@ -98,7 +119,6 @@ table{
 }
 
 .foto_pet{
-	background-size: 100% 100%;
 	position: relative;
 	width: 230px;
 	height: 195px;
