@@ -1,4 +1,4 @@
-# :paw_prints: - LostPets
+# :paw_prints: LostPets
 
 A web system developed to search for lost animals.
 
