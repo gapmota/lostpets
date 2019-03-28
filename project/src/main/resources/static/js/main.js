@@ -105,10 +105,6 @@ function moveMap(map){
 	}
     map.setZoom(14);
 }
-  
-function addMarkersToMap(map) {
-    
-}
 
 function getLocation() {
 	   
@@ -129,7 +125,7 @@ function addLocalizacaoPet(icon_url, latitude, longitude){
   // Now use the map as required...
 addLocalizacaoPet("../img/dog.jpg",-23.5766,-46.4098);
 addLocalizacaoPet("../img/cat.jpg",-23.5344,-46.4515);
-addLocalizacaoPet("../img/nemo.png",-24.0089,-46.4125);
+addLocalizacaoPet("../img/nemo.png",25.0056201,-71.0883606);
 moveMap(map);
 
 
