@@ -1,4 +1,4 @@
-package br.lostpets.project.controller;
+package br.lostpets.project.infra;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

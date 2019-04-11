@@ -3,7 +3,7 @@ package br.lostpets.project.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.lostpets.project.model.PetsPerdidos;
+import br.lostpets.project.domain.PetsPerdidos;
 
 @RestController
 public class PetsPerdidosController {

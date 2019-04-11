@@ -15,13 +15,14 @@
 			<div class="btn_big" id="btn_perdi"></div>
 		</div>
 		<div class="login flex_padrao">
-			<form th:action="@{/LostPets}" th:object="${credenciais}" method="post"
-				onsubmit="return validarPreenchimento(this);">
+			<form th:action="@{/LostPets}" th:object="${credenciais}"
+				method="post" onsubmit="return validarPreenchimento(this);">
 				<div class="area_login">
-					<input class="input_text" placeholder="usuário" type="text" th:field="*{login}" id="login">
-					<input class="input_text" placeholder="senha" type="password" th:field="*{senha}" id="senha">
-					
-					<div class="btn" id="btn_cadastro">ser caçador</div> 
+					<input class="input_text" placeholder="usuário" type="text"
+						th:field="*{login}" id="login"> <input class="input_text"
+						placeholder="senha" type="password" th:field="*{senha}" id="senha">
+
+					<div class="btn" id="btn_cadastro">ser caçador</div>
 					<input type="submit" value="entrar" class="btn">
 				</div>
 			</form>
@@ -67,22 +68,24 @@
 		<div id="fecharViewLostPet" onclick="viewLostPet()" class="fechar"></div>
 		<p id="titulo_pagina">registrar pet perdido</p>
 		<div>
-			<form class="area_viewLostPet">
+			<form class="area_viewLostPet" th:action="@{/upload}"  method="Post">
+
 				<div class="divisao_form_lost_pet-foto">
 					<div class="foto_pet"></div>
+					<!-- <input type="file" name="file" id="file" /> -->
 				</div>
+
 				<div class="divisao_form_lost_pet-input">
-					<input class="input_text_register" placeholder="seu nome"
-						type="text"> <input class="input_text_register"
-						placeholder="e-mail" type="text"> <input
-						class="input_text_register" placeholder="telefone" type="text">
+					<input class="input_text_register" placeholder="seu nome" type="text"> 
+					<input class="input_text_register" placeholder="e-mail" type="text"> 
+					<input class="input_text_register" placeholder="telefone" type="text">
 				</div>
 				<div class="divisao_form_lost_pet-dados">
 					<div class="divisao_metade">
 						<select>
 							<option>selecione</option>
-						</select> <input class="input_text_register" placeholder="nome do animal"
-							type="text">
+						</select> 
+						<input class="input_text_register" placeholder="nome do animal" type="text">
 					</div>
 					<div class="divisao_metade">
 						<textarea placeholder="descreva seu animal"></textarea>

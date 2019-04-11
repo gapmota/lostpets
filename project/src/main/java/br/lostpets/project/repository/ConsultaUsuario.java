@@ -2,7 +2,7 @@ package br.lostpets.project.repository;
 
 import org.springframework.stereotype.Repository;
 
-import br.lostpets.project.controller.Credenciais;
+import br.lostpets.project.domain.Credenciais;
 
 @Repository
 public class ConsultaUsuario {

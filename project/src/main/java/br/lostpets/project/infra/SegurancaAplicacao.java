@@ -3,7 +3,7 @@ package br.lostpets.project.infra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.lostpets.project.controller.Credenciais;
+import br.lostpets.project.domain.Credenciais;
 import br.lostpets.project.repository.ConsultaUsuario;
 
 @Component

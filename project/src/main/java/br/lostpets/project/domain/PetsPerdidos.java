@@ -1,4 +1,4 @@
-package br.lostpets.project.model;
+package br.lostpets.project.domain;
 
 public class PetsPerdidos {
 

@@ -1,4 +1,4 @@
-package br.lostpets.project.controller;
+package br.lostpets.project.domain;
 
 public class Credenciais {
 
