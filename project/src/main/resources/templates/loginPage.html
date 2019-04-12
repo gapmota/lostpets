@@ -15,7 +15,7 @@
 			<div class="btn_big" id="btn_perdi"></div>
 		</div>
 		<div class="login flex_padrao">
-			<form th:action="@{/LostPets}" th:object="${credenciais}"
+			<form th:action="@{/Dashboard}" th:object="${credenciais}"
 				method="post" onsubmit="return validarPreenchimento(this);">
 				<div class="area_login">
 					<input class="input_text" placeholder="usuário" type="text"
@@ -68,7 +68,7 @@
 		<div id="fecharViewLostPet" onclick="viewLostPet()" class="fechar"></div>
 		<p id="titulo_pagina">registrar pet perdido</p>
 		<div>
-			<form class="area_viewLostPet" th:action="@{/upload}"  method="Post">
+			<form class="area_viewLostPet" th:action="@{/LostPets/animalPerdido}"  method="Post">
 
 				<div class="divisao_form_lost_pet-foto">
 					<div class="foto_pet"></div>

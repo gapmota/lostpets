@@ -1,12 +1,12 @@
 package br.lostpets.project.domain;
 
-public class PetsPerdidos {
+public class PetPerdido {
 
 	private double latitude;
 	private double longitude;
 	private String fotoPet;
 		
-	public PetsPerdidos(double latitude, double longitude, String fotoPet) {
+	public PetPerdido(double latitude, double longitude, String fotoPet) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.fotoPet = fotoPet;

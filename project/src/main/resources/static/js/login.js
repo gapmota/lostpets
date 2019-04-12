@@ -4,8 +4,11 @@ function viewLostPet(){
 
 	if(view.className == "lostOn"){
 		view.className = "lostOff";
+		window.history.pushState("String", "Title", "/LostPets");
 	}else{
 		view.className = "lostOn";
+		//Muda url do site sem carregar a mesma
+		window.history.pushState("String", "Title", "/LostPets/animalPerdido");
 	}
 }
 

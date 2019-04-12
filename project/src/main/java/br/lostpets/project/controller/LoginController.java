@@ -31,14 +31,14 @@ public class LoginController {
 		return "loginPage";
 	}
 
-	@PostMapping("/LostPets")
+	@PostMapping("/Dashboard")
 	public String logar(@ModelAttribute Credenciais credenciais) {
 
 		if (seguranca.permitirAcesso(credenciais)) {
 			dataHora(credenciais);
 			return "redirect:/Dashboard";
 		} else {
-			return "loginPage";
+			return "redirect:/LostPets";
 		}
 
 	}
