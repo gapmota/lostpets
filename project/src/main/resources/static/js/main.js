@@ -50,6 +50,15 @@ btn_view.onclick = function (){
 
 
 
+function openModal(){
+  let view = document.getElementById("modal");
+
+	if(view.style.display == "none"){
+		view.style.display = "block";
+	}else{
+		view.style.display = "none";
+	}
+}
 
 
 
@@ -144,7 +153,7 @@ function carregarListaMapa(listPet){
     +"<tr><td class='desc_info_pet'>"+pet.desaparecimento+"</td></tr>"
     +"<tr><td class='desc_pet'>região</td></tr>"
     +"<tr><td class='desc_info_pet'>"+pet.regiao+"</td></tr>"
-    +"<tr><td><button class='btn_info'>+</button></td></tr>"
+    +"<tr><td><button class='btn_info' onclick='openModal()'>+</button></td></tr>"
     +"</table>"				
     +"</div>";
 

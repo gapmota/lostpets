@@ -171,3 +171,37 @@ input[class=input_text]{
 	align-items: center;
 	flex-wrap: wrap;
 }
+
+/*MODAL -------------------------------------------------------------------*/
+
+.modal_pet{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(110, 131, 214, 0.8);
+
+	z-index: 7 !important;
+}
+
+.fechar{
+	position: absolute;
+	margin: 10px 10px;
+	border-radius: 100%;
+	width: 40px;
+	height: 40px;
+	padding: 7px 13px;
+	background: #ddd;
+	z-index: 9;
+	right: 0px;
+	top: 0px;
+	font-family: "Century Gothic","Verdana";
+	font-size: 18px;
+	cursor: pointer;
+	transition: all 0.2s;
+	color: #000;
+}
+.fechar:hover{
+	background: #da2715;
+	transition: all 0.2s;
+	color: #fff;
+}

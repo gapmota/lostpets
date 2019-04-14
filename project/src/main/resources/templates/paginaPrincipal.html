@@ -17,6 +17,9 @@
 		<div class="gif"></div>
 	</div>
 	<div class="area">
+		<div id="modal" class="modal_pet" style="display: none;">
+			<div id="fecharModal" onclick="openModal()" class="fechar">x</div>
+		</div>
 		<dia class="area_pesquisa">
 			<button id="btn_abrir_nova_view" class="btn_alter">lista</button>
 			<form class="form_pesquisa">
@@ -38,7 +41,7 @@
 					<tr><td class="desc_info_pet">21/03/2019</td></tr>
 					<tr><td class="desc_pet">região</td></tr>
 					<tr><td class="desc_info_pet">guaianazes-sp</td></tr>
-					<tr><td><button class="btn_info">+</button></td></tr>
+					<tr><td><button class="btn_info" onclick="openModal()">+</button></td></tr>
 				</table>				
 			</div>
 		
@@ -51,7 +54,7 @@
 					<tr><td class="desc_info_pet">01/02/2019</td></tr>
 					<tr><td class="desc_pet">região</td></tr>
 					<tr><td class="desc_info_pet">itaquera-sp</td></tr>
-					<tr><td><button class="btn_info">+</button></td></tr>
+					<tr><td><button class="btn_info" onclick="openModal()">+</button></td></tr>
 				</table>				
 			</div>
 
@@ -64,7 +67,7 @@
 					<tr><td class="desc_info_pet">11/01/2019</td></tr>
 					<tr><td class="desc_pet">região</td></tr>
 					<tr><td class="desc_info_pet">triângulo das bermudas</td></tr>
-					<tr><td><button class="btn_info">+</button></td></tr>
+					<tr><td><button class="btn_info" onclick="openModal()">+</button></td></tr>
 				</table>				
 			</div>
 		</div>
