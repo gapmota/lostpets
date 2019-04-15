@@ -32,7 +32,7 @@ public class UserFiles implements Serializable {
 	private String fileExtension;
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
-	private Usuario user;
+	private User user;
 	
 	public Long getId() {
 		return id;
@@ -58,10 +58,10 @@ public class UserFiles implements Serializable {
 	public void setFileExtension(String fileExtension) {
 		this.fileExtension = fileExtension;
 	}
-	public Usuario getUser() {
+	public User getUser() {
 		return user;
 	}
-	public void setUser(Usuario user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	

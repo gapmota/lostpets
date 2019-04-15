@@ -15,12 +15,10 @@
 			<div class="btn_big" id="btn_perdi"></div>
 		</div>
 		<div class="login flex_padrao">
-			<form th:action="@{/Dashboard}" th:object="${credenciais}"
-				method="post" onsubmit="return validarPreenchimento(this);">
+			<form th:action="@{/Dashboard}" th:object="${credenciais}" method="post" onsubmit="return validarPreenchimento(this);">
 				<div class="area_login">
-					<input class="input_text" placeholder="usuário" type="text"
-						th:field="*{login}" id="login"> <input class="input_text"
-						placeholder="senha" type="password" th:field="*{senha}" id="senha">
+					<input class="input_text" placeholder="usuário" type="text" th:field="*{login}" id="login"> 
+					<input class="input_text" placeholder="senha" type="password" th:field="*{senha}" id="senha">
 
 					<div class="btn" id="btn_cadastro">ser caçador</div>
 					<input type="submit" value="entrar" class="btn">
@@ -33,32 +31,30 @@
 		<div id="fecharViewLostPet" onclick="viewRegister()" class="fechar"></div>
 		<p id="titulo_pagina">ser caçador</p>
 		<div>
-			<form class="area_viewRegister">
+			<form class="area_viewRegister" action="#" th:action="@{${isAdd}?'/save':'/update'}" th:object="${user}" method="post" enctype="multipart/form-data">
 				<div class="divisao_form_register-foto">
 					<div class="foto_register"></div>
 				</div>
 				<div class="divisao_form_register-input">
-					<input class="input_text_register" placeholder="seu nome"
-						type="text"> <input class="input_text_register"
-						placeholder="e-mail" type="text"> <input
-						class="input_text_register" placeholder="senha" type="password">
-					<input class="input_text_register" placeholder="telefone"
-						type="text">
+					<input class="input_text_register" placeholder="seu nome" type="text" id="nomeCadastro" th:field="*{nome}"> 
+					<input class="input_text_register" placeholder="e-mail" type="text" id="emailCadastro" th:field="*{email}"> 
+					<input class="input_text_register" placeholder="senha" type="password" id="senhaCadastro" th:field="*{senha}">
+					<input class="input_text_register" placeholder="telefone" type="text" id="telefoneCadastro" th:field="*{telefone}">
 				</div>
 				<div class="divisao_form_register_dados-rua">
 					<div class="divisao_metade">
-						<input class="input_text_register" placeholder="cidade"
-							type="text"> <input class="input_text_register"
-							placeholder="rua" type="text">
+						<input class="input_text_register" placeholder="cidade" type="text" id="cidadeCadastro" th:field="*{cidade}"> 
+						<input class="input_text_register" placeholder="rua" type="text" id="ruaCadastro" th:field="*{logradouro}">
 					</div>
 					<div class="divisao_metade">
-						<input class="input_text_register" placeholder="bairro"
-							type="text"> <input class="input_text_register"
-							placeholder="número da casa" type="text">
+						<input class="input_text_register" placeholder="bairro" type="text" id="bairroCadastro" th:field="*{bairro}"> 
+						<input class="input_text_register" placeholder="número da casa" type="text" id="numCasaCadastro" th:field="*{numCasa}">
+						<input type="file" class="input_text_register" id="files" th:field="*{files}" />
 					</div>
+					
 				</div>
 				<div class="divisao_form_register_confirmar">
-					<button type="submit" class="confirmar"></button>
+					<button type="submit" class="confirmar" th:text="${isAdd}?'/save':'/upload'"></button>
 				</div>
 			</form>
 		</div>
@@ -68,7 +64,7 @@
 		<div id="fecharViewLostPet" onclick="viewLostPet()" class="fechar"></div>
 		<p id="titulo_pagina">registrar pet perdido</p>
 		<div>
-			<form class="area_viewLostPet" th:action="@{/LostPets/animalPerdido}"  method="Post">
+			<form class="area_viewLostPet" th:action="@{/LostPets}" th:object="${user}"  method="Post">
 
 				<div class="divisao_form_lost_pet-foto">
 					<div class="foto_pet"></div>
