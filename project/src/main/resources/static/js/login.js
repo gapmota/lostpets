@@ -60,4 +60,27 @@ document.getElementById("btn_cadastro").onclick = function (){
 	viewRegister();
 };
 
+document.getElementById("foto_register").onclick = function(){
+	let file = document.getElementById("files");
+	file.click();
+}
 
+let ft_register = document.getElementById("foto_register");
+
+ft_register.onclick = function(){
+	let file = document.getElementById("files");
+	file.click();
+	var reader  = new FileReader();
+	
+	reader.onloadend = function () {
+		ft_register.style.backgroundImage = reader.result;
+	}
+
+	if (file) {
+		reader.readAsDataURL(file);
+	} else {
+		ft_register.style.backgroundImage = "";
+	}
+	
+
+}

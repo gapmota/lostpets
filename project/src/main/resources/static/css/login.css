@@ -337,3 +337,7 @@ textarea{
 .confirmar::before{
 	content: "confirmar";
 }
+
+img{
+	display: inline;
+}

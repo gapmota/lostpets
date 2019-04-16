@@ -51,3 +51,9 @@ input[class=input_text]{
 	margin: 5px;
 	border-radius: 5px;
 }
+
+.hidden{
+	display: none !important;
+	width: 0px;
+	height: 0px;
+}
