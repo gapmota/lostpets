@@ -7,7 +7,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-//import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -19,12 +18,6 @@ public class DatabaseConfig {
 	@Bean
 	@Primary
 	public DataSource getDataSource() {
-		//DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		//dataSource.setDriverClassName("com.microsoft.sqlserver");
-		//dataSource.setUrl("***URL***");
-		//dataSource.setUsername("***username***");
-		//dataSource.setPassword("***password***");
-		
 		return DataSourceBuilder.create().build(); // está consumindo dados do application.properties
 	}
 	
