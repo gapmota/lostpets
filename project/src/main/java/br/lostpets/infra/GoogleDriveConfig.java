@@ -16,12 +16,15 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
+
+import javax.swing.JFileChooser;
 
 public class GoogleDriveConfig {
 
@@ -30,6 +33,7 @@ public class GoogleDriveConfig {
 	private static final String TOKENS_DIRECTORY_PATH = "tokens";
 	private static final List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE);
 	private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+	private static BufferedImage imagem;
 
 	private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
 		// Load client secrets.
@@ -45,12 +49,11 @@ public class GoogleDriveConfig {
 		return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
 	}
 
-	public static void UploadFile(/* String path */Drive service) throws IOException {
+	public static void UploadFile(java.io.File arq, Drive service) throws IOException {
 		File fileMetadata = new File();
-		fileMetadata.setName("Koala.jpg");
+		fileMetadata.setName(arq.getName());
 		fileMetadata.setMimeType("image/jpeg");
-		// service.files().
-		java.io.File filePath = new java.io.File("Koala.jpg");
+		java.io.File filePath = new java.io.File(arq.getAbsolutePath());
 		FileContent mediaContent = new FileContent("image/jpeg", filePath);
 		File file = service.files().create(fileMetadata, mediaContent).setFields("id").execute();
 		System.out.println("File ID: " + file.getId());
@@ -81,6 +84,15 @@ public class GoogleDriveConfig {
 	}
 
 	public static void main(String... args) throws IOException, GeneralSecurityException {
+		
+		JFileChooser fc = new JFileChooser();
+        int res = fc.showOpenDialog(null);
+
+        if (res == JFileChooser.APPROVE_OPTION) {
+            java.io.File arquivo = fc.getSelectedFile();
+            UploadFile(arquivo, getService());
+        } else 
+        	System.out.println("Voce nao selecionou nenhum arquivo.");
 		
 		listFiles(getService());
 	}
