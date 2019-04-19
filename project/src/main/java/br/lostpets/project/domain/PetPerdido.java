@@ -1,35 +1,27 @@
 package br.lostpets.project.domain;
 
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="petperdido")
 public class PetPerdido {
 
-	private double latitude;
-	private double longitude;
-	private String fotoPet;
-		
-	public PetPerdido(double latitude, double longitude, String fotoPet) {
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.fotoPet = fotoPet;
-	}
-	
-	public double getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-	public double getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
-	}
-	public String getFotoPet() {
-		return fotoPet;
-	}
-	public void setFotoPet(String fotoPet) {
-		this.fotoPet = fotoPet;
-	}
+	private int idAnimal;
+	private int idUsuario;
+	private int idDonoPetPerdido;
+	private String nomeAnimal;
+	private Date dataperdido;
+	private char ativo;
+	private String descricao;
+	private String tipoAnimal;
+	private String pathImg;
+	private String Cep;
+	private String latitude;
+	private String longitude;
+	private Date AddData;
 	
 	
 	

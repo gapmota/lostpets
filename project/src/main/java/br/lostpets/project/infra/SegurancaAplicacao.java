@@ -3,7 +3,7 @@ package br.lostpets.project.infra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.lostpets.project.domain.Credenciais;
+import br.lostpets.project.domain.Usuario;
 import br.lostpets.project.repository.ConsultaUsuario;
 
 @Component
@@ -16,8 +16,8 @@ public class SegurancaAplicacao {
 		this.usuario = usuario;
 	}
 	
-	public boolean permitirAcesso(Credenciais credenciais) {
-		boolean usuarioExiste = usuario.contemUsuario(credenciais);
+	public boolean permitirAcesso(Usuario credenciaisAcesso) {
+		boolean usuarioExiste = usuario.contemUsuario(credenciaisAcesso);
 	 
 		return usuarioExiste;
 	}

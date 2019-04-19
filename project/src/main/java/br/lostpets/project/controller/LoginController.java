@@ -1,9 +1,7 @@
 package br.lostpets.project.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.lostpets.project.controller.service.UserService;
-import br.lostpets.project.domain.Credenciais;
-import br.lostpets.project.domain.User;
-import br.lostpets.project.domain.UserFiles;
+import br.lostpets.project.domain.Usuario;
 import br.lostpets.project.infra.HistoricoAcessoLog;
 import br.lostpets.project.infra.SegurancaAplicacao;
 
@@ -29,34 +24,22 @@ public class LoginController {
 	public LoginController(SegurancaAplicacao seguranca) {
 		this.seguranca = seguranca;
 	}
-
-	@Autowired
-	private UserService userService;
 	
 	@GetMapping("/LostPets")
 	public String openLogin(Model model) {
-		model.addAttribute(new Credenciais(null, null));
+		model.addAttribute(new Usuario(null, null));
 		
-		List<User> users = userService.getAllUsers();
-		model.addAttribute("users", users);
-		model.addAttribute("user", new User());
-		model.addAttribute("userFiles", new ArrayList<UserFiles>());
+		model.addAttribute("user", new Usuario());
 		model.addAttribute("isAdd", true);
 		
 		return "loginPage";
 	}
-	@PostMapping(value="/save")
-	public String save(@ModelAttribute User user) {
-		User dbUser = userService.save(user);
-		//1:01:50
-		return null;
-	}
-
+	
 	@PostMapping("/Dashboard")
-	public String logar(@ModelAttribute Credenciais credenciais) {
+	public String logar(@ModelAttribute Usuario credenciaisAcesso) {
 
-		if (seguranca.permitirAcesso(credenciais)) {
-			dataHora(credenciais);
+		if (seguranca.permitirAcesso(credenciaisAcesso)) {
+			dataHora(credenciaisAcesso);
 			return "redirect:/Dashboard";
 		} else {
 			return "redirect:/LostPets";
@@ -64,12 +47,12 @@ public class LoginController {
 
 	}
 
-	public void dataHora(Credenciais credenciais) {
+	public void dataHora(Usuario credenciaisAcesso) {
 		Date dataHoraAtual = new Date();
 		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
 		String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
 
-		acesso[0][0] = credenciais.getLogin();
+		acesso[0][0] = credenciaisAcesso.getEmail();
 		acesso[0][1] = data;
 		acesso[0][2] = hora;
 		new HistoricoAcessoLog().escreverLog(acesso);
