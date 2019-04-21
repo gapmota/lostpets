@@ -5,97 +5,51 @@
     <meta charset="utf-8">
     <meta>
     <title>lostpet | login</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/lost.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
-	<div class="area flex_padrao">
-		<div class="conteudo flex_padrao">
-			<div class="btn_big" id="btn_perdi"></div>
-		</div>
-		<div class="login flex_padrao">
-			<form th:action="@{/Dashboard}" th:object="${credenciais}" method="post" onsubmit="return validarPreenchimento(this);">
-				<div class="area_login">
-					<input class="input_text" placeholder="usuário" type="text" th:field="*{login}" id="login"> 
-					<input class="input_text" placeholder="senha" type="password" th:field="*{senha}" id="senha">
-
-                    <div class="btn" id="btn_cadastro">ser caçador</div>
-                    <input type="submit" value="entrar" class="btn">
+	<div class="container">
+        <div class="row">
+            
+            <!-- content -->
+            <div class="col l8 m8 s12 blue dh">
+                <div class="col s12 blue dh valign-wrapper">
+                    <div class="container btn-lost center-align" onclick="window.location.href='cadastroAnimalPerdido.html'">
+                        <p class="center-align">perdi meu pet</p>                        
+                    </div> 
                 </div>
-            </form>
+            </div>
+
+            <!-- content login -->
+            <div class="col l4 m4 s12 white dh">
+                <form class="col s12" action="principalPage.html" th:action="@{/Dashboard}" th:object="${credenciais}" method="post" onsubmit="return validarPreenchimento(this);">
+                    <div class="col s12 dh valign-wrapper">
+                        <div class="container center-align">
+                            <div class="input-field col s12">
+                                <input id="login" type="text" class="validate" th:field="*{login}">
+                                <label for="login">usuário</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="senha" type="password" class="validate" th:field="*{senha}">
+                                <label for="senha">senha</label>
+                            </div>
+                            <div class="container">
+                                <button type="submit" class="waves-effect waves-light btn-small btn-width">entrar</a>
+                                <button class="waves-effect waves-light btn-small btn-width">ser caçador</button>
+                            </div>
+                        </div> 
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
-	<div id="viewRegister" class="registerOff">
-		<div id="fecharViewLostPet" onclick="viewRegister()" class="fechar"></div>
-		<p id="titulo_pagina">ser caçador</p>
-		<div>
-			<form class="area_viewRegister" action="#" th:action="@{${isAdd}?'/save':'/update'}" th:object="${user}" method="post" enctype="multipart/form-data">
-				<div class="divisao_form_register-input">
-                    <div class="divisao_metade">
-                        <div class="divisao_form_register-foto">
-                            <div id="foto_register" class="foto_register"></div>
-                            <input type="file" class="hidden" id="files" th:field="*{files}" />
-                        </div>
-                    </div>
-                    <div class="divisao_metade">
-                        <input class="input_text_register" placeholder="seu nome" type="text" id="nomeCadastro" th:field="*{nome}"> 
-                        <input class="input_text_register" placeholder="telefone" type="text" id="telefoneCadastro" th:field="*{telefone}">
-                        <input class="input_text_register" placeholder="cidade" type="text" id="cidadeCadastro" th:field="*{cidade}">
-                        <input class="input_text_register" placeholder="cep" type="text" id="cep" th:field="*{numCasa}">
-                        <input class="input_text_register" placeholder="número da casa" type="text" id="numCasaCadastro" th:field="*{numCasa}">
-                    </div>
-                    
-				</div>
-				<div class="divisao_form_register-input">
-                        <input class="input_text_register" placeholder="e-mail" type="text" id="emailCadastro" th:field="*{email}"> 
-                        <input class="input_text_register" placeholder="senha" type="password" id="senhaCadastro" th:field="*{senha}">
-				</div>
-				<div class="divisao_form_register_confirmar">
-					<button type="submit" class="confirmar" th:text="${isAdd}?'/save':'/upload'"></button>
-				</div>
-			</form>
-		</div>
-	</div>
-
-	<div id="viewLostPet" class="lostOff">
-		<div id="fecharViewLostPet" onclick="viewLostPet()" class="fechar"></div>
-		<p id="titulo_pagina">registrar pet perdido</p>
-		<div>
-			<form class="area_viewLostPet" th:action="@{/LostPets}" th:object="${user}"  method="Post">
-
-                <div class="divisao_form_lost_pet-input">
-                    <input class="input_text_register" placeholder="seu nome" type="text">
-                    <input class="input_text_register" placeholder="e-mail" type="text">
-                    <input class="input_text_register" placeholder="telefone" type="text">
-                </div>
-
-                <div class="divisao_form_lost_pet-dados">
-                    <div class="divisao_metade">
-                        <div class="divisao_form_lost_pet-foto">
-                            <div class="foto_pet"></div>
-                            <!-- <input type="file" name="file" id="file" /> -->
-                        </div>
-                    </div>
-                    <div class="divisao_metade">
-                        <select>
-                            <option>selecione</option>
-                        </select>
-                        <input class="input_text_register" placeholder="nome do animal" type="text">
-                        <textarea placeholder="descreva seu animal"></textarea>
-                    </div>
-                </div>
-                <div class="divisao_form_lost_pet_confirmar">
-                    <button type="submit" class="confirmar"></button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="../static/js/login.js"></script>
+        
+    
+    <script type="text/javascript" src="../js/materialize.js"></script>
 </body>
 
 </html>

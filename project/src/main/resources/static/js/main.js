@@ -11,10 +11,10 @@ function viewQuadros(){
 
 	let view = document.getElementById("quadros");
 
-	if(view.className == "area_listagem_on"){
-		view.className = "area_listagem_off";
+	if(view.className.includes("area_listagem_on")){
+		view.className = "display-flex area_listagem_off";
 	}else{
-		view.className = "area_listagem_on";
+		view.className = "display-flex area_listagem_on";
 	}
 }
 
@@ -26,15 +26,14 @@ function viewMap(){
 		view.className = "area_listagem_off";
 	}else{
     view.className = "area_listagem_on";
-    view.up
 	}
 }
 
 let btn_view = document.getElementById("btn_abrir_nova_view");
-
+console.log("aaaaa");
 function alterView(){
   if(btn_view.textContent == "map"){
-    btn_view.textContent = "lista";
+    btn_view.textContent = "list";
     viewQuadros();
     viewMap();
   }else{
