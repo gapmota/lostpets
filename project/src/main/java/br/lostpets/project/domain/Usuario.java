@@ -2,29 +2,35 @@ package br.lostpets.project.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuario")
+@Table(name="USUARIO")
 public class Usuario {
 	
-	private int idPessoa;
-	private String nome;
-	private String telefoneFixo;
-	private String telefoneCelular;
-	private String email;
-	private String senha;
-	private String pathImg;
-	private String Cep;
-	private String rua;
-	private String bairro;
-	private String cidade;
-	private String uf;
-	private String latitude;
-	private String longitude;
-	private String addCadastro;
-	private Date ultimoAcesso;
+	@Id
+	@GeneratedValue
+	@Column(name="ID_PESSOA") private int idPessoa;
+	
+	@Column(name="NOME") private String nome;
+	@Column(name="TELEFONE_FIXO") private String telefoneFixo;
+	@Column(name="TELEFONE_CELULAR") private String telefoneCelular;
+	@Column(name="EMAIL") private String email;
+	@Column(name="SENHA") private String senha;
+	@Column(name="PATH_IMG") private String pathImg;
+	@Column(name="CEP") private String Cep;
+	@Column(name="RUA") private String rua;
+	@Column(name="BAIRRO") private String bairro;
+	@Column(name="CIDADE") private String cidade;
+	@Column(name="UF") private String uf;
+	@Column(name="LATITUDE") private String latitude;
+	@Column(name="LONGITUDE") private String longitude;
+	@Column(name="ADD_CADASTRO") private String addCadastro;
+	@Column(name="ULTIMO_ACESSO") private Date ultimoAcesso;
 	
 	//construtor temporario para funcionamento de acesso
 	public Usuario(String email, String senha){
