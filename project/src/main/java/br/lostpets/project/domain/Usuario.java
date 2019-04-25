@@ -22,7 +22,7 @@ public class Usuario {
 	@Column(name="EMAIL") private String email;
 	@Column(name="SENHA") private String senha;
 	@Column(name="PATH_IMG") private String pathImg;
-	@Column(name="CEP") private String Cep;
+	@Column(name="CEP") private String cep;
 	@Column(name="RUA") private String rua;
 	@Column(name="BAIRRO") private String bairro;
 	@Column(name="CIDADE") private String cidade;
@@ -31,8 +31,27 @@ public class Usuario {
 	@Column(name="LONGITUDE") private String longitude;
 	@Column(name="ADD_CADASTRO") private String addCadastro;
 	@Column(name="ULTIMO_ACESSO") private Date ultimoAcesso;
-	
-	//construtor temporario para funcionamento de acesso
+
+	public Usuario(String nome, String telefoneFixo, String telefoneCelular, String email, String senha, String pathImg,
+			String cep, String rua, String bairro, String cidade, String uf, String latitude, String longitude,
+			String addCadastro, Date ultimoAcesso) {
+		this.nome = nome;
+		this.telefoneFixo = telefoneFixo;
+		this.telefoneCelular = telefoneCelular;
+		this.email = email;
+		this.senha = senha;
+		this.pathImg = pathImg;
+		this.cep = cep;
+		this.rua = rua;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.uf = uf;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.addCadastro = addCadastro;
+		this.ultimoAcesso = ultimoAcesso;
+	}
+	//construtor funcionamento de acesso
 	public Usuario(String email, String senha){
 		this.email = email;
 		this.senha = senha;
