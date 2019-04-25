@@ -7,7 +7,15 @@
     min-height: 100vh !important;
 }
 
+.center-xy{
+    top: 50%;
+    margin-top: 10px;
+    margin: 0px 20px; 
+}
 
+.border-radius{
+    border-radius: 10px;
+}
 
 .row, form {
     margin-bottom: 0px;
@@ -49,27 +57,12 @@
 
 .content-register {
     position: relative;
-    width: 100%;
-    padding: 10px;
-    max-height: 90vh;
-    overflow: hidden;
-    overflow-y: scroll;
+    padding: 0px 50px 50px 50px;
+    min-height: 100%;
 }
 
 .pos-relative {
     position: relative !important;
-}
-
-@media only screen and (min-width: 601px) {
-    .content-register {
-        width: 85%;
-    }
-}
-
-@media only screen and (min-width: 993px) {
-    .content-register {
-        width: 60%;
-    }
 }
 
 .center-div {
@@ -82,8 +75,32 @@
 .foto-register {
     position: relative;
     width: 100%;
+    max-width: 350px;
+    min-width: 300px;
     min-height: 222px;
     height: 100%;
+    max-height: 222px;
+}
+
+.alter-textarea{
+    position: absolute !important;
+    top: -16px !important;
+    resize: none !important;
+}
+
+textarea{
+    width: 97%;
+    position: absolute;
+    outline: none;
+    padding: 10px;
+    height: 222px;
+    top: -14px;
+    resize: none;
+}
+
+.dh-textarea{
+    position: relative;
+    width: 300px;
 }
 
 ::-webkit-scrollbar {
@@ -121,6 +138,7 @@
     height: 440px;
     margin: 0px 10px 10px 10px;
     background-color: #6e83d6;
+    border-radius: 10px;
 }
 
 nav{

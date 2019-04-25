@@ -17,38 +17,37 @@
         <div class="row">
 
             <!-- content -->
-            <div class="col l12 m12 s12 blue">
+            <div class="col l12 m12 s12">
                 <h4 class="center-align">registrar-se</h4>
             </div>
 
-            <div class="col l12 m12 s12 blue dh pos-relative scrollY">
+            <div class="col l12 m12 s12 dh pos-relative con">
 
-
-                <div class="white content-register center-div">
-                    <form class="col s12" action="#" th:action="@{${isAdd}?'/save':'/update'}" th:object="${user}"
+                <div class="white content-register">
+                    <form class="col l12 m12 s12" action="#" th:action="@{${isAdd}?'/save':'/update'}" th:object="${user}"
                         method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col s6">
-                                <img class="foto-register responsive-img" src="../img/cat.jpg">
+                            <div class="col l4 m4 s12" style="height: 222px;">
+                                <img class="foto-register" src="../img/cat.jpg">
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field l8 m8 col s12">
                                 <input id="nome" type="text" class="validate">
                                 <label for="nome">seu nome</label>
                             </div>
-                            <div class="input-field col s3">
+                            <div class="input-field l4 m4 col s12">
                                 <input id="telefoneMovel" type="tel" class="validate">
                                 <label for="telefoneMovel">celular</label>
                             </div>
-                            <div class="input-field col s3">
+                            <div class="input-field l4 m4 col s12">
                                 <input id="telefoneFixo" type="tel" class="validate">
                                 <label for="telefoneFixo">telefone</label>
                             </div>
 
-                            <div class="input-field col s6">
+                            <div class="input-field l4 m4 col s12">
                                 <input id="cidade" type="text" class="validate">
                                 <label for="cidade">cidade</label>
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field l4 m4 col s12">
                                 <input id="cep" type="email" class="validate">
                                 <label for="cep">cep</label>
                             </div>
@@ -57,23 +56,22 @@
                         </div>
                         <div class="row">
 
-                            <div class="input-field col s12">
+                            <div class="input-field l12 m12 col s12">
                                 <input id="email" type="email" class="validate">
                                 <label for="email">e-mail</label>
                             </div>
 
-                            <div class="input-field col s12">
+                            <div class="input-field l12 m12 col s12">
                                 <input id="senha" type="email" class="validate">
                                 <label for="senha">senha</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s12">
+                            <div class="input-field l12 m12 col s12">
                                 <button class="waves-effect waves-light btn-large btn-width-large">confirmar </button>
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
