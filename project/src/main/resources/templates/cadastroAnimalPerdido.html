@@ -8,101 +8,95 @@
     <link rel="stylesheet" type="text/css" href="../css/materialize.css">
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script
-    src="https://code.jquery.com/jquery-3.4.0.min.js"
-    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div>
         <div class="row">
-
             <!-- content -->
-            <div class="col l12 m12 s12 blue">
-                <h4 class="center-align">localizar meu pet</h4>
-            </div>
-            
-            <div class="col l12 m12 s12 blue dh pos-relative scrollY">
-                
-
-                <div class="white content-register center-div">
-                    <form class="col s12" th:action="@{/LostPets}" th:object="${user}" method="Post">
-
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="nome" type="text" class="validate">
-                                <label for="nome">seu nome</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="email" type="email" class="validate">
-                                <label for="email">e-mail</label>
-                            </div>
+            <div class="white content-register"></div>
+                <form class="col l12 m12 s12" th:action="@{/LostPets}" th:object="${user}" method="Post">
+                    <div class="col l12 m12 s12">
+                        <h4 class="center-align">localizar meu pet</h4>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col l6 m6 s12">
+                            <input id="nome" type="text" class="validate">
+                            <label for="nome">seu nome</label>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="telefoneMovel" type="tel" class="validate">
-                                <label for="telefoneMovel">celular</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="telefoneFixo" type="tel" class="validate">
-                                <label for="telefoneFixo">telefone</label>
-                            </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">e-mail</label>
                         </div>
-                        <br>
-                        <div class="row">
-                            <div class="col s6">
+                    </div>
+                    <div class="row">
+                        <div class="input-field col l6 m6 s12">
+                            <input id="telefoneMovel" type="tel" class="validate">
+                            <label for="telefoneMovel">celular</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input id="telefoneFixo" type="tel" class="validate">
+                            <label for="telefoneFixo">telefone</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col l4 m4 s12">
                                 <img class="foto-register responsive-img" src="../img/cat.jpg">
                             </div>
-
-                            <div class="input-field col s6">
-                                <select>
-                                        <option value="-1" disabled selected>selecione o tipo de pet</option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                </select>
-                                <!--<input id="aa" type="tel" class="validate">
-                                <label for="aa">selecione</label>-->
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="nomeAnimal" type="tel" class="validate">
-                                <label for="nomeAnimal">nome do animal</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="dataPerdido" type="date" class="validate">
-                                <label for="dataPerdido">data do desaparecimento</label>
+                            <div class="input-field col l8 m8 s12" style="height: 222px">
+                                <textarea id="textarea1"></textarea>
+                                <label for="textarea1" class="alter-textarea">Descreva como ocorreu o
+                                    desaparecimento</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                <label for="textarea1">Descreva como ocorreu o desaparecimento</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="cepAnimal" type="text" class="validate">
-                                <label for="cepAnimal">cep do desaparecimento</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="ruaAnimal" type="text" class="validate">
-                                <label for="ruaAnimal">rua do desaparecimento</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="bairroAnimal" type="text" class="validate">
-                                <label for="bairroAnimal">bairro do desaparecimento</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="cidadeAnimal" type="text" class="validate">
-                                <label for="cidadeAnimal">cidade do desaparecimento</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <button class="waves-effect waves-light btn-large btn-width-large">confirmar </button>
-                            </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="input-field col l6 m6 s12">
+                            <select>
+                                <option value="-1" disabled selected>selecione o tipo de pet</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                            <!--<input id="aa" type="tel" class="validate">
+                                        <label for="aa">selecione</label>-->
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input id="nomeAnimal" type="tel" class="validate">
+                            <label for="nomeAnimal">nome do animal</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input id="dataPerdido" type="date" class="validate">
+                            <label for="dataPerdido">data do desaparecimento</label>
                         </div>
 
-                    </form>
 
-                </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input id="cepAnimal" type="text" class="validate">
+                            <label for="cepAnimal">cep do desaparecimento</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input id="ruaAnimal" type="text" class="validate">
+                            <label for="ruaAnimal">rua do desaparecimento</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input id="bairroAnimal" type="text" class="validate">
+                            <label for="bairroAnimal">bairro do desaparecimento</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input id="cidadeAnimal" type="text" class="validate">
+                            <label for="cidadeAnimal">cidade do desaparecimento</label>
+                        </div>
+                        <div class="input-field col l12 m12 s12">
+                            <button class="waves-effect waves-light btn-large btn-width-large">confirmar </button>
+                        </div>
+                    </div>
+
+                </form>
+
             </div>
         </div>
     </div>
