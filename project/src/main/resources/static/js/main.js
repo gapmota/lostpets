@@ -1,4 +1,4 @@
-let url_resq = "http://localhost:8080/api/";
+var url_resq = "http://localhost:8080/api/";
 
 window.onload = function(){
  // requestLostPets();
@@ -52,10 +52,14 @@ btn_view.onclick = function (){
 function openModal(){
   let view = document.getElementById("modal");
 
-	if(view.style.display == "none"){
-		view.style.display = "block";
+  console.log("aasfaf");
+
+	if(view.classList.contains("popup-off")){
+    view.classList.remove("popup-off");
+    view.classList.add("popup-on");
 	}else{
-		view.style.display = "none";
+		view.classList.remove("popup-on");
+    view.classList.add("popup-off");
 	}
 }
 
@@ -102,7 +106,7 @@ var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 var ui = H.ui.UI.createDefault(map, defaultLayers);
 
 function moveMap(map){
-	if (navigator.geolocation) {
+	if (navigatora.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(loc){
 			map.setCenter({lat:loc.coords.latitude, lng:loc.coords.longitude });
 			var loc = new H.map.Marker({lat:loc.coords.latitude, lng:loc.coords.longitude });

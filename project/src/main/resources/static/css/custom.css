@@ -120,6 +120,10 @@ textarea{
     flex-wrap: wrap;
 }
 
+.dp{
+    padding: 10px;
+}
+
 .dp-t{
     padding-top: 10px;
 }
@@ -240,5 +244,104 @@ table{
 	width: 350px;
 	height: 500px;
 	background-color: #6e83d6;
-	padding: 30px;
+    padding: 30px;
+    
+}
+
+.popup-off, .popup-on{
+    width: 100%;
+    position: relative;
+    z-index: 9;
+    transition: all 0.3s;
+    background-color: #fff;
+    min-height: 100% !important;
+    top: 0px;
+    bottom: 0px;
+}
+
+.content-info-pet{
+    padding: 10px;
+    
+}
+
+.dinamic-height{
+    height: 100%;;
+}
+
+.popup-off{
+    margin-left: -100%;
+}
+
+.popup-on{
+    margin-left: 0%;
+    overflow: hidden;
+}
+
+
+.content-popup{
+    position: relative !important;
+    min-height: 100% !important;
+    
+}
+
+.marginNone{
+    margin: 0px !important;
+}
+
+.poup-return{
+    width: 100%;
+    background-color: #6e83d6;
+    padding: 10px;
+    text-align: center;
+    user-select: none;
+    font-size: 1.5em;
+    color: #fff;
+    
+}
+
+.title-popup, .subtitle-popup{
+    text-align: center;    
+}   
+
+.title-popup{
+    margin-bottom: 2px;
+    color: #000;
+}
+
+.subtitle-popup{
+    margin-top: 0px;   
+    margin-bottom: 0px; 
+    color: #333;   
+}
+
+
+.scrollY{
+    overflow-y: scroll;
+}
+
+.height-popup-ctx{
+    min-height: 400px !important;
+}
+
+.content-container{
+    position: relative;
+    width: 200%;
+    display: flex;
+}
+
+.container-div{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.table-popup{
+    justify-content: left;
+    margin: 0px;
+    padding: 0px;
 }
