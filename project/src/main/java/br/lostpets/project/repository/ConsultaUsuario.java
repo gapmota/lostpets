@@ -2,33 +2,35 @@ package br.lostpets.project.repository;
 
 import org.springframework.stereotype.Repository;
 
-import br.lostpets.project.domain.Usuario;
+import br.lostpets.project.model.Usuario;
 
 @Repository
 public class ConsultaUsuario {
 
-	public boolean contemUsuario(Usuario credencialAcesso) {
+	//Para fins de funcionamento momentanel esta sendo utilizado para login if de verificar se email e senha são compativeis
+	
+	public boolean contemUsuario(Usuario usuario) {
 		
-		if("guilherme.mota".equalsIgnoreCase(credencialAcesso.getEmail()) && "guilherme.mota".equalsIgnoreCase(credencialAcesso.getSenha())) {
+		if("guilherme.mota".equalsIgnoreCase(usuario.getEmail()) && "guilherme.mota".equalsIgnoreCase(usuario.getSenha())) {
 			return true;
 		}
-		else if("gustavo.prince".equalsIgnoreCase(credencialAcesso.getEmail()) && "gustavo.prince".equalsIgnoreCase(credencialAcesso.getSenha())) {
+		else if("gustavo.prince".equalsIgnoreCase(usuario.getEmail()) && "gustavo.prince".equalsIgnoreCase(usuario.getSenha())) {
 			return true;
 		}
-		else if("juvencio.jose".equalsIgnoreCase(credencialAcesso.getEmail()) && "juvencio.jose".equalsIgnoreCase(credencialAcesso.getSenha())) {
+		else if("juvencio.jose".equalsIgnoreCase(usuario.getEmail()) && "juvencio.jose".equalsIgnoreCase(usuario.getSenha())) {
 			return true;
 		}
-		else if("mateus.covos".equalsIgnoreCase(credencialAcesso.getEmail()) && "mateus.covos".equalsIgnoreCase(credencialAcesso.getSenha())) {
+		else if("mateus.covos".equalsIgnoreCase(usuario.getEmail()) && "mateus.covos".equalsIgnoreCase(usuario.getSenha())) {
 			return true;
 		}
-		else if("natanael.weslley".equalsIgnoreCase(credencialAcesso.getEmail()) && "natanael.weslley".equalsIgnoreCase(credencialAcesso.getSenha())) {
+		else if("natanael.weslley".equalsIgnoreCase(usuario.getEmail()) && "natanael.weslley".equalsIgnoreCase(usuario.getSenha())) {
 			return true;
 		}
 		else {
 			return false;
 		}	
-		
-	
 	}
+	
+	
 	
 }

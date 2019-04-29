@@ -1,4 +1,4 @@
-package br.lostpets.project.domain;
+package br.lostpets.project.model;
 
 import java.util.Date;
 

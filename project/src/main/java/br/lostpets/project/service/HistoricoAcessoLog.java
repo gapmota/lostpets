@@ -1,4 +1,4 @@
-package br.lostpets.project.infra;
+package br.lostpets.project.service;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,9 +7,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
 import org.springframework.stereotype.Component;
+
+import br.lostpets.project.model.Usuario;
 
 @Component
 public class HistoricoAcessoLog {
@@ -18,6 +22,20 @@ public class HistoricoAcessoLog {
 	BufferedReader bufferedReader;
 	FileWriter fileWriter;
 	BufferedWriter bufferedWriter;
+	
+	String[][] acesso = new String[1][3];
+	
+	public void dataHora(Usuario credenciaisAcesso) {
+		Date dataHoraAtual = new Date();
+		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+		String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+
+		acesso[0][0] = credenciaisAcesso.getEmail();
+		acesso[0][1] = data;
+		acesso[0][2] = hora;
+		new HistoricoAcessoLog().escreverLog(acesso);
+
+	}
 
 	public void escreverLog(String historicoAcesso[][]) {
 
