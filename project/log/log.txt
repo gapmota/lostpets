@@ -1,0 +1,1 @@
+Pasta para armazenamento de log de usuaria logar e deslogar
