@@ -19,7 +19,7 @@ public class ImportarAnimais {
 		Scanner in = null;
 
 		try {
-			in = new Scanner(new FileReader("animaisPerdidos/animais.txt")).useDelimiter(";|\\r\\n");
+			in = new Scanner(new FileReader("animaisPerdidos/saida.txt")).useDelimiter(";|\\r\\n");
 		} catch (FileNotFoundException fileNotFoundException) {
 			System.err.println("Erro ao abrir arquivo.");
 			System.exit(1);
