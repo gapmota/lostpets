@@ -15,10 +15,13 @@ import br.lostpets.project.service.UsuarioService;
 @Controller
 public class CadastroController {
 	
-	@Autowired private UsuarioService usuarioService;
-	@Autowired private LoginController loginController;
-	@Autowired private ModelAndView modelAndView = new ModelAndView();
-	@Autowired private Usuario usuario;
+	@Autowired 
+	private UsuarioService usuarioService;
+	@Autowired 
+	private LoginController loginController;
+	 
+	private ModelAndView modelAndView = new ModelAndView();
+	private Usuario usuario;
 		
 	@GetMapping("/Cadastro")
 	public ModelAndView cadastroPage() {

@@ -26,7 +26,9 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);		
     }
 
-	public boolean emailSenha(Usuario usuario) {
+	public Usuario emailSenha(Usuario usuario) {
+		System.out.println("ATÉ AQUI CHEGOU VALIDAR ACESSO! \n USUARIO: "+usuarioRepository.validarAcesso(usuario.getEmail(), usuario.getSenha()));
+		//https://www.devmedia.com.br/controlando-o-spring-mvc/26265
 		return usuarioRepository.validarAcesso(usuario.getEmail(), usuario.getSenha());
 	}
 	

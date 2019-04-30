@@ -21,16 +21,19 @@ public class LoginController {
 	@Autowired private HistoricoAcessoLog historicoAcessoLog;
 	
 	//private ConsultaUsuario consultaUsuario;
+	private Usuario usuario;
 	
 	private ModelAndView modelAndView = new ModelAndView();
 	
 	@RequestMapping(value = { "/", "/LostPets"}, method = RequestMethod.GET)
 	public ModelAndView loginPage() {
+		usuario = new Usuario();
+		modelAndView.addObject("usuario", usuario);
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
 	
-	@PostMapping("/Dashboard")
+	@PostMapping("/LostPets")
 	public ModelAndView logar(@Valid Usuario usuario, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("login");
@@ -40,7 +43,7 @@ public class LoginController {
 			historicoAcessoLog.dataHora(usuario);
 			modelAndView.setViewName("principalPage");
 		}*/
-		else if(usuarioService.emailSenha(usuario)) {
+		else if(usuarioService.emailSenha(usuario) != null) {
 			historicoAcessoLog.dataHora(usuario);
 			modelAndView.setViewName("principalPage");
 		}

@@ -16,7 +16,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, UUID>{
 	public boolean encontrarEmail(String email);
 
 	@Query("from Usuario where email = ?1 and senha = ?2")
-	public boolean validarAcesso(String email, String senha);
+	public Usuario validarAcesso(String email, String senha);
 
 	@Query("from Usuario")
 	public List<Usuario> todosUsuario();
