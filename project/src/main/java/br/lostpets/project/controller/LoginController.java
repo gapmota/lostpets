@@ -17,37 +17,42 @@ import br.lostpets.project.service.UsuarioService;
 @Controller
 public class LoginController {
 
-	@Autowired private UsuarioService usuarioService;
-	@Autowired private HistoricoAcessoLog historicoAcessoLog;
-	
-	//private ConsultaUsuario consultaUsuario;
-	
+	@Autowired
+	private UsuarioService usuarioService;
+	@Autowired
+	private HistoricoAcessoLog historicoAcessoLog;
+
+	// private ConsultaUsuario consultaUsuario;
+	private Usuario usuario;
+
 	private ModelAndView modelAndView = new ModelAndView();
-	
-	@RequestMapping(value = { "/", "/LostPets"}, method = RequestMethod.GET)
+
+	@RequestMapping(value = { "/", "/LostPets" }, method = RequestMethod.GET)
 	public ModelAndView loginPage() {
+		usuario = new Usuario();
+		modelAndView.addObject("usuario", usuario);
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
-	
-	@PostMapping("/Dashboard")
+
+	@PostMapping("/LostPets")
 	public ModelAndView logar(@Valid Usuario usuario, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("login");
 		}
-		//verificação provisoria de acesso com email e senha sem db
-		/*else if(consultaUsuario.contemUsuario(usuario)) {
+		// verificação provisoria de acesso com email e senha sem db
+		/*
+		 * else if(consultaUsuario.contemUsuario(usuario)) {
+		 * historicoAcessoLog.dataHora(usuario);
+		 * modelAndView.setViewName("principalPage"); }
+		 */
+		else if (usuarioService.emailSenha(usuario) != null) {
 			historicoAcessoLog.dataHora(usuario);
 			modelAndView.setViewName("principalPage");
-		}*/
-		else if(usuarioService.emailSenha(usuario)) {
-			historicoAcessoLog.dataHora(usuario);
-			modelAndView.setViewName("principalPage");
-		}
-		else {
+		} else {
 			modelAndView.setViewName("login");
 		}
 		return modelAndView;
-	}	
+	}
 
 }

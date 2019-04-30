@@ -14,12 +14,15 @@ import br.lostpets.project.service.UsuarioService;
 
 @Controller
 public class CadastroController {
-	
-	@Autowired private UsuarioService usuarioService;
-	@Autowired private LoginController loginController;
-	@Autowired private ModelAndView modelAndView = new ModelAndView();
-	@Autowired private Usuario usuario;
-		
+
+	@Autowired
+	private UsuarioService usuarioService;
+	@Autowired
+	private LoginController loginController;
+
+	private ModelAndView modelAndView = new ModelAndView();
+	private Usuario usuario;
+
 	@GetMapping("/Cadastro")
 	public ModelAndView cadastroPage() {
 		usuario = new Usuario();
@@ -27,17 +30,17 @@ public class CadastroController {
 		modelAndView.setViewName("cadastroPessoa");
 		return modelAndView;
 	}
-	
+
 	@PostMapping("/salvarUsuario")
-	public void cadastrar(@Valid Usuario usuario, BindingResult bindingResult){
+	public void cadastrar(@Valid Usuario usuario, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("cadastroPessoa");
 		} else {
 			usuarioService.salvarUsuario(usuario);
 			modelAndView.addObject("mensagemSucesso", "Usuário cadastrado com sucesso!");
 			loginController.logar(usuario, bindingResult);
-			
+
 		}
 	}
-	
+
 }
