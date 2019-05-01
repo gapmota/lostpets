@@ -1,5 +1,9 @@
 package br.lostpets.project.service;
 
+/**
+ * @author gamota
+ *
+ */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,9 +26,9 @@ public class HistoricoAcessoLog {
 	BufferedReader bufferedReader;
 	FileWriter fileWriter;
 	BufferedWriter bufferedWriter;
-	
+
 	String[][] acesso = new String[1][3];
-	
+
 	public void dataHora(Usuario credenciaisAcesso) {
 		Date dataHoraAtual = new Date();
 		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);

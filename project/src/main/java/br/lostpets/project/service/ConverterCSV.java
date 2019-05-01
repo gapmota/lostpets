@@ -1,5 +1,9 @@
 package br.lostpets.project.service;
 
+/**
+ * @author gamota
+ *
+ */
 import java.io.*;
 import jxl.*;
 import java.util.*;
@@ -25,9 +29,6 @@ public class ConverterCSV {
 			for (int sheet = 0; sheet < w.getNumberOfSheets(); sheet++) {
 				Sheet s = w.getSheet(sheet);
 
-				bw.write(s.getName());
-				bw.newLine();
-
 				Cell[] row = null;
 
 				for (int i = 0; i < s.getRows(); i++) {
@@ -45,6 +46,7 @@ public class ConverterCSV {
 			}
 			bw.flush();
 			bw.close();
+			new ImportarAnimais();
 		} catch (UnsupportedEncodingException e) {
 			System.err.println(e.toString());
 		} catch (IOException e) {

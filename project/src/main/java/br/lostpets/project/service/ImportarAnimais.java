@@ -27,7 +27,7 @@ public class ImportarAnimais {
 
 		PetPerdido pet = new PetPerdido(null, null, null, null);
 
-		System.out.printf("%-24s%-60s%-17s%7s\n", "Nome do animal", "Descricao", "Tipo de animal", "CEP");
+		System.out.printf("%-24s%-60s%-15s%7s\n", "Nome do animal", "Descricao", "Tipo de animal", "CEP");
 
 		try {
 			while (in.hasNext()) {
