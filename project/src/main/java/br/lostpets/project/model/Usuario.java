@@ -1,7 +1,8 @@
 package br.lostpets.project.model;
 
-import java.io.Serializable;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,24 +13,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USUARIO")
-public class Usuario implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Usuario{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = true, name = "ID_PESSOA")
-	private UUID idPessoa;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false, name = "ID_PESSOA")
+	private int idPessoa;
 
-	@Column(nullable = true, name = "NOME") private String nome;
+	@Column(nullable = false, name = "NOME") private String nome;
 	@Column(nullable = true, name = "TELEFONE_FIXO") private String telefoneFixo;
 	@Column(nullable = true, name = "TELEFONE_CELULAR") private String telefoneCelular;
-	@Column(nullable = true, name = "EMAIL") private String email;
+	@Column(nullable = false, name = "EMAIL") private String email;
 	@Column(nullable = true, name = "SENHA") private String senha;
-	@Column(nullable = true, name = "PATH_IMG") private String pathImg;
+	@Column(nullable = true, name = "PATH_IMG") private String idImagem;
 	@Column(nullable = true, name = "CEP") private String cep;
 	@Column(nullable = true, name = "RUA") private String rua;
 	@Column(nullable = true, name = "BAIRRO") private String bairro;
@@ -40,15 +36,17 @@ public class Usuario implements Serializable{
 	@Column(nullable = true, name = "ADD_CADASTRO") private String addCadastro;
 	@Column(nullable = true, name = "ULTIMO_ACESSO") private String ultimoAcesso;
 
-	public Usuario(String nome, String telefoneFixo, String telefoneCelular, String email, String senha, String pathImg, String cep,
-			String rua, String bairro, String cidade, String uf, String latitude, String longitude, String addCadastro, String ultimoAcesso)
-	{
+	public Usuario() {}
+	
+	public Usuario(String nome, String telefoneFixo, String telefoneCelular, String email, String senha,
+			String idImagem, String cep, String rua, String bairro, String cidade, String uf, String latitude,
+			String longitude) {
 		this.nome = nome;
 		this.telefoneFixo = telefoneFixo;
 		this.telefoneCelular = telefoneCelular;
 		this.email = email;
 		this.senha = senha;
-		this.pathImg = pathImg;
+		this.idImagem = idImagem;
 		this.cep = cep;
 		this.rua = rua;
 		this.bairro = bairro;
@@ -56,22 +54,29 @@ public class Usuario implements Serializable{
 		this.uf = uf;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.addCadastro = addCadastro;
-		this.ultimoAcesso = ultimoAcesso;
-	}
-	
-	public Usuario(String email, String senha) {
-		this.email = email;
-		this.senha = senha;
+		this.addCadastro = getDate();
 	}
 
-	public Usuario() {}
+	public Usuario(String nome, String email)
+	{
+		this.nome = nome;
+		this.email = email;	
+		this.addCadastro = getDate();
+	}
 	
-	public UUID getIdPessoa() {
+	private static String getDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date hora = Calendar.getInstance().getTime();
+		String dataFormatada = sdf.format(hora);
+		
+		return dataFormatada;
+	}
+	
+	public int getIdPessoa() {
 		return idPessoa;
 	}
 
-	public void setIdPessoa(UUID idPessoa) {
+	public void setIdPessoa(int idPessoa) {
 		this.idPessoa = idPessoa;
 	}
 
@@ -115,12 +120,12 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 	}
 
-	public String getPathImg() {
-		return pathImg;
+	public String getidImagem() {
+		return idImagem;
 	}
 
-	public void setPathImg(String pathImg) {
-		this.pathImg = pathImg;
+	public void setidImagem(String idImagem) {
+		this.idImagem = idImagem;
 	}
 
 	public String getCep() {

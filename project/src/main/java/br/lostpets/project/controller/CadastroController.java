@@ -32,14 +32,16 @@ public class CadastroController {
 	}
 	
 	@PostMapping("/salvarUsuario")
-	public void cadastrar(@Valid Usuario usuario, BindingResult bindingResult){
+	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult bindingResult){
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("cadastroPessoa");
+			return modelAndView;
 		} else {
 			usuarioService.salvarUsuario(usuario);
 			modelAndView.addObject("mensagemSucesso", "Usuário cadastrado com sucesso!");
 			loginController.logar(usuario, bindingResult);
-			
+			modelAndView.setViewName("principalPage");
+			return modelAndView;
 		}
 	}
 	

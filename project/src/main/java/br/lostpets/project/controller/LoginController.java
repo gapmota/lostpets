@@ -37,18 +37,20 @@ public class LoginController {
 	public ModelAndView logar(@Valid Usuario usuario, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("login");
+			System.out.println("modelAndView.setViewName(\"login\"); - 1");
 		}
 		//verificação provisoria de acesso com email e senha sem db
 		/*else if(consultaUsuario.contemUsuario(usuario)) {
 			historicoAcessoLog.dataHora(usuario);
 			modelAndView.setViewName("principalPage");
 		}*/
-		else if(usuarioService.emailSenha(usuario) != null) {
+		else if(usuarioService.emailSenha(usuario.getEmail(), usuario.getSenha()) != null) {
 			historicoAcessoLog.dataHora(usuario);
-			modelAndView.setViewName("principalPage");
+			System.out.println("modelAndView.setViewName(\"principalPage\");");
 		}
 		else {
 			modelAndView.setViewName("login");
+			System.out.println("modelAndView.setViewName(\"login\"); - 2");
 		}
 		return modelAndView;
 	}	
