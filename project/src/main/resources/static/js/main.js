@@ -29,7 +29,7 @@ function viewMap(){
 	}
 }
 
-let btn_view = document.getElementById("btn_abrir_nova_view");
+var btn_view = document.getElementById("btn_abrir_nova_view");
 console.log("aaaaa");
 function alterView(){
   if(btn_view.textContent == "map"){
@@ -106,7 +106,7 @@ var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 var ui = H.ui.UI.createDefault(map, defaultLayers);
 
 function moveMap(map){
-	if (navigatora.geolocation) {
+	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(loc){
 			map.setCenter({lat:loc.coords.latitude, lng:loc.coords.longitude });
 			var loc = new H.map.Marker({lat:loc.coords.latitude, lng:loc.coords.longitude });
