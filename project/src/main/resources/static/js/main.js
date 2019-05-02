@@ -1,7 +1,7 @@
 var url_resq = "http://localhost:8080/api/";
 
 window.onload = function(){
- // requestLostPets();
+  requestLostPets();
   alterView();
   var load = document.getElementById("page_load");
   load.parentNode.removeChild(load);
