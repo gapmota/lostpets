@@ -24,7 +24,7 @@
             <div class="col l12 m12 s12 dh pos-relative con">
 
                 <div class="white content-register">
-                    <form class="col l12 m12 s12" th:action="@{/LostPets}" th:object="${usuario}"
+                    <form class="col l12 m12 s12" th:action="@{/LostPets/Cadastro}" th:object="${usuario}"
                         method="post" enctype="multipart/form-data" > <!-- onsubmit="verificarCampos(this)"  -->
                         <div class="row">
                             <div class="col l4 m4 s12" style="height: 222px;">
@@ -35,15 +35,15 @@
                                 <label for="nome">seu nome</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
-                                <input id="telefoneMovel" type="tel" class="validate" th:field="*{telefoneCelular}" >
+                                <input id="telefoneMovel" type="text" class="validate" th:field="*{telefoneCelular}" >
                                 <label for="telefoneMovel">celular</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
-                                <input id="telefoneFixo" type="tel" class="validate" th:field="*{telefoneFixo}" >
+                                <input id="telefoneFixo" type="text" class="validate" th:field="*{telefoneFixo}" >
                                 <label for="telefoneFixo">telefone</label>
                             </div>
 							 <div class="input-field l4 m4 col s12">
-                                <input id="cep" type="email" class="validate" th:field="*{cep}" >
+                                <input id="cep" type="text" class="validate" th:field="*{cep}" >
                                 <label for="cep">cep</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
@@ -52,30 +52,27 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="input-field l12 m12 col s12">
-                                <input id="email" type="email" class="validate" th:field="*{email}" >
+                                <input id="email" type="text" class="validate" th:field="*{email}" >
                                 <label for="email">e-mail</label>
                             </div>
 
                             <div class="input-field l6 m6 col s6">
-                                <input id="senha" type="email" class="validate" th:field="*{senha}" >
+                                <input id="senha" type="text" class="validate" th:field="*{senha}" >
                                 <label for="senha">senha</label>
                             </div>
-                            <div class="input-field l6 m6 col s6">
-                                <input id="senha" type="email" class="validate" >
+                            <!--<div class="input-field l6 m6 col s6">
+                                <input id="senha" type="text" class="validate" >
                                 <label for="senha">confirmar senha</label>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="row">
                             <div class="input-field l12 m12 col s12">
-                                <button class="waves-effect waves-light btn-large btn-width-large">confirmar </button>
+                                <button class="waves-effect waves-light btn-large btn-width-large" type="submit">confirmar </button>
                             </div>
-                        </div>
-                        
-                        <span th:utext="${mensagemSucesso}"></span>
-                        
+                        </div>                        
                     </form>
+                    <span th:utext="${mensagemSucesso}"></span>
                 </div>
             </div>
         </div>

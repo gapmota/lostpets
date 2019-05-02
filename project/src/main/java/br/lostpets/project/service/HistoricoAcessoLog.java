@@ -11,11 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import br.lostpets.project.model.Usuario;
-
-@Component
+@Service
 public class HistoricoAcessoLog {
 	File arquivo;
 	FileReader fileReader;
@@ -25,12 +23,12 @@ public class HistoricoAcessoLog {
 	
 	String[][] acesso = new String[1][3];
 	
-	public void dataHora(Usuario credenciaisAcesso) {
+	public void dataHora(String nomeUsuario) {
 		Date dataHoraAtual = new Date();
 		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
 		String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
 
-		acesso[0][0] = credenciaisAcesso.getEmail();
+		acesso[0][0] = nomeUsuario;
 		acesso[0][1] = data;
 		acesso[0][2] = hora;
 		new HistoricoAcessoLog().escreverLog(acesso);

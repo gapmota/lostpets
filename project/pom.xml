@@ -53,6 +53,7 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 		    <groupId>commons-io</groupId>
 		    <artifactId>commons-io</artifactId>
@@ -60,16 +61,6 @@
 		</dependency>
 		
 		
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.0.7.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<version>7.0.0.jre8</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>

@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,32 +16,25 @@ public class CadastroController {
 	
 	@Autowired 
 	private UsuarioService usuarioService;
-	@Autowired 
-	private LoginController loginController;
-	 
 	private ModelAndView modelAndView = new ModelAndView();
-	private Usuario usuario;
-		
-	@GetMapping("/Cadastro")
-	public ModelAndView cadastroPage() {
-		usuario = new Usuario();
-		modelAndView.addObject("usuario", usuario);
-		modelAndView.setViewName("cadastroPessoa");
-		return modelAndView;
-	}
 	
-	@PostMapping("/salvarUsuario")
+	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult bindingResult){
+		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
+		
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("cadastroPessoa");
-			return modelAndView;
-		} else {
+		} 
+		else if(existe) {
+			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
+			modelAndView.setViewName("cadastroPessoa");
+		}
+		else {
 			usuarioService.salvarUsuario(usuario);
 			modelAndView.addObject("mensagemSucesso", "Usuário cadastrado com sucesso!");
-			loginController.logar(usuario, bindingResult);
-			modelAndView.setViewName("principalPage");
-			return modelAndView;
+			modelAndView.setViewName("cadastroPessoa");
 		}
+		return modelAndView;
 	}
 	
 }

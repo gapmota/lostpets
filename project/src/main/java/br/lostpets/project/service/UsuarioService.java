@@ -11,25 +11,31 @@ import br.lostpets.project.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
 
-	@Autowired private UsuarioRepository usuarioRepository;
+	@Autowired 
+	private UsuarioRepository usuarioRepository;
 	
 	public List<Usuario> encontrarTodos(){
 		return usuarioRepository.todosUsuario();
 	}
 	
-	public Usuario encontrar(Long id) {
+	public Usuario encontrar(int id) {
 		return usuarioRepository.unicoUsuario(id);
 	}
 	
-	public Usuario salvarUsuario(Usuario usuario) {
-		System.out.println("USUARIO SALVO COM SUCESSO!");
-		return usuarioRepository.save(usuario);		
+	public void salvarUsuario(Usuario usuario) {
+		usuarioRepository.save(usuario);		
     }
 
 	public Usuario emailSenha(String email, String senha) {
-		System.out.println("ATÉ AQUI CHEGOU VALIDAR ACESSO! USUARIO: "+usuarioRepository.validarAcesso(email)+" VALIDA ACESSO");
-		//https://www.devmedia.com.br/controlando-o-spring-mvc/26265
-		return usuarioRepository.validarAcesso(email);
+		return usuarioRepository.validarAcesso(email, senha);
+	}
+
+	public boolean verificarEmail(String email) {
+		Usuario usuario = usuarioRepository.encontrarEmail(email);
+		if(usuario != null) {
+			return (usuario.getCep() != null) && (usuario.getSenha() != null);
+		}
+		return false;		
 	}
 	
 	/*

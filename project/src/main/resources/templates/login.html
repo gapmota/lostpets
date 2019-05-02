@@ -50,7 +50,7 @@
 			</div>
 
 			<!-- content login -->
-			<form class="col s12" th:action="@{/LostPets}" th:object="${usuario}" method="post" onsubmit="return validarPreenchimento(this);">
+			<form class="col s12" th:action="@{/Dashboard}" th:object="${usuario}" method="post" onsubmit="return validarPreenchimento(this);">
 				<div class="col l4 m4 s12 white dh">
 					<div class="col s12 dh valign-wrapper">
 						<div class="container center-align">
@@ -64,13 +64,13 @@
 							</div><!--  -->
 							<div class="container">
 								<button type="submit" class="waves-effect waves-light btn-small btn-width">entrar</button>
-								
 							</div>
+							<span th:utext="${mensagemSucesso}"></span>
 						</div>
 					</div>
 				</div>
 			</form>
-			<form th:action="@{/Cadastro}" method="get">
+			<form th:action="@{/LostPets/Cadastro}" method="get">
 									<button class="waves-effect waves-light btn-small btn-width" type="submit">ser caçador</button>
 					</form>
 		</div>

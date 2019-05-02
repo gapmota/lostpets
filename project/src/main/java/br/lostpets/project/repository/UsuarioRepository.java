@@ -12,15 +12,15 @@ import br.lostpets.project.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 
 	@Query("from Usuario where email = ?1")
-	public boolean encontrarEmail(String email);
+	public Usuario encontrarEmail(String email);
 
-	@Query("from Usuario where email = ?1")
-	public Usuario validarAcesso(String email);
+	@Query("from Usuario where email = ?1 and senha = ?2")
+	public Usuario validarAcesso(String email, String senha);
 
 	@Query("from Usuario")
 	public List<Usuario> todosUsuario();
 
 	@Query("from Usuario where idPessoa = ?1")
-	public Usuario unicoUsuario(Long id);
+	public Usuario unicoUsuario(int id);
 	
 }
