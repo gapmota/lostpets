@@ -61,4 +61,9 @@ public class LoginController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("/LostPets/Cadastro_Animal_Perdido")
+	public String cadastroAnimalPerdido() {
+		return "cadastroAnimalPerdido";
+	}
+	
 }

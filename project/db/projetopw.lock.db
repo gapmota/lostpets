@@ -1,6 +1,6 @@
 #FileLock
-#Thu May 02 20:12:38 BRT 2019
-hostName=HSL232
-id=16a7ad21b960db22baced745dd0e560dad5191d925e
+#Fri May 03 17:23:25 BRT 2019
+hostName=NBTITMA098686.tivit.corp
+id=16a7f5d9c51ee5ec0d2bafc20730067ebb0a99325bd
 method=file
-server=192.168.56.1\:56233
+server=169.254.192.217\:52876

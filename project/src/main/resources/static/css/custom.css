@@ -32,14 +32,24 @@
     border-style: solid;
     border-width: 2px;
     border-color: azure;
-    color: #fff;
     transition: all 0.2s;
 }
 
 .btn-lost:hover {
     border-color: azure;
-    color: #333;
     background-color: #fff;
+    transition: all 0.2s;
+}
+
+.gambiarra{
+	color: #ffffff;	
+    display: block;
+    width: 100%;
+	padding: 15px;
+    transition: all 0.2s;
+}
+.gambiarra:hover {
+    color: #333;
     transition: all 0.2s;
 }
 
