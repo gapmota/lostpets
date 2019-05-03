@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="../css/materialize.css">
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
-        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
 
 <body>
@@ -35,15 +35,15 @@
                                 <label for="nome">seu nome</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
-                                <input id="telefoneMovel" type="text" class="validate" th:field="*{telefoneCelular}" >
+                                <input id="telefoneMovel" type="text" class="validate form-control" th:field="*{telefoneCelular}" onkeypress="$(this).mask('(00) 0000-00009')">
                                 <label for="telefoneMovel">celular</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
-                                <input id="telefoneFixo" type="text" class="validate" th:field="*{telefoneFixo}" >
+                                <input id="telefoneFixo" class="validate form-control" type="text" th:field="*{telefoneFixo}" onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
                                 <label for="telefoneFixo">telefone</label>
                             </div>
 							 <div class="input-field l4 m4 col s12">
-                                <input id="cep" type="text" class="validate" th:field="*{cep}" >
+                                <input id="cep" type="text" class="validate form-control" th:field="*{cep}" onkeypress="$(this).mask('00.000-000')">
                                 <label for="cep">cep</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
@@ -53,7 +53,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field l12 m12 col s12">
-                                <input id="email" type="text" class="validate" th:field="*{email}" >
+                                <input id="email" type="email" class="validate" th:field="*{email}" >
                                 <label for="email">e-mail</label>
                             </div>
 
