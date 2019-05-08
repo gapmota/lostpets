@@ -1,8 +1,6 @@
 package br.lostpets.project.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Base64;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.lostpets.project.service.ServiceGeral;
+
 @Entity
 @Table(name = "USUARIO")
 public class Usuario{
-
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, name = "ID_PESSOA")
@@ -36,6 +36,10 @@ public class Usuario{
 	@Column(nullable = true, name = "ADD_CADASTRO") private String addCadastro;
 	@Column(nullable = true, name = "ULTIMO_ACESSO") private String ultimoAcesso;
 
+	private String dataHora() {
+		return new ServiceGeral().getDateHour();
+	}
+	
 	public Usuario() {}
 	
 	public Usuario(String nome, String telefoneFixo, String telefoneCelular, String email, String senha,
@@ -45,7 +49,7 @@ public class Usuario{
 		this.telefoneFixo = telefoneFixo;
 		this.telefoneCelular = telefoneCelular;
 		this.email = email;
-		this.senha = senha;
+		this.senha = cripSenha(senha);
 		this.idImagem = idImagem;
 		this.cep = cep;
 		this.rua = rua;
@@ -54,150 +58,99 @@ public class Usuario{
 		this.uf = uf;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.addCadastro = getDate();
+		this.addCadastro = dataHora();
 	}
-
+	
 	public Usuario(String nome, String email)
 	{
 		this.nome = nome;
 		this.email = email;	
-		this.addCadastro = getDate();
+		this.addCadastro = dataHora();
 	}
 	
-	private static String getDate() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date hora = Calendar.getInstance().getTime();
-		String dataFormatada = sdf.format(hora);
-		
-		return dataFormatada;
+	private String cripSenha(String senhaOriginal){
+		String senhaSerializado = Base64.getEncoder().encodeToString(senhaOriginal.getBytes());
+    	return senhaSerializado;
 	}
-	
-	public int getIdPessoa() {
-		return idPessoa;
+	private String descripSenha(String senhaSerializado) {
+		String senhaDeserializado = new String();
+	    senhaDeserializado = new String(Base64.getDecoder().decode(senhaSerializado));
+	    return senhaDeserializado;
 	}
 
-	public void setIdPessoa(int idPessoa) {
-		this.idPessoa = idPessoa;
+	public int getIdPessoa() {
+		return idPessoa;
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public String getTelefoneFixo() {
 		return telefoneFixo;
-	}
-
-	public void setTelefoneFixo(String telefoneFixo) {
-		this.telefoneFixo = telefoneFixo;
 	}
 
 	public String getTelefoneCelular() {
 		return telefoneCelular;
 	}
 
-	public void setTelefoneCelular(String telefoneCelular) {
-		this.telefoneCelular = telefoneCelular;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getSenha() {
-		return senha;
+		return descripSenha(this.senha);
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getidImagem() {
+	public String getIdImagem() {
 		return idImagem;
-	}
-
-	public void setidImagem(String idImagem) {
-		this.idImagem = idImagem;
 	}
 
 	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
 	public String getRua() {
 		return rua;
-	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
 	}
 
 	public String getBairro() {
 		return bairro;
 	}
 
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
 	public String getCidade() {
 		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
 	}
 
 	public String getUf() {
 		return uf;
 	}
 
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
 	public String getLatitude() {
 		return latitude;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
 	}
 
 	public String getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-
 	public String getAddCadastro() {
 		return addCadastro;
-	}
-
-	public void setAddCadastro(String addCadastro) {
-		this.addCadastro = addCadastro;
 	}
 
 	public String getUltimoAcesso() {
 		return ultimoAcesso;
 	}
 
-	public void setUltimoAcesso(String ultimoAcesso) {
-		this.ultimoAcesso = ultimoAcesso;
+	@Override
+	public String toString() {
+		return "Usuario [idPessoa=" + idPessoa + ", nome=" + nome + ", telefoneFixo=" + telefoneFixo
+				+ ", telefoneCelular=" + telefoneCelular + ", email=" + email + ", senha=" + senha + ", idImagem="
+				+ idImagem + ", cep=" + cep + ", rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", uf="
+				+ uf + ", latitude=" + latitude + ", longitude=" + longitude + ", addCadastro=" + addCadastro
+				+ ", ultimoAcesso=" + ultimoAcesso + "]";
 	}
+	
+	
 	
 }

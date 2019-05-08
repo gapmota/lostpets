@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Vector;
 
 import org.springframework.stereotype.Service;
@@ -22,17 +20,13 @@ public class HistoricoAcessoLog {
 	BufferedWriter bufferedWriter;
 	
 	String[][] acesso = new String[1][3];
+	private ServiceGeral serviceGeral = new ServiceGeral();
 	
 	public void dataHora(String nomeUsuario) {
-		Date dataHoraAtual = new Date();
-		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
-		String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-
 		acesso[0][0] = nomeUsuario;
-		acesso[0][1] = data;
-		acesso[0][2] = hora;
+		acesso[0][1] = serviceGeral.getDate();
+		acesso[0][2] = serviceGeral.getHour();
 		new HistoricoAcessoLog().escreverLog(acesso);
-
 	}
 
 	public void escreverLog(String historicoAcesso[][]) {
@@ -69,10 +63,12 @@ public class HistoricoAcessoLog {
 				System.out.println("Deu ruim 1");
 				System.exit(0);
 			}
+			
 		} catch (IOException er) {
 			System.out.println("Deu ruim 2");
 			System.exit(0);
 		}
 
 	}
+	
 }
