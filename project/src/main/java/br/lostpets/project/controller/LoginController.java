@@ -20,7 +20,7 @@ public class LoginController {
 
 	@Autowired 
 	private UsuarioService usuarioService;
-	@Autowired 
+	@Autowired
 	private HistoricoAcessoLog historicoAcessoLog;
 	
 	private Usuario usuario;

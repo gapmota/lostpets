@@ -12,7 +12,7 @@ import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
 
 @Controller
-public class CadastroController {
+public class CadastroPessoaController {
 	
 	@Autowired 
 	private UsuarioService usuarioService;
