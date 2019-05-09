@@ -38,7 +38,9 @@ public class UsuarioRepositoryTest {
 		
 		Usuario usuarioEmail = usuarioRepository.validarAcesso("Email", "Senha");
 		String usuario1 = usuario.getEmail();
+		System.out.println("String usuario1 = usuario.getEmail();: "+usuario1);
 		String usuarioEmail1 = usuarioEmail.getEmail();
+System.out.println("String usuarioEmail1 = usuarioEmail.getEmail();: "+usuarioEmail1);
 		assertEquals(usuario1, usuarioEmail1);
 		
 		String usuario2 = usuario.getSenha();

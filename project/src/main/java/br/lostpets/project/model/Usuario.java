@@ -72,11 +72,11 @@ public class Usuario{
 		String senhaSerializado = Base64.getEncoder().encodeToString(senhaOriginal.getBytes());
     	return senhaSerializado;
 	}
-	private String descripSenha(String senhaSerializado) {
-		String senhaDeserializado = new String();
+	/*private String descripSenha(String senhaSerializado) {
+		String senhaDeserializado;
 	    senhaDeserializado = new String(Base64.getDecoder().decode(senhaSerializado));
 	    return senhaDeserializado;
-	}
+	}*/
 
 	public int getIdPessoa() {
 		return idPessoa;
@@ -99,7 +99,7 @@ public class Usuario{
 	}
 
 	public String getSenha() {
-		return descripSenha(this.senha);
+		return senha;
 	}
 
 	public String getIdImagem() {

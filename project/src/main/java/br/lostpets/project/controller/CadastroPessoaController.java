@@ -31,8 +31,8 @@ public class CadastroPessoaController {
 		}
 		else {
 			usuarioService.salvarUsuario(usuario);
+			modelAndView = new ModelAndView("redirect:/LostPets");
 			modelAndView.addObject("mensagemSucesso", "Usuário cadastrado com sucesso!");
-			modelAndView.setViewName("cadastroPessoa");
 		}
 		return modelAndView;
 	}
