@@ -1,0 +1,6 @@
+#FileLock
+#Wed May 08 19:21:52 BRT 2019
+hostName=HSL229
+id=16a9989e6756093148477b3e2bb71a8e0f21d8cf9cc
+method=file
+server=10.0.2.84\:55554

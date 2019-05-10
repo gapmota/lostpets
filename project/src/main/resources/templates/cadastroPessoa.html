@@ -1,0 +1,123 @@
+<!DOCTYPE html5>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta>
+    <title>lostpet | perdi meu pet</title>
+    <link rel="stylesheet" type="text/css" href="../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <div class="row">
+
+            <!-- content -->
+            <div class="col l12 m12 s12">
+                <h4 class="center-align">registrar-se</h4>
+            </div>
+
+            <div class="col l12 m12 s12 dh pos-relative con">
+
+                <div class="white content-register">
+                    <form class="col l12 m12 s12" th:action="@{/LostPets/Cadastro}" th:object="${usuario}"
+                        method="post" enctype="multipart/form-data" > <!-- onsubmit="verificarCampos(this)"  -->
+                        <div class="row">
+                            <div class="col l4 m4 s12" style="height: 222px;">
+                                <img class="foto-register" src="../img/cat.jpg">
+                            </div>
+                            <div class="input-field l8 m8 col s12">
+                                <input id="nome" type="text" class="validate" th:field="*{nome}" >
+                                <label for="nome">seu nome</label>
+                            </div>
+                            <div class="input-field l4 m4 col s12">
+                                <input id="telefoneMovel" type="text" class="validate form-control" th:field="*{telefoneCelular}" onkeypress="$(this).mask('(00) 0000-00009')">
+                                <label for="telefoneMovel">celular</label>
+                            </div>
+                            <div class="input-field l4 m4 col s12">
+                                <input id="telefoneFixo" class="validate form-control" type="text" th:field="*{telefoneFixo}" onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
+                                <label for="telefoneFixo">telefone</label>
+                            </div>
+							 <div class="input-field l4 m4 col s12">
+                                <input id="cep" type="text" class="validate form-control" th:field="*{cep}" onkeypress="$(this).mask('00.000-000')">
+                                <label for="cep">cep</label>
+                            </div>
+                            <div class="input-field l4 m4 col s12">
+                                <input id="cidade" type="text" class="validate" th:field="*{cidade}" >
+                                <label for="cidade">cidade</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field l12 m12 col s12">
+                                <input id="email" type="email" class="validate" th:field="*{email}" >
+                                <label for="email">e-mail</label>
+                            </div>
+
+                            <div class="input-field l6 m6 col s6">
+                                <input id="senha" type="text" class="validate" th:field="*{senha}" >
+                                <label for="senha">senha</label>
+                            </div>
+                            <!--<div class="input-field l6 m6 col s6">
+                                <input id="senha" type="text" class="validate" >
+                                <label for="senha">confirmar senha</label>
+                            </div>-->
+                        </div>
+                        <div class="row">
+                            <div class="input-field l12 m12 col s12">
+                                <button class="waves-effect waves-light btn-large btn-width-large" type="submit">confirmar </button>
+                            </div>
+                        </div>                        
+                    </form>
+                    <span th:utext="${mensagemSucesso}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    </div>
+
+	<div id="viewRegister" class="registerOff">
+		<div id="fecharViewLostPet" onclick="viewRegister()" class="fechar"></div>
+		<p id="titulo_pagina">ser caçador</p>
+		<div>
+			<form class="area_viewRegister" action="#" th:action="@{${isAdd}?'/save':'/update'}" th:object="${user}" method="post" enctype="multipart/form-data">
+				<div class="divisao_form_register-input">
+                    <div class="divisao_metade">
+                        <div class="divisao_form_register-foto">
+                            <div id="foto_register" class="foto_register"></div>
+                            <input type="file" class="hidden" id="files" th:field="*{files}" />
+                        </div>
+                    </div>
+                    <div class="divisao_metade">
+                        <input class="input_text_register" placeholder="seu nome" type="text" id="nomeCadastro" th:field="*{nome}"> 
+                        <input class="input_text_register" placeholder="telefone" type="text" id="telefoneCadastro" th:field="*{telefone}">
+                        <input class="input_text_register" placeholder="cidade" type="text" id="cidadeCadastro" th:field="*{cidade}">
+                        <input class="input_text_register" placeholder="cep" type="text" id="cep" th:field="*{numCasa}">
+                        <input class="input_text_register" placeholder="número da casa" type="text" id="numCasaCadastro" th:field="*{numCasa}">
+                    </div>
+                    
+				</div>
+				<div class="divisao_form_register-input">
+                        <input class="input_text_register" placeholder="e-mail" type="text" id="emailCadastro" th:field="*{email}"> 
+                        <input class="input_text_register" placeholder="senha" type="password" id="senhaCadastro" th:field="*{senha}">
+				</div>
+				<div class="divisao_form_register_confirmar">
+					<button type="submit" class="confirmar" th:text="${isAdd}?'/save':'/upload'"></button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+-->
+
+
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script type="text/javascript" src="../js/login.js"></script>
+</body>
+
+</html>

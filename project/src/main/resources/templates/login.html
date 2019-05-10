@@ -1,0 +1,83 @@
+<!DOCTYPE html5>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta>
+<title>lostpet | login</title>
+<link rel="stylesheet" type="text/css" href="../css/materialize.css">
+<link rel="stylesheet" type="text/css" href="../css/custom.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+
+			<!-- content -->
+			<div class="col l8 m8 s12 blue dh" style="padding: 0px">
+				<section class="black ">
+					<div class="carousel carousel-slider dh" data-indicators="true">
+						<div class="carousel-fixed-item center-xy">
+							<div class="container center-align">
+								<div class="container btn-lost center-align">
+									<a href="/LostPets/Cadastro_Animal_Perdido" class="gambiarra">perdi meu pet</a>
+								</div>
+							</div>
+						</div>
+						<div class="carousel-item red lighten-2 white-text" href="#one!">
+							<div class="container"></div>
+						</div>
+						<div class="carousel-item amber darken-2 white-text" href="#two!">
+							<div class="container"></div>
+						</div>
+						<div class="carousel-item green white-text" href="#three!">
+							<div class="container"></div>
+						</div>
+						<div class="carousel-item blue white-text" href="#four!">
+							<div class="container"></div>
+						</div>
+					</div>
+				</section>				
+			</div>
+
+			<!-- content login -->
+			<div class="col l4 m4 s12 white dh">
+			<form class="col s12" th:action="@{/Dashboard}" th:object="${usuario}" method="post" onsubmit="return validarPreenchimento(this);">
+				
+					<div class="col s12 dh valign-wrapper">
+						<div class="container center-align">
+							<div class="input-field col s12">
+								<input id="login" type="text" class="validate"
+									th:field="*{email}" name="email"> <label for="login">usuário</label>
+							</div><!--  --> 
+							<div class="input-field col s12">
+								<input id="senha" type="password" class="validate"
+								th:field="*{senha}"	 name="senha"> <label for="senha">senha</label>
+							</div><!--  -->
+							<div class="container">
+								<button type="submit" class="waves-effect waves-light btn-small btn-width">entrar</button>
+								<a href="/LostPets/Cadastro" style="-webkit-appearance: none;" class="waves-effect waves-light btn-small btn-width" type="submit">ser caçador</a>
+							</div>
+							<span th:utext="${mensagemSucesso}"></span>
+						</div>
+					</div>
+				
+			</form>
+		</div>
+			
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="../js/materialize.js"></script>
+	<script type="text/javascript" src="../js/login.js"></script>
+
+
+</body>
+
+</html>
