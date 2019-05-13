@@ -36,35 +36,22 @@ public class LoginController {
 	}
 	
 	@PostMapping("/Dashboard")
-	public String logar(@Valid Usuario usuario, BindingResult bindingResult) {
+	public ModelAndView logar(@Valid Usuario usuario, BindingResult bindingResult) {
 		
-		String modelAndView;
 		usuario = usuarioService.emailSenha(usuario.getEmail(), usuario.getSenha());
 		
 		if (bindingResult.hasErrors()) {
-			modelAndView = ("redirect:/LostPets");
+			modelAndView = new ModelAndView("redirect:/LostPets");
 		}
 		else if(usuario != null) {
-			modelAndView = ("principalPage");
+			modelAndView.setViewName("principalPage");
 			historicoAcessoLog.dataHora(usuario.getNome());
 		}
 		else {
-			modelAndView = ("redirect:/LostPets");
+			modelAndView = new ModelAndView("redirect:/LostPets");
+			modelAndView.addObject("mensagem", "E-mail ou senha inválido");
 		}
 		return modelAndView;
 	}	
-
-	@GetMapping("/LostPets/Cadastro")
-	public ModelAndView cadastroPage() {	
-		modelAndView = new ModelAndView();
-		modelAndView.setViewName("cadastroPessoa");
-		modelAndView.addObject("usuario", usuario);		
-		return modelAndView;
-	}
-	
-	@RequestMapping("/LostPets/Cadastro_Animal_Perdido")
-	public String cadastroAnimalPerdido() {
-		return "cadastroAnimalPerdido";
-	}
 	
 }

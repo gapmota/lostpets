@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,12 +19,21 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 	
+	@GetMapping("/LostPets/Cadastro")
+	public ModelAndView cadastroPage() {
+		Usuario usuario = new Usuario();
+		modelAndView.addObject("usuario", usuario);
+		modelAndView.setViewName("cadastroPessoa");
+		return modelAndView;
+	}
+	
 	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult bindingResult){
 		
 		System.err.println("antes");
 		
 		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
+		System.out.println("boolean existe = usuarioService.verificarEmail(usuario.getEmail());: "+existe);
 		
 		System.err.println(usuario);
 		
@@ -40,8 +50,8 @@ public class CadastroPessoaController {
 		}
 		else {			
 			usuarioService.salvarUsuario(usuario);
-			modelAndView = new ModelAndView("login");
-			modelAndView.addObject("mensagemSucesso", "Usuário cadastrado com sucesso!");			
+			modelAndView = new ModelAndView("redirect:/LostPets");
+			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
 		}
 		return modelAndView;
 	}

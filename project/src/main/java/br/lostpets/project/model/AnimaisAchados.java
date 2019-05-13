@@ -1,4 +1,4 @@
-package br.lostpets.project.model;
+/*package br.lostpets.project.model;
 
 import java.util.Date;
 
@@ -23,3 +23,4 @@ public class AnimaisAchados {
 	@Column(name="ADD_DATA") private Date addData;
 	
 }
+*/
