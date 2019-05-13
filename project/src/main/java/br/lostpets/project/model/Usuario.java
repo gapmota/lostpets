@@ -40,66 +40,6 @@ public class Usuario{
 	private String dataHora() {
 		return new ServiceGeral().getDateHour();
 	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setTelefoneFixo(String telefoneFixo) {
-		this.telefoneFixo = telefoneFixo;
-	}
-
-	public void setTelefoneCelular(String telefoneCelular) {
-		this.telefoneCelular = telefoneCelular;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public void setIdImagem(String idImagem) {
-		this.idImagem = idImagem;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-
-	public void setAddCadastro(String addCadastro) {
-		this.addCadastro = addCadastro;
-	}
-
-	public void setUltimoAcesso(String ultimoAcesso) {
-		this.ultimoAcesso = ultimoAcesso;
-	}
 
 	public Usuario() {}
 	
