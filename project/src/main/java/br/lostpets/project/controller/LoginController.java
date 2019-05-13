@@ -24,10 +24,11 @@ public class LoginController {
 	private HistoricoAcessoLog historicoAcessoLog;
 	
 	private Usuario usuario;
-	private ModelAndView modelAndView = new ModelAndView();
+	private ModelAndView modelAndView;
 	
 	@RequestMapping(value = { "/", "/LostPets"}, method = RequestMethod.GET)
 	public ModelAndView loginPage() {
+		modelAndView = new ModelAndView();
 		usuario = new Usuario();
 		modelAndView.addObject("usuario", usuario);
 		modelAndView.setViewName("login");
@@ -54,10 +55,10 @@ public class LoginController {
 	}	
 
 	@GetMapping("/LostPets/Cadastro")
-	public ModelAndView cadastroPage() {
-		usuario = new Usuario();
-		modelAndView.addObject("usuario", usuario);
+	public ModelAndView cadastroPage() {	
+		modelAndView = new ModelAndView();
 		modelAndView.setViewName("cadastroPessoa");
+		modelAndView.addObject("usuario", usuario);		
 		return modelAndView;
 	}
 	

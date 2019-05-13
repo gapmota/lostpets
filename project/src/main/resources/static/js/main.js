@@ -1,10 +1,25 @@
-var url_resq = "http://localhost:8080/api/";
+var url_resq = "http://localhost:8080/lostpet/api/petsperdidos/";
+
+document.onresize = function(){
+  map.getViewPort().resize();
+  map2.getViewPort().resize();
+};
 
 window.onload = function(){
   requestLostPets();
   alterView();
   var load = document.getElementById("page_load");
-  load.parentNode.removeChild(load);
+  load.parentNode.removeChild(load);  
+ 
+  let view = document.getElementById("modal");
+
+	if(view.classList.contains("popup-on")){
+    view.classList.remove("popup-on");
+    view.classList.add("popup-off");
+  }
+
+  
+
 }
 
 function viewQuadros(){
@@ -30,7 +45,7 @@ function viewMap(){
 }
 
 var btn_view = document.getElementById("btn_abrir_nova_view");
-console.log("aaaaa");
+
 function alterView(){
   if(btn_view.textContent == "map"){
     btn_view.textContent = "list";
@@ -47,19 +62,53 @@ btn_view.onclick = function (){
   alterView();
 };
 
+function resizeMapInfo(){
+  let viewMap = document.getElementById("map-view-info");
 
+  if(viewMap.classList.contains("map-view-info-off")){
+    viewMap.classList.remove("map-view-info-off");
+    viewMap.classList.add("map-view-info-on");
+  }else{
+    viewMap.classList.remove("map-view-info-on");
+    viewMap.classList.add("map-view-info-off");
+  }
 
-function openModal(){
+}
+
+function openModal(id){
   let view = document.getElementById("modal");
-
-  console.log("aasfaf");
 
 	if(view.classList.contains("popup-off")){
     view.classList.remove("popup-off");
     view.classList.add("popup-on");
+    resizeMapInfo();
+      $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        url: url_resq+""+id,
+        data: '',
+        success: function (response) {
+          document.getElementById("nome_animal_info_title").textContent = response.nomeAnimal;
+          document.getElementById("tipo_animal_info_title").textContent = response.tipoAnimal;
+          document.getElementById("nome_animal_info").textContent = response.nomeAnimal;
+          document.getElementById("desaparecimento_animal_info").textContent = response.dataPerdido;
+          document.getElementById("regiao_animal_info").textContent = "aaa";
+
+          addLocalizacaoPetInfo(response.pathImg, response.latitude, response.longitude);
+
+        },
+        error: function () {
+        }
+      });  
+    
+
 	}else{
+    resizeMapInfo();
 		view.classList.remove("popup-on");
-    view.classList.add("popup-off");
+    view.classList.add("popup-off");   
 	}
 }
 
@@ -131,36 +180,44 @@ function addLocalizacaoPet(icon_url, latitude, longitude){
   var icon = new H.map.Icon(icon_url,{size: {w: 30, h: 30}});
   var marker = new H.map.Marker({ lat:latitude, lng:longitude }, { icon: icon });
   map.addObject(marker);
+  map.getViewPort().resize();
 }
-
-
-  // Now use the map as required...
-addLocalizacaoPet("../img/dog.jpg",-23.5766,-46.4098);
-addLocalizacaoPet("../img/cat.jpg",-23.5344,-46.4515);
-addLocalizacaoPet("../img/nemo.png",25.0056201,-71.0883606);
-moveMap(map);
 
 
 function carregarListaMapa(listPet){
   
   let div = document.getElementById("quadros");
-  //div.innerHTML = "";
+  div.innerHTML = "";
+  
   listPet.forEach(pet => {
-    div.innerHTML += ""
-    +"<div class='quadro_pet'>"
-    +"<div class='area_foto'><img src='"+pet.imgUrl+"' alt='' class='foto_pet'></div>"
+    div.innerHTML += "<div class='card-lost dp-f'>"
+    +"<div class='area_foto'>"
+    +"<img src='"+pet.pathImg+"' class='foto_pet'>"
+    +"</div>"
+    +"<div>"
     +"<table>"
     +"<tr><td class='desc_pet'>nome</td></tr>"
-    +"<tr><td class='desc_info_pet'>"+pet.nome+"</td></tr>"
-    +"<tr><td class='desc_pet'>desaparecimento</td></tr>"
-    +"<tr><td class='desc_info_pet'>"+pet.desaparecimento+"</td></tr>"
-    +"<tr><td class='desc_pet'>região</td></tr>"
-    +"<tr><td class='desc_info_pet'>"+pet.regiao+"</td></tr>"
-    +"<tr><td><button class='btn_info' onclick='openModal()'>+</button></td></tr>"
-    +"</table>"				
+    +"<tr>"
+    +"<td class='desc_info_pet'>"+pet.nomeAnimal+"</td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td class='desc_pet'>desaparecimento</td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td class='desc_info_pet'>"+pet.dataPerdido+"</td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td class='desc_pet'>região</td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td class='desc_info_pet'>itaquera-sp</td>"
+    +"</tr>"
+    +"</table>"
+    +"</div>"
+    +"<div class='btn_info' onclick='openModal("+pet.idAnimal+")'>+</div>"
     +"</div>";
 
-    addLocalizacaoPet(pet.imgUrl, pet.latitude, pet.longitude);
+    addLocalizacaoPet(pet.pathImg, pet.latitude, pet.longitude);
   });
   moveMap(map);
 }
@@ -172,7 +229,7 @@ function requestLostPets(){
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
     },
-    url: url_resq+'pets',
+    url: url_resq,
     data: '',
     success: function (response) {
       carregarListaMapa(response);
@@ -183,3 +240,48 @@ function requestLostPets(){
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//map 2
+
+
+//Step 2: initialize a map  - not specificing a location will give a whole world view.
+var map2 = new H.Map(document.getElementById('mapContainerView'),
+  defaultLayers.normal.map, {pixelRatio: pixelRatio});
+
+//Step 3: make the map interactive
+// MapEvents enables the event system
+// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+var behavior2 = new H.mapevents.Behavior(new H.mapevents.MapEvents(map2));
+
+// Create the default UI components
+var ui2 = H.ui.UI.createDefault(map2, defaultLayers);
+
+function moveMapInfo(latitude, longitude){
+  console.log(latitude+" ; "+longitude);
+		map2.setCenter({lat: latitude, lng: longitude });
+	  map2.setZoom(20);
+}
+
+function addLocalizacaoPetInfo(icon_url, latitude, longitude){
+  //var icon2 = new H.map.Icon(icon_url,{size: {w: 30, h: 30}});
+  var marker2 = new H.map.Marker({ lat:latitude, lng:longitude } );//, { icon: icon2 });
+  map2.addObject(marker2);
+  map2.getViewPort().resize();
+  moveMapInfo(latitude, longitude);
+}

@@ -29,6 +29,125 @@ public class PetPerdido {
 	@Column(name="LONGITUDE") private String longitude;
 	@Column(name="ADD_DATA") private Date addData;
 	
+	public PetPerdido(int idUsuario, int idDonoPetPerdido, String nomeAnimal, Date dataPerdido, char ativo,
+			String descricao, String tipoAnimal, String pathImg, String cep, String latitude, String longitude,
+			Date addData) {
+		super();
+		this.idUsuario = idUsuario;
+		this.idDonoPetPerdido = idDonoPetPerdido;
+		this.nomeAnimal = nomeAnimal;
+		this.dataPerdido = dataPerdido;
+		this.ativo = ativo;
+		this.descricao = descricao;
+		this.tipoAnimal = tipoAnimal;
+		this.pathImg = pathImg;
+		Cep = cep;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.addData = addData;
+	}
+	
+	public PetPerdido() {}
+	
+	public int getIdAnimal() {
+		return this.idAnimal;
+	}
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public int getIdDonoPetPerdido() {
+		return idDonoPetPerdido;
+	}
+
+	public void setIdDonoPetPerdido(int idDonoPetPerdido) {
+		this.idDonoPetPerdido = idDonoPetPerdido;
+	}
+
+	public String getNomeAnimal() {
+		return nomeAnimal;
+	}
+
+	public void setNomeAnimal(String nomeAnimal) {
+		this.nomeAnimal = nomeAnimal;
+	}
+
+	public Date getDataPerdido() {
+		return dataPerdido;
+	}
+
+	public void setDataPerdido(Date dataPerdido) {
+		this.dataPerdido = dataPerdido;
+	}
+
+	public char getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(char ativo) {
+		this.ativo = ativo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getTipoAnimal() {
+		return tipoAnimal;
+	}
+
+	public void setTipoAnimal(String tipoAnimal) {
+		this.tipoAnimal = tipoAnimal;
+	}
+
+	public String getPathImg() {
+		return pathImg;
+	}
+
+	public void setPathImg(String pathImg) {
+		this.pathImg = pathImg;
+	}
+
+	public String getCep() {
+		return Cep;
+	}
+
+	public void setCep(String cep) {
+		Cep = cep;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public Date getAddData() {
+		return addData;
+	}
+
+	public void setAddData(Date addData) {
+		this.addData = addData;
+	}
 	
 	
 	

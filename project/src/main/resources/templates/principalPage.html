@@ -29,24 +29,31 @@
 						<div class="row marginNone">
 							<div class="row">
 							<label th:value="nome"></label>
-								<h2 class="title-popup">tobias</h2>
-								<h5 class="subtitle-popup">cachorro</h5>
+								<h2 class="title-popup" id="nome_animal_info_title">tobias</h2>
+								<h5 class="subtitle-popup" id="tipo_animal_info_title">cachorro</h5>
 							</div>
 							<div class="row marginNone content-info-pet ">
 								<div class="col l4 m4 s12 height-popup-ctx valign-wrapper">
-									<img class="foto-register-info responsive-img" src="../img/cat.jpg">								</div>
+									<img class="foto-register-info responsive-img" src="../img/cat.jpg">								
+								</div>
 								<div class="col l8 m8 s12 height-popup-ctx valign-wrapper">
 									<span>
-										<h5>nome: <b>tobias</b></h5>
-										<h5>desaparecimento: <b>28/04/2019</b></h5>
-										<h5>regiao: <b>itaquera-sp</b></h5>
+										<h5>nome: <b id="nome_animal_info">tobias</b></h5>
+										<h5>desaparecimento: <b id="desaparecimento_animal_info">28/04/2019</b></h5>
+										<h5>regiao: <b id="regiao_animal_info">itaquera-sp</b></h5>
 									</span>
 								</div>
 							</div>
+							<div class="col l12 m12 s12 map-view-info-off" id="map-view-info" style="width:100% !important">
+								<div class="map_style" id="mapContainerView"></div>
+							</div>	
 						</div>
 
 					</div>
+
+
 				</div>
+				
 			</div>
 
 
@@ -71,36 +78,8 @@
 						<div class="map_style" id="mapContainer"></div>
 					</div>
 					<div class="display-flex area_listagem_off" id="quadros">
-						<div class="card-lost dp-f">
-							<div class="area_foto">
-								<img src="../img/cat.jpg" alt="" class="foto_pet">
-							</div>
-							<div>
-								<table>
-									<tr>
-										<td class="desc_pet">nome</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">murilo</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">desaparecimento</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">01/02/2019</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">região</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">itaquera-sp</td>
-									</tr>
-								</table>
-							</div>
-							<div class="btn_info" onclick="openModal()">+</div>
-						</div>
-
-						<div class="card-lost dp-f">
+						
+						<!--<div class="card-lost dp-f">
 							<div class="area_foto ">
 								<img src="../img/cat.jpg" alt="" class="foto_pet">
 							</div>
@@ -127,36 +106,7 @@
 								</table>
 							</div>
 							<div class="btn_info" onclick="openModal()">+</div>
-						</div>
-
-						<div class="card-lost dp-f">
-							<div class="area_foto ">
-								<img src="../img/cat.jpg" alt="" class="foto_pet">
-							</div>
-							<div>
-								<table>
-									<tr>
-										<td class="desc_pet">nome</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">murilo</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">desaparecimento</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">01/02/2019</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">região</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">itaquera-sp</td>
-									</tr>
-								</table>
-							</div>
-							<div class="btn_info" onclick="openModal()">+</div>
-						</div>
+						</div>-->
 
 					</div>
 				</div>
@@ -164,10 +114,7 @@
 		</div>
 	</div>
 
-
-
-	<script src="../js/main.js"></script>
-	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="../js/main.js"></script>
 </body>

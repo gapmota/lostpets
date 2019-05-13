@@ -20,19 +20,28 @@ public class CadastroPessoaController {
 	
 	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult bindingResult){
+		
+		System.err.println("antes");
+		
 		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
 		
+		System.err.println(usuario);
+		
+		System.err.println("depois");
+		
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("cadastroPessoa");
+			try {
+				modelAndView.setViewName("cadastroPessoa");				
+			}catch(Exception ex) {System.err.println(ex);}
 		} 
 		else if(existe) {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
 		}
-		else {
+		else {			
 			usuarioService.salvarUsuario(usuario);
-			modelAndView = new ModelAndView("redirect:/LostPets");
-			modelAndView.addObject("mensagemSucesso", "Usuário cadastrado com sucesso!");
+			modelAndView = new ModelAndView("login");
+			modelAndView.addObject("mensagemSucesso", "Usuário cadastrado com sucesso!");			
 		}
 		return modelAndView;
 	}
