@@ -39,7 +39,7 @@ public class PetPerdidoRepositoryTest {
 	public void init() {
 		usuario = new Usuario("mateus", "mateus@lost.com");
 		usuarioRepository.save(usuario);
-		petPerdido = new PetPerdido("tobias",new Date().toString(), "perdido","Gato","C://","0000000","000","0000");
+		petPerdido = new PetPerdido(usuario,"tobias",new Date().toString(), "perdido","Gato","C://","0000000","000","0000");
 		petPerdidoRepository.save(petPerdido);
 	}
 	

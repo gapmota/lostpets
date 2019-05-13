@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,9 +23,9 @@ public class PetPerdido {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ID_ANIMAL") private int idAnimal;
 	
-	@OneToMany(mappedBy = "idPessoa", cascade = CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)	
 	@JoinColumn(name = "ID_USUARIO")
-	private List<Usuario> idUsuario;
+	private Usuario usuario;
 	
 	@Column(name="NOME_ANIMAL") private String nomeAnimal;
 	@Column(name="DATA_PERDIDO") private String dataPerdido;
@@ -43,12 +44,12 @@ public class PetPerdido {
 
 	public PetPerdido() {}
 
-	public PetPerdido(/*Usuario idUsuario,*/ String nomeAnimal, String dataPerdido, String descricao,
+	public PetPerdido(Usuario usuario, String nomeAnimal, String dataPerdido, String descricao,
 			String tipoAnimal, String pathImg, String cep, String latitude, String longitude) {
-		//this.idUsuario = idUsuario;
+		this.usuario = usuario;
 		this.nomeAnimal = nomeAnimal;
 		this.dataPerdido = dataPerdido;
-		this.status = "P";
+		this.status = "S";
 		this.descricao = descricao;
 		this.tipoAnimal = tipoAnimal;
 		this.pathImg = pathImg;
@@ -63,7 +64,7 @@ public class PetPerdido {
 	}
 
 	public Usuario getIdUsuario() {
-		return (Usuario) idUsuario;
+		return usuario;
 	}
 
 	public String getNomeAnimal() {
