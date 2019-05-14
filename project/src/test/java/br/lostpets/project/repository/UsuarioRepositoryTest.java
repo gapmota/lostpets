@@ -24,7 +24,7 @@ public class UsuarioRepositoryTest {
 	
 	@Test
 	public void permitirUsuario() {
-		usuario = new Usuario("nome", "email");
+		usuario = new Usuario("nome", "email", "celular", "telefone");
 		usuarioRepository.save(usuario);
 		
 		Usuario usuarioEncontrado = usuarioRepository.getOne(usuario.getIdPessoa());

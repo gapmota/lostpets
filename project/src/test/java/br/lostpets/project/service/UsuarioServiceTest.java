@@ -24,7 +24,7 @@ public class UsuarioServiceTest {
 	
 	@Before
 	public void setup() {
-		usuario = new Usuario("joao", "joao.joao");
+		usuario = new Usuario("joao", "joao.joao", "celular", "telefone");
 		usuarioService.salvarUsuario(usuario);
 	}
 	

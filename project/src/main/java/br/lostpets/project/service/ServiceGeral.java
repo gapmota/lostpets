@@ -17,7 +17,7 @@ public class ServiceGeral {
 		/*SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date hora = Calendar.getInstance().getTime();
 		String dataFormatada = sdf.format(hora);*/
-		System.out.println("DATA E HORA? "+data + " " + hora);
+		
 		return data + " " + hora;
 	}
 	
