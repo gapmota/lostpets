@@ -22,12 +22,12 @@ public class ExportarPDF {
 			document.open();
 
 			Paragraph pTitulo = (new Paragraph(
-					new Phrase(30F, "Animal perdido", FontFactory.getFont(FontFactory.HELVETICA, 28F))));
+					new Phrase(50F, "PROCURA-SE", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 48F))));
 			pTitulo.setAlignment(Element.ALIGN_CENTER);
 			document.add(pTitulo);
 
 			Paragraph pData = (new Paragraph("Perdido no dia: 13/05/2019",
-					FontFactory.getFont(FontFactory.HELVETICA_BOLD, 10)));
+					FontFactory.getFont(FontFactory.HELVETICA, 10)));
 			pData.setAlignment(Element.ALIGN_CENTER);
 			document.add(pData);
 
@@ -36,6 +36,16 @@ public class ExportarPDF {
 			codeQrImage.setAbsolutePosition(490, 0);
 			codeQrImage.scaleAbsolute(100, 100);
 			document.add(codeQrImage);
+			
+			Image imgAnimal = Image.getInstance("https://www.petz.com.br/blog/wp-content/uploads/2017/07/gato02.jpg");
+			imgAnimal.setAbsolutePosition(120, 480);
+			imgAnimal.scaleAbsolute(350, 240);
+	        document.add(imgAnimal);
+	        
+	        Paragraph pTitlePhone = (new Paragraph("Informações: ", FontFactory.getFont(FontFactory.HELVETICA, 25)));
+	        pTitlePhone.setAlignment(Element.ALIGN_LEFT);
+	        pTitlePhone.setPaddingTop(300);
+			document.add(pTitlePhone);
 
 		} catch (DocumentException de) {
 			System.err.println(de.getMessage());
