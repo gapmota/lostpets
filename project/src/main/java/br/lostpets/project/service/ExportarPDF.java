@@ -1,5 +1,6 @@
 package br.lostpets.project.service;
 
+import java.awt.Color;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import com.itextpdf.text.Document;
@@ -14,7 +15,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class ExportarPDF {
 
-	public ExportarPDF(String nomeCartaz, String siteAnimalPerdido) {
+	public ExportarPDF(String nomeCartaz, String siteAnimalPerdido, String imgDoAnimal) {
 		Document document = new Document();
 		try {
 
@@ -29,6 +30,7 @@ public class ExportarPDF {
 			Paragraph pData = (new Paragraph("Perdido no dia: 13/05/2019",
 					FontFactory.getFont(FontFactory.HELVETICA, 10)));
 			pData.setAlignment(Element.ALIGN_CENTER);
+			pData.setSpacingBefore(5);
 			document.add(pData);
 
 			BarcodeQRCode barcodeQRCode = new BarcodeQRCode(siteAnimalPerdido, 1000, 1000, null);
@@ -40,11 +42,12 @@ public class ExportarPDF {
 			Image imgAnimal = Image.getInstance("https://www.petz.com.br/blog/wp-content/uploads/2017/07/gato02.jpg");
 			imgAnimal.setAbsolutePosition(120, 480);
 			imgAnimal.scaleAbsolute(350, 240);
+			imgAnimal.setBorder(10);
 	        document.add(imgAnimal);
 	        
-	        Paragraph pTitlePhone = (new Paragraph("Informações: ", FontFactory.getFont(FontFactory.HELVETICA, 25)));
-	        pTitlePhone.setAlignment(Element.ALIGN_LEFT);
-	        pTitlePhone.setPaddingTop(300);
+	        Paragraph pTitlePhone = (new Paragraph("Informações: ", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20)));
+	        pTitlePhone.setAlignment(Element.ALIGN_CENTER);
+	        pTitlePhone.setSpacingBefore(260);
 			document.add(pTitlePhone);
 
 		} catch (DocumentException de) {

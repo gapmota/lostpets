@@ -19,7 +19,7 @@ public class ProjectApplication {
 		// new ConverterCSV();
 		
 		// Quando o usuário terminar o cadastro e clicar em "Imprimir cartaz de procurado"
-		new ExportarPDF("procurado_nomeAnimal_idAnimal", "https://localAnimalPerdidoNoSite.com.br");
+		new ExportarPDF("procurado_nomeAnimal_idAnimal", "https://localAnimalPerdidoNoSite.com.br", "caminhoImgAnimal");
 	}
 
 }
