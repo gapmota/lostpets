@@ -1,0 +1,6 @@
+#FileLock
+#Thu May 16 21:28:18 BRT 2019
+hostName=HSL225
+id=16ac33084a9b577a4e5f9c07a4a268fe7ee5761246b
+method=file
+server=10.3.0.35\:60595

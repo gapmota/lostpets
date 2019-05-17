@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,25 +29,25 @@ public class LoginController {
 	public ModelAndView loginPage() {
 		modelAndView = new ModelAndView();
 		usuario = new Usuario();
-		modelAndView.addObject("usuario", usuario);
+		//modelAndView.addObject("usuario", usuario);
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
 	
-	@PostMapping("/Dashboard")
+	@PostMapping("/LostPets")
 	public ModelAndView logar(@Valid Usuario usuario, BindingResult bindingResult) {
 		
 		usuario = usuarioService.emailSenha(usuario.getEmail(), usuario.getSenha());
 		
 		if (bindingResult.hasErrors()) {
-			modelAndView = new ModelAndView("redirect:/LostPets");
+			modelAndView.setViewName("login");
 		}
 		else if(usuario != null) {
-			modelAndView.setViewName("principalPage");
+			modelAndView =  new ModelAndView("redirect:/Dashboard");
 			historicoAcessoLog.dataHora(usuario.getNome());
 		}
 		else {
-			modelAndView = new ModelAndView("redirect:/LostPets");
+			modelAndView.setViewName("login");
 			modelAndView.addObject("mensagem", "E-mail ou senha inválido");
 		}
 		return modelAndView;

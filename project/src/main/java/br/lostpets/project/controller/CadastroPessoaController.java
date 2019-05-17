@@ -30,8 +30,6 @@ public class CadastroPessoaController {
 	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult bindingResult){
 		
-		System.err.println("antes");
-		
 		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
 				
 		if (bindingResult.hasErrors()) {
