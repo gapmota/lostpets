@@ -1,8 +1,9 @@
 package br.lostpets.project.service;
 
-import java.awt.Color;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -10,6 +11,7 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BarcodeQRCode;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -38,16 +40,19 @@ public class ExportarPDF {
 			codeQrImage.setAbsolutePosition(490, 0);
 			codeQrImage.scaleAbsolute(100, 100);
 			document.add(codeQrImage);
-			
+
 			Image imgAnimal = Image.getInstance("https://www.petz.com.br/blog/wp-content/uploads/2017/07/gato02.jpg");
 			imgAnimal.setAbsolutePosition(120, 480);
 			imgAnimal.scaleAbsolute(350, 240);
-			imgAnimal.setBorder(10);
-	        document.add(imgAnimal);
-	        
-	        Paragraph pTitlePhone = (new Paragraph("Informações: ", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20)));
-	        pTitlePhone.setAlignment(Element.ALIGN_CENTER);
-	        pTitlePhone.setSpacingBefore(260);
+			imgAnimal.setBorder(Rectangle.BOX);
+			imgAnimal.setBorderColor(BaseColor.BLACK);
+			imgAnimal.setBorderWidth(2f);
+			document.add(imgAnimal);
+
+			Paragraph pTitlePhone = (new Paragraph("Informações: ",
+					FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20)));
+			pTitlePhone.setAlignment(Element.ALIGN_CENTER);
+			pTitlePhone.setSpacingBefore(260);
 			document.add(pTitlePhone);
 
 		} catch (DocumentException de) {
