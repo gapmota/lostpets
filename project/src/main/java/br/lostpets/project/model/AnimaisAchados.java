@@ -18,9 +18,14 @@ public class AnimaisAchados {
 	
 	@Column(name="ID_USUARIO_ACHOU") private int idUsuarioAchou;
 	@Column(name="ID_PET_PERDIDO") private int idPetPerdido;
+	
 	@Column(name="DATA_ENCONTRADO")	private Date dataEncontrado;
 	@Column(name="PONTOS") private int pontos;
+	@Column(name="LATITUDE") private String latitude;
+	@Column(name="LONGIUDE") private Date longitude;
+	@Column(name="STATUS") private Date status;
 	@Column(name="ADD_DATA") private Date addData;
+	
 	
 }
 */
