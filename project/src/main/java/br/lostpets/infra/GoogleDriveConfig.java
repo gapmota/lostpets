@@ -6,19 +6,24 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.FileContent;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
+import com.google.api.services.drive.model.File;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class GoogleDriveConfig {
 
@@ -46,8 +51,30 @@ public class GoogleDriveConfig {
 		// Build a new authorized API client service.
 		Drive service;
 		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-		
+
 		return service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 				.setApplicationName(APPLICATION_NAME).build();
+	}
+
+	public static String uploadFile(java.io.File image, Drive service) throws IOException, GeneralSecurityException {
+		File fileMetadata = new File();
+		fileMetadata.setName(image.getName());
+		fileMetadata.setMimeType("image/*");
+		java.io.File filePath = new java.io.File(image.getAbsolutePath());;
+		FileContent mediaContent = new FileContent("image/*", filePath);
+		File img = getService().files().create(fileMetadata, mediaContent).setFields("id").execute();
+		filePath.delete();
+
+		return img.getId();
+	}
+
+	public static java.io.File convert(MultipartFile file) throws IOException {
+		java.io.File convFile = new java.io.File(file.getOriginalFilename());
+		convFile.createNewFile();
+		FileOutputStream fos = new FileOutputStream(convFile);
+		fos.write(file.getBytes());
+		fos.close();
+		
+		return convFile;
 	}
 }
