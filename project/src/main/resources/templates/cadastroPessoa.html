@@ -28,7 +28,8 @@
                         method="post" enctype="multipart/form-data" > <!-- onsubmit="verificarCampos(this)"  -->
                         <div class="row">
                             <div class="col l4 m4 s12" style="height: 222px;">
-                                <img class="foto-register" src="../img/cat.jpg">
+								<input type="file" name="files" onchange="readURL(this);" accept="image/gif, image/jpeg, image/png">
+								<img id="blah" class="foto-register" src="#" alt="your image" />
                             </div>
                             <div class="input-field l8 m8 col s12">
                                 <input id="nome" type="text" class="validate" required="required" th:field="*{nome}" >
@@ -119,5 +120,5 @@
     <script type="text/javascript" src="../js/materialize.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
 </body>
-
 </html>
+<script src='../js/UploadImage.js'></script>
