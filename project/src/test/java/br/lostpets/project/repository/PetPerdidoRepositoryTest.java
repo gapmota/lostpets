@@ -20,7 +20,7 @@ import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
 
 @Transactional
-//@Commit
+@Commit
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class PetPerdidoRepositoryTest {
@@ -37,9 +37,9 @@ public class PetPerdidoRepositoryTest {
 	
 	@Before
 	public void init() {
-		usuario = new Usuario("mateus", "mateus@lost.com");
+		usuario = new Usuario("mateus", "mateus@lost.com", "(11) 91234-1234", "(11) 1234-1234");
 		usuarioRepository.save(usuario);
-		petPerdido = new PetPerdido(usuario,"tobias",new Date().toString(), "perdido","Gato","C://","0000000","000","0000");
+		petPerdido = new PetPerdido(usuario,"tobias", "12/12/2018", "Descrição perdido","Gato","C://Path","00.000.000","Latitude","Longitude");
 		petPerdidoRepository.save(petPerdido);
 	}
 	

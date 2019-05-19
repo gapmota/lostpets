@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -68,9 +66,11 @@ public class Usuario{
 		this.addCadastro = dataHora();
 	}
 	
-	public Usuario(String nome, String email) {
+	public Usuario(String nome, String email, String celular, String telefone) {
 		this.nome = nome;
 		this.email = email;	
+		this.telefoneCelular = celular;
+		this.telefoneFixo = telefone;
 		this.addCadastro = dataHora();
 	}
 	

@@ -30,19 +30,14 @@ public class CadastroPessoaController {
 	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult bindingResult){
 		
-		System.err.println("antes");
-		
 		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
-		System.out.println("boolean existe = usuarioService.verificarEmail(usuario.getEmail());: "+existe);
-		
-		System.err.println(usuario);
-		
-		System.err.println("depois");
-		
+				
 		if (bindingResult.hasErrors()) {
 			try {
 				modelAndView.setViewName("cadastroPessoa");				
-			}catch(Exception ex) {System.err.println(ex);}
+			}catch(Exception ex) {
+				System.err.println(ex);
+			}
 		} 
 		else if(existe) {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
