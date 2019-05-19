@@ -22,6 +22,11 @@ window.onload = function(){
 
 }
 
+window.addEventListener('resize', function () {
+  map.getViewPort().resize(); 
+  map2.getViewPort().resize(); 
+});
+
 function viewQuadros(){
 
 	let view = document.getElementById("quadros");
@@ -41,6 +46,7 @@ function viewMap(){
 		view.className = "area_listagem_off";
 	}else{
     view.className = "area_listagem_on";
+    map.getViewPort().resize();
 	}
 }
 
@@ -79,6 +85,7 @@ function openModal(id){
   let view = document.getElementById("modal");
 
 	if(view.classList.contains("popup-off")){
+    document.getElementById("listagem-pets").classList.add("fechar-tudo");
     view.classList.remove("popup-off");
     view.classList.add("popup-on");
     resizeMapInfo();
@@ -106,6 +113,7 @@ function openModal(id){
     
 
 	}else{
+    document.getElementById("listagem-pets").classList.remove("fechar-tudo");
     resizeMapInfo();
 		view.classList.remove("popup-on");
     view.classList.add("popup-off");   
@@ -167,9 +175,11 @@ function moveMap(map){
     map.setZoom(14);
 }
 
-function getLocation() {
-	   
-	}
+map.addEventListener('mapviewchange', function () {  
+  if(map.getZoom() < 3) {
+    map.setZoom(3);
+  }
+});
 
 	function showPosition(position) {
 		position.coords.latitude + 
@@ -263,6 +273,14 @@ function requestLostPets(){
 //Step 2: initialize a map  - not specificing a location will give a whole world view.
 var map2 = new H.Map(document.getElementById('mapContainerView'),
   defaultLayers.normal.map, {pixelRatio: pixelRatio});
+
+
+  map2.addEventListener('mapviewchange', function () {  
+    if(map2.getZoom() < 3) {
+      map2.setZoom(3);
+    }
+  });
+  
 
 //Step 3: make the map interactive
 // MapEvents enables the event system

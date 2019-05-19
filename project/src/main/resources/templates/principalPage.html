@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
 	<meta>
 	<title>lostpet | login</title>
-	<link rel="stylesheet" type="text/css" href="../css/materialize.css">
-	<link rel="stylesheet" type="text/css" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/custom.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
 	<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
@@ -34,17 +34,20 @@
 							</div>
 							<div class="row marginNone content-info-pet ">
 								<div class="col l4 m4 s12 height-popup-ctx valign-wrapper">
-									<img class="foto-register-info responsive-img" src="../img/cat.jpg">								
+									<img class="foto-register-info responsive-img" src="../static/img/cat.jpg">								
 								</div>
-								<div class="col l8 m8 s12 height-popup-ctx valign-wrapper">
+								<div class="col l8 m8 s12 height-popup-ctx valign-wrapper" style="flex-wrap: wrap;">
 									<span>
 										<h5>nome: <b id="nome_animal_info">tobias</b></h5>
 										<h5>desaparecimento: <b id="desaparecimento_animal_info">28/04/2019</b></h5>
-										<h5>regiao: <b id="regiao_animal_info">itaquera-sp</b></h5>
-									</span>
-								</div>
+										<h5>regiao: <b id="regiao_animal_info">itaquera-sp</b></h5>										
+										<div id="btn-achei-pet" class="btn-achei">achei</div>
+									</span>									
+									
+									
+								</div>								
 							</div>
-							<div class="col l12 m12 s12 map-view-info-off" id="map-view-info" style="width:100% !important">
+							<div class="col l12 m12 s12 map-view-info-off" id="map-view-info">
 								<div class="map_style" id="mapContainerView"></div>
 							</div>	
 						</div>
@@ -58,20 +61,20 @@
 
 
 		</div>
-		<div class="container-div dh">
-			<div class="container dh">
-				<div class="row dm-b">
+		<div class="container-div dh" id="listagem-pets">
+			<div class="container dh" >
+				<div class="row" style="display: flex">
 					<nav>
 						<div class="nav-wrapper">
 							<form>
 								<div class="input-field">
 									<input id="search" class="input-search" placeholder="pesquisar" type="search" >
-									<label class="label-icon" for="search"><i class="material-icons">search</i></label>							
-									<i class="material-icons" id="btn_abrir_nova_view" style="right: 51%;">list</i>
+									<label class="label-icon" for="search"><i class="material-icons">search</i></label>																
 								</div>
 							</form>
 						</div>
 					</nav>
+					<div class="btn-open-map"><i class="material-icons white-text" id="btn_abrir_nova_view">list</i></div>
 				</div>
 				<div class="row">
 					<div id="map_area" class="area_listagem_on">
@@ -79,9 +82,9 @@
 					</div>
 					<div class="display-flex area_listagem_off" id="quadros">
 						
-						<!--<div class="card-lost dp-f">
+						<div class="card-lost dp-f">
 							<div class="area_foto ">
-								<img src="../img/cat.jpg" alt="" class="foto_pet">
+								<img src="../static/img/cat.jpg" alt="" class="foto_pet">
 							</div>
 							<div>
 								<table>
@@ -106,7 +109,7 @@
 								</table>
 							</div>
 							<div class="btn_info" onclick="openModal()">+</div>
-						</div>-->
+						</div>
 
 					</div>
 				</div>
@@ -116,7 +119,7 @@
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="../js/main.js"></script>
+	<script src="../static/js/main.js"></script>
 </body>
 
 </html>
