@@ -1,0 +1,6 @@
+#FileLock
+#Sun May 19 14:24:19 BRT 2019
+hostName=10.0.0.107
+id=16ad11f5c861aa59439f07b8e9454707ba5d3bb23d0
+method=file
+server=10.0.0.107\:56358
