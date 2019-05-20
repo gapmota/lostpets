@@ -43,7 +43,7 @@ public class CadastroPessoaController {
 			try {
 				modelAndView.setViewName("cadastroPessoa");
 			} catch (Exception ex) {
-				System.err.println(ex);
+				System.err.println("EX: "+ex);
 			}
 		} else if (existe) {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
@@ -53,9 +53,10 @@ public class CadastroPessoaController {
 			usuarioService.salvarUsuario(usuario);
 			Usuario usuarioParaAtualizar = usuarioService.encontrar(usuario.getIdPessoa());
 
-			for (MultipartFile file : files) {
+			//comentado devido a falhar ao não inserir imagem
+			/*for (MultipartFile file : files) {
 				usuarioParaAtualizar.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
-			}
+			}*/
 
 			usuarioService.salvarUsuario(usuarioParaAtualizar);
 

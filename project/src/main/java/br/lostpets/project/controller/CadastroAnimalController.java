@@ -20,6 +20,8 @@ public class CadastroAnimalController {
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal;
 	private ModelAndView modelAndView = new ModelAndView();
 	private PetPerdidoService petPerdidoService;
+	private Usuario usuario;
+	private PetPerdido petPerdido;
 	
 	@GetMapping("/LostPets/Cadastro_Animal_Perdido")
 	public ModelAndView paginaadastroAnimalPerdido() {
@@ -29,22 +31,29 @@ public class CadastroAnimalController {
 	}
 	
 	@PostMapping("/LostPets/Cadastro_Animal_Perdido")
-	public ModelAndView cadastroAnimalPerdido(@Valid CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
+	public void cadastroAnimalPerdido(@Valid CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
 		
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
 		boolean existe = usuarioService.verificarEmail(email);
 		
 		if(existe) {
-				
+			System.err.println("CHEGOU AQUI");
 		}else {
-			Usuario usuario = cadastroPessoaAnimal.getUsuario();
-			PetPerdido petPerdido1 = cadastroPessoaAnimal.getPetPerdido();
+			usuario = cadastroPessoaAnimal.getUsuario();
+			petPerdido = cadastroPessoaAnimal.getPetPerdido();
+			
 			//petPerdido = new PetPerdido(usuario, nomeAnimal, dataPerdido, descricao, tipoAnimal, pathImg, cep, latitude, longitude)
-			usuarioService.salvarUsuario();
-			petPerdidoService.salvarPet();
+			//usuarioService.salvarUsuario();
+			//petPerdidoService.salvarPet();
+			
+			System.err.print("USUARIO: ");
+			System.out.println(usuario.toString());
+			System.err.print("PETPERDIDO: ");
+			System.out.println(petPerdido.toString());
+			System.err.println("CHEGOU AQUI");
 		}
 		
-		return modelAndView;
+		//return new ModelAndView("/");
 	}
 	
 	
