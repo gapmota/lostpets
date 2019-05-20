@@ -29,7 +29,7 @@ public class LoginController {
 	public ModelAndView loginPage() {
 		modelAndView = new ModelAndView();
 		usuario = new Usuario();
-		//modelAndView.addObject("usuario", usuario);
+		modelAndView.addObject("usuario", usuario);
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}

@@ -1,5 +1,8 @@
 package br.lostpets.project.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CadastroPessoaAnimalComponent {
 
 	private PetPerdido petPerdido;
