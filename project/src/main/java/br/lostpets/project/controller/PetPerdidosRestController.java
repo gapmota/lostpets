@@ -24,14 +24,14 @@ public class PetPerdidosRestController {
 	@CrossOrigin
 	@PostMapping("/")
 	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosActive() {
-		List<PetPerdido> listPets = petPerdidoService.getAllPetsPerdidosActive(); 		
+		List<PetPerdido> listPets = petPerdidoService.encontrarPetsAtivos(); 		
 		return ResponseEntity.ok(listPets);
 	}
 	
 	@CrossOrigin
 	@GetMapping("/{idAnimal}")
 	public ResponseEntity<PetPerdido> getAllPetsPerdidosActiveById(@PathVariable("idAnimal") int idAnimal) {
-		PetPerdido listPets = petPerdidoService.getAllPetsPerdidosActiveById(idAnimal); 		
+		PetPerdido listPets = petPerdidoService.encontrarUnicoPet(idAnimal); 		
 		return ResponseEntity.ok(listPets);
 	}
 }
