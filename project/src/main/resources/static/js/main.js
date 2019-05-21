@@ -249,26 +249,7 @@ function requestLostPets(){
   });  
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //map 2
-
 
 //Step 2: initialize a map  - not specificing a location will give a whole world view.
 var map2 = new H.Map(document.getElementById('mapContainerView'),

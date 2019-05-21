@@ -1,7 +1,8 @@
 package br.lostpets.project.model;
 
+import java.io.Serializable;
+import java.util.UUID;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -129,7 +130,7 @@ public class Usuario{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	
 	public String getIdImagem() {
 		return idImagem;
 	}
