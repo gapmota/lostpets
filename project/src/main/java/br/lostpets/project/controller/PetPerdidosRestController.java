@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.lostpets.project.model.PetPerdido;
-import br.lostpets.project.repository.PetPerdidoRepository;
+import br.lostpets.project.service.PetPerdidoService;
 
 @RestController
 @RequestMapping("/lostpet/api/petsperdidos")
-public class PetsPerdidosRestController {
+public class PetPerdidosRestController {
 
 	@Autowired
-	PetPerdidoRepository petPerdidoRepository;
+	PetPerdidoService petPerdidoService;
 	
 	@CrossOrigin
 	@PostMapping("/")
 	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosActive() {
-		List<PetPerdido> listPets = petPerdidoRepository.getAtivos(); 		
+		List<PetPerdido> listPets = petPerdidoService.getAllPetsPerdidosActive(); 		
 		return ResponseEntity.ok(listPets);
 	}
 	
 	@CrossOrigin
 	@GetMapping("/{idAnimal}")
 	public ResponseEntity<PetPerdido> getAllPetsPerdidosActiveById(@PathVariable("idAnimal") int idAnimal) {
-		PetPerdido listPets = petPerdidoRepository.getAtivosByIdAnimal(idAnimal); 		
+		PetPerdido listPets = petPerdidoService.getAllPetsPerdidosActiveById(idAnimal); 		
 		return ResponseEntity.ok(listPets);
 	}
 }
