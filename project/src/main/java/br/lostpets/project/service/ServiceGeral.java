@@ -9,25 +9,19 @@ import org.springframework.stereotype.Service;
 public class ServiceGeral {
 	
 	private Date dataHoraAtual = new Date();
+	private String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+	private String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+	
 	
 	public String getDateHour() {
-		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
-		String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-		
-		/*SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date hora = Calendar.getInstance().getTime();
-		String dataFormatada = sdf.format(hora);*/
-		
 		return data + " " + hora;
 	}
 	
 	public String getDate() {
-		String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
 		return data;
 	}
 	
 	public String getHour() {
-		String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
 		return hora;
 	}
 	

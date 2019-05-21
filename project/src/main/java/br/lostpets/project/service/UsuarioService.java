@@ -19,7 +19,7 @@ public class UsuarioService {
 	private AnimaisAchadosRepository animaisAchados;
 	
 	public List<Usuario> encontrarTodos(){
-		return usuarioRepository.todosUsuario();
+		return usuarioRepository.findAll();
 	}
 	
 	public Usuario encontrar(int id) {

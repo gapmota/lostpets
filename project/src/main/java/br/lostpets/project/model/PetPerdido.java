@@ -149,6 +149,14 @@ public class PetPerdido {
 	public void setAddData(String addData) {
 		this.addData = addData;
 	}
+
+	@Override
+	public String toString() {
+		return "PetPerdido [idAnimal=" + idAnimal + ", usuario=" + usuario + ", nomeAnimal=" + nomeAnimal
+				+ ", dataPerdido=" + dataPerdido + ", status=" + status + ", descricao=" + descricao + ", tipoAnimal="
+				+ tipoAnimal + ", pathImg=" + pathImg + ", cep=" + cep + ", latitude=" + latitude + ", longitude="
+				+ longitude + ", addData=" + addData + "]";
+	}
 	
-	
+
 }

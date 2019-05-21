@@ -9,6 +9,7 @@ import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.repository.PetPerdidoRepository;
 
 @Service
+<<<<<<< HEAD
 
 public class PetPerdidoService {
 
@@ -24,4 +25,27 @@ public class PetPerdidoService {
 		PetPerdido listPets = petPerdidoRepository.getAtivosByIdAnimal(idAnimal); 		
 		return listPets;
 	}
+=======
+public class PetPerdidoService {
+
+	@Autowired
+	private PetPerdidoRepository petPerdidoRepository;
+	
+	public List<PetPerdido> encontrarPetsAtivos(){
+		return petPerdidoRepository.getAtivos();
+	}
+	
+	public PetPerdido encontrarUnicoPet(int id) {
+		return petPerdidoRepository.getAtivosByIdAnimal(id);
+	}
+
+	public void salvarPet(PetPerdido petPerdido) {
+		petPerdidoRepository.save(petPerdido);
+	}
+
+	public List<PetPerdido> encontrarTodos() {
+		return petPerdidoRepository.findAll();
+	}
+	
+>>>>>>> 827659c156082d1c5f124454c99531e351839dc8
 }

@@ -17,5 +17,4 @@ public interface PetPerdidoRepository extends JpaRepository<PetPerdido, Integer>
 	@Query("from PetPerdido where status = 'P' and idAnimal = ?1")
 	public PetPerdido getAtivosByIdAnimal(int idAnimal);
 	
-	
 }
