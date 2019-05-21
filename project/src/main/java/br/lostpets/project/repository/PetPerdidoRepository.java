@@ -11,10 +11,10 @@ import br.lostpets.project.model.PetPerdido;
 @Repository
 public interface PetPerdidoRepository extends JpaRepository<PetPerdido, Integer>{ 
 
-	@Query("from PetPerdido where status = 'S'")
+	@Query("from PetPerdido where status = 'P'")
 	public List<PetPerdido> getAtivos();
 
-	@Query("from PetPerdido where status = 'S' and idAnimal = ?1")
+	@Query("from PetPerdido where status = 'P' and idAnimal = ?1")
 	public PetPerdido getAtivosByIdAnimal(int idAnimal);
 	
 }

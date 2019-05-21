@@ -1,5 +1,7 @@
 package br.lostpets.project.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.lostpets.project.service.ServiceGeral;
@@ -35,6 +38,9 @@ public class PetPerdido {
 	@Column(name="LONGITUDE") private String longitude;
 	@Column(name="ADD_DATA") private String addData = dataHora();
 	
+	@OneToMany(mappedBy = "petPerdido")
+	private List<AnimaisAchados> animaisAchados;
+	
 	private String dataHora() {
 		return new ServiceGeral().getDateHour();
 	}
@@ -46,7 +52,7 @@ public class PetPerdido {
 		this.usuario = usuario;
 		this.nomeAnimal = nomeAnimal;
 		this.dataPerdido = dataPerdido;
-		this.status = "S";
+		this.status = "P";
 		this.descricao = descricao;
 		this.tipoAnimal = tipoAnimal;
 		this.pathImg = pathImg;

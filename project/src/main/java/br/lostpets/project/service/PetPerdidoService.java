@@ -12,8 +12,7 @@ import br.lostpets.project.repository.PetPerdidoRepository;
 public class PetPerdidoService {
 
 	@Autowired
-	private PetPerdidoRepository petPerdidoRepository;
-	
+	PetPerdidoRepository petPerdidoRepository;
 	public List<PetPerdido> encontrarPetsAtivos(){
 		return petPerdidoRepository.getAtivos();
 	}

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.lostpets.project.model.Usuario;
+import br.lostpets.project.repository.AnimaisAchadosRepository;
 import br.lostpets.project.repository.UsuarioRepository;
 
 @Service
@@ -13,6 +14,9 @@ public class UsuarioService {
 
 	@Autowired 
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired 
+	private AnimaisAchadosRepository animaisAchados;
 	
 	public List<Usuario> encontrarTodos(){
 		return usuarioRepository.findAll();
@@ -36,6 +40,13 @@ public class UsuarioService {
 			return (usuario.getCep() != null) && (usuario.getSenha() != null);
 		}
 		return false;		
+	}
+	
+	public int totalPontosUsuario(Integer idUsuario) {
+		Usuario usuario = usuarioRepository.getOne(idUsuario);
+		Integer total = animaisAchados.totalPontosUsuario(usuario);
+		if(total == null) { return 0; }
+		return total;
 	}
 	
 	/*

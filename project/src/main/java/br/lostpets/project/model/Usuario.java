@@ -3,7 +3,6 @@ package br.lostpets.project.model;
 import java.io.Serializable;
 import java.util.UUID;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ public class Usuario{
 	@Column(nullable = false, name = "ID_PESSOA")
 	private int idPessoa;
 	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario")
 	private List<PetPerdido> idAnimal;
 	
 	@Column(nullable = false, name = "NOME") private String nome;
@@ -42,6 +41,9 @@ public class Usuario{
 	@Column(nullable = false, name = "ADD_CADASTRO") private String addCadastro = dataHora();
 	@Column(nullable = true, name = "ULTIMO_ACESSO") private String ultimoAcesso;
 
+	@OneToMany(mappedBy = "usuarioAchou")
+	private List<AnimaisAchados> animaisAchados;	
+	
 	private String dataHora() {
 		return new ServiceGeral().getDateHour();
 	}
