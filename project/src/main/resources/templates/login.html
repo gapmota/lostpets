@@ -14,8 +14,6 @@
 </head>
 
 <body>
-
-
 	<div class="container">
 		<div class="row">
 
@@ -24,10 +22,9 @@
 				<section class="black ">
 					<div class="carousel carousel-slider dh" data-indicators="true">
 						<div class="carousel-fixed-item center-xy">
-							<div class="container">
-								<div class="container btn-lost center-align"
-									onclick="window.location.href='cadastroAnimalPerdido.html'">
-									<p class="center-align">perdi meu pet</p>
+							<div class="container center-align">
+								<div class="container btn-lost center-align">
+									<a href="/LostPets/Cadastro_Animal_Perdido" class="gambiarra">perdi meu pet</a>
 								</div>
 							</div>
 						</div>
@@ -44,15 +41,13 @@
 							<div class="container"></div>
 						</div>
 					</div>
-				</section>
-				<div class="col s12 blue dh valign-wrapper" style="z-index: 9">
-
-				</div>
+				</section>				
 			</div>
 
 			<!-- content login -->
+			<div class="col l4 m4 s12 white dh">
 			<form class="col s12" th:action="@{/LostPets}" th:object="${usuario}" method="post" onsubmit="return validarPreenchimento(this);">
-				<div class="col l4 m4 s12 white dh">
+				
 					<div class="col s12 dh valign-wrapper">
 						<div class="container center-align">
 							<div class="input-field col s12">
@@ -65,15 +60,15 @@
 							</div><!--  -->
 							<div class="container">
 								<button type="submit" class="waves-effect waves-light btn-small btn-width">entrar</button>
-								
+								<a href="/LostPets/Cadastro" style="-webkit-appearance: none;" class="waves-effect waves-light btn-small btn-width">ser caçador</a>
 							</div>
+							<span th:utext="${mensagem}"></span>
 						</div>
 					</div>
-				</div>
+				
 			</form>
-			<form th:action="@{/Cadastro}" method="get">
-									<button class="waves-effect waves-light btn-small btn-width" type="submit">ser caçador</button>
-					</form>
+		</div>
+			
 		</div>
 	</div>
 

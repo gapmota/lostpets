@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="../css/materialize.css">
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
-        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
 
 <body>
@@ -24,26 +24,27 @@
             <div class="col l12 m12 s12 dh pos-relative con">
 
                 <div class="white content-register">
-                    <form class="col l12 m12 s12" th:action="@{/salvarUsuario}" th:object="${usuario}"
+                    <form class="col l12 m12 s12" th:action="@{/LostPets/Cadastro}" th:object="${usuario}"
                         method="post" enctype="multipart/form-data" > <!-- onsubmit="verificarCampos(this)"  -->
                         <div class="row">
                             <div class="col l4 m4 s12" style="height: 222px;">
-                                <img class="foto-register" src="../img/cat.jpg">
+								<input type="file" name="files" onchange="readURL(this);" accept="image/gif, image/jpeg, image/png">
+								<img id="blah" class="foto-register" src="#" alt="your image" />
                             </div>
                             <div class="input-field l8 m8 col s12">
-                                <input id="nome" type="text" class="validate" th:field="*{nome}" >
+                                <input id="nome" type="text" class="validate" required="required" th:field="*{nome}" >
                                 <label for="nome">seu nome</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
-                                <input id="telefoneMovel" type="tel" class="validate" th:field="*{telefoneCelular}" >
+                                <input id="telefoneMovel" class="validate form-control" required="required" th:field="*{telefoneCelular}" onkeypress="$(this).mask('(00) 0000-00009')">
                                 <label for="telefoneMovel">celular</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
-                                <input id="telefoneFixo" type="tel" class="validate" th:field="*{telefoneFixo}" >
+                                <input id="telefoneFixo" class="validate form-control" required="required" th:field="*{telefoneFixo}" onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
                                 <label for="telefoneFixo">telefone</label>
                             </div>
 							 <div class="input-field l4 m4 col s12">
-                                <input id="cep" type="email" class="validate" th:field="*{cep}" >
+                                <input id="cep" type="text" class="validate form-control" required="required" th:field="*{cep}" onkeypress="$(this).mask('00.000-000')">
                                 <label for="cep">cep</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
@@ -52,30 +53,27 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="input-field l12 m12 col s12">
-                                <input id="email" type="email" class="validate" th:field="*{email}" >
+                                <input id="email" type="email" class="validate" required="required" th:field="*{email}" >
                                 <label for="email">e-mail</label>
                             </div>
 
                             <div class="input-field l6 m6 col s6">
-                                <input id="senha" type="email" class="validate" th:field="*{senha}" >
+                                <input id="senha" type="password" class="validate" th:field="*{senha}" >
                                 <label for="senha">senha</label>
                             </div>
-                            <div class="input-field l6 m6 col s6">
-                                <input id="senha" type="email" class="validate" >
+                            <!--<div class="input-field l6 m6 col s6">
+                                <input id="senha" type="text" class="validate" >
                                 <label for="senha">confirmar senha</label>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="row">
                             <div class="input-field l12 m12 col s12">
-                                <button class="waves-effect waves-light btn-large btn-width-large">confirmar </button>
+                                <button class="waves-effect waves-light btn-large btn-width-large" type="submit">confirmar </button>
                             </div>
-                        </div>
-                        
-                        <span th:utext="${mensagemSucesso}"></span>
-                        
+                        </div>                        
                     </form>
+                    <span th:utext="${mensagemSucesso}"></span>
                 </div>
             </div>
         </div>
@@ -122,5 +120,5 @@
     <script type="text/javascript" src="../js/materialize.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
 </body>
-
 </html>
+<script src='../js/UploadImage.js'></script>

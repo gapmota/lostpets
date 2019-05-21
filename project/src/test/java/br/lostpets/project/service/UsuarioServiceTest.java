@@ -2,28 +2,43 @@ package br.lostpets.project.service;
 
 import static org.junit.Assert.assertEquals;
 
+import javax.transaction.Transactional;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import br.lostpets.project.model.Usuario;
-import br.lostpets.project.repository.UsuarioRepository;
 
+@Transactional
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class UsuarioServiceTest {
 
-	private Usuario usuario;
+	@Autowired
 	private UsuarioService usuarioService;
-	private UsuarioRepository usuarioRepository;
+	private Usuario usuario;
 	
 	@Before
 	public void setup() {
-		usuario = new Usuario("Joao", "78946123","978456321","joao.joao", "joao", "../path", "13.456-897","rua do joao", "joaos", "joaos", "ja", "4567895", "4789123", "28/04/2019","20/02/2019");
-		usuarioRepository.save(usuario);
+		usuario = new Usuario("joao", "joao.joao", "celular", "telefone");
+		usuarioService.salvarUsuario(usuario);
 	}
 	
 	@Test
-	public void usuarioCriado() {
-		Usuario mesmoUsuario = usuarioRepository.getOne(usuario.getIdPessoa());
+	public void usuarioCriado() {		
+		Usuario mesmoUsuario = usuarioService.encontrar(usuario.getIdPessoa());
 		assertEquals(usuario, mesmoUsuario);
+	}
+	
+	@Test
+	public void testeBooleanEmail() {
+		boolean x = usuarioService.verificarEmail("joao.joao");
+		System.out.println("O RETORNO É: " + x);
+		
 	}
 	
 }

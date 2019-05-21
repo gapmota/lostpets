@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,42 +18,40 @@ import br.lostpets.project.service.UsuarioService;
 @Controller
 public class LoginController {
 
-	@Autowired
+	@Autowired 
 	private UsuarioService usuarioService;
 	@Autowired
 	private HistoricoAcessoLog historicoAcessoLog;
-
-	// private ConsultaUsuario consultaUsuario;
+	
 	private Usuario usuario;
-
-	private ModelAndView modelAndView = new ModelAndView();
-
-	@RequestMapping(value = { "/", "/LostPets" }, method = RequestMethod.GET)
+	private ModelAndView modelAndView;
+	
+	@RequestMapping(value = { "/", "/LostPets"}, method = RequestMethod.GET)
 	public ModelAndView loginPage() {
+		modelAndView = new ModelAndView();
 		usuario = new Usuario();
 		modelAndView.addObject("usuario", usuario);
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
-
-	@PostMapping("/LostPets")
+	
+	@PostMapping("/Dashboard")
 	public ModelAndView logar(@Valid Usuario usuario, BindingResult bindingResult) {
+		
+		usuario = usuarioService.emailSenha(usuario.getEmail(), usuario.getSenha());
+		
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("login");
+			modelAndView = new ModelAndView("redirect:/LostPets");
 		}
-		// verificação provisoria de acesso com email e senha sem db
-		/*
-		 * else if(consultaUsuario.contemUsuario(usuario)) {
-		 * historicoAcessoLog.dataHora(usuario);
-		 * modelAndView.setViewName("principalPage"); }
-		 */
-		else if (usuarioService.emailSenha(usuario) != null) {
-			historicoAcessoLog.dataHora(usuario);
+		else if(usuario != null) {
 			modelAndView.setViewName("principalPage");
-		} else {
-			modelAndView.setViewName("login");
+			historicoAcessoLog.dataHora(usuario.getNome());
+		}
+		else {
+			modelAndView = new ModelAndView("redirect:/LostPets");
+			modelAndView.addObject("mensagem", "E-mail ou senha inválido");
 		}
 		return modelAndView;
-	}
-
+	}	
+	
 }

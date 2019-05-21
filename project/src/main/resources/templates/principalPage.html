@@ -21,115 +21,67 @@
 	</div>
 
 	<div class="content-container dh">
-		<div class="container-div dh popup-on" id="modal">
+		<div class="container-div dh popup-off" id="modal">
 			<div class="col l12 m12 s12">
 				<div class="col l12 m12 s12 poup-return" onclick="openModal()">voltar</div>
 				<div class="row dp content-popup marginNone">
 					<div class="col l12 m12 s12">
 						<div class="row marginNone">
 							<div class="row">
-								<h2 class="title-popup">tobias</h2>
-								<h5 class="subtitle-popup">cachorro</h5>
+							<label th:value="nome"></label>
+								<h2 class="title-popup" id="nome_animal_info_title">tobias</h2>
+								<h5 class="subtitle-popup" id="tipo_animal_info_title">cachorro</h5>
 							</div>
 							<div class="row marginNone content-info-pet ">
 								<div class="col l4 m4 s12 height-popup-ctx valign-wrapper">
-									<img class="foto-register responsive-img" src="../img/cat.jpg">
+									<img class="foto-register-info responsive-img" src="../img/cat.jpg">								
 								</div>
-								<div class="col l8 m8 s12 height-popup-ctx valign-wrapper">
+								<div class="col l8 m8 s12 height-popup-ctx valign-wrapper" style="flex-wrap: wrap;">
 									<span>
-										<h5>nome: <b>tobias</b></h5>
-										<h5>desaparecimento: <b>28/04/2019</b></h5>
-										<h5>regiao: <b>itaquera-sp</b></h5>
-									</span>
-								</div>
+										<h5>nome: <b id="nome_animal_info">tobias</b></h5>
+										<h5>desaparecimento: <b id="desaparecimento_animal_info">28/04/2019</b></h5>
+										<h5>regiao: <b id="regiao_animal_info">itaquera-sp</b></h5>										
+										<div id="btn-achei-pet" class="btn-achei">achei</div>
+									</span>									
+									
+									
+								</div>								
 							</div>
+							<div class="col l12 m12 s12 map-view-info-off" id="map-view-info">
+								<div class="map_style" id="mapContainerView"></div>
+							</div>	
 						</div>
 
 					</div>
+
+
 				</div>
+				
 			</div>
 
 
 		</div>
-		<div class="container-div dh">
-			<div class="container dh">
-				<div class="row dm-b">
+		<div class="container-div dh" id="listagem-pets">
+			<div class="container dh" >
+				<div class="row" style="display: flex">
 					<nav>
 						<div class="nav-wrapper">
 							<form>
 								<div class="input-field">
-									<input id="search" class="input-search" placeholder="pesquisar" type="search"
-										required>
-									<label class="label-icon" for="search"><i class="material-icons">search</i></label>
-									<i class="material-icons" id="btn_abrir_nova_view">list</i>
+									<input id="search" class="input-search" placeholder="pesquisar" type="search" >
+									<label class="label-icon" for="search"><i class="material-icons">search</i></label>																
 								</div>
 							</form>
 						</div>
 					</nav>
+					<div class="btn-open-map"><i class="material-icons white-text" id="btn_abrir_nova_view">list</i></div>
 				</div>
 				<div class="row">
 					<div id="map_area" class="area_listagem_on">
 						<div class="map_style" id="mapContainer"></div>
 					</div>
 					<div class="display-flex area_listagem_off" id="quadros">
-						<div class="card-lost dp-f">
-							<div class="area_foto">
-								<img src="../img/cat.jpg" alt="" class="foto_pet">
-							</div>
-							<div>
-								<table>
-									<tr>
-										<td class="desc_pet">nome</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">murilo</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">desaparecimento</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">01/02/2019</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">região</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">itaquera-sp</td>
-									</tr>
-								</table>
-							</div>
-							<div class="btn_info" onclick="openModal()">+</div>
-						</div>
-
-						<div class="card-lost dp-f">
-							<div class="area_foto ">
-								<img src="../img/cat.jpg" alt="" class="foto_pet">
-							</div>
-							<div>
-								<table>
-									<tr>
-										<td class="desc_pet">nome</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">murilo</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">desaparecimento</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">01/02/2019</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">região</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">itaquera-sp</td>
-									</tr>
-								</table>
-							</div>
-							<div class="btn_info" onclick="openModal()">+</div>
-						</div>
-
+						
 						<div class="card-lost dp-f">
 							<div class="area_foto ">
 								<img src="../img/cat.jpg" alt="" class="foto_pet">
@@ -165,10 +117,7 @@
 		</div>
 	</div>
 
-
-
-	<script src="../js/main.js"></script>
-	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="../js/main.js"></script>
 </body>

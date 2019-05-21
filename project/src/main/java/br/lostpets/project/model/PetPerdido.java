@@ -1,51 +1,59 @@
 package br.lostpets.project.model;
 
-
-import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.lostpets.project.service.ServiceGeral;
+
 @Entity
-@Table(name = "PETS_PERDIDO")
+@Table(name="PETS_PERDIDO")
 public class PetPerdido {
-
+	
 	@Id
-	@GeneratedValue
-	@Column(name = "ID_ANIMAL")
-	private int idAnimal;
-	@Column(name = "ID_USUARIO")
-	private int idUsuario;
-	@Column(name = "ID_DONO_PET_PERDIDO")
-	private int idDonoPetPerdido;
-	@Column(name = "NOME_ANIMAL")
-	private String nomeAnimal;
-	@Column(name = "DATA_PERDIDO")
-	private Date dataPerdido;
-	@Column(name = "ATIVO")
-	private char ativo;
-	@Column(name = "DESCRICAO")
-	private String descricao;
-	@Column(name = "TIPO_ANIMAL")
-	private String tipoAnimal;
-	@Column(name = "PATH_IMG")
-	private String pathImg;
-	@Column(name = "CEP")
-	private String Cep;
-	@Column(name = "LATITUDE")
-	private String latitude;
-	@Column(name = "LONGITUDE")
-	private String longitude;
-	@Column(name = "ADD_DATA")
-	private Date addData;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="ID_ANIMAL") private int idAnimal;
+	
+	@ManyToOne(cascade=CascadeType.ALL)	
+	@JoinColumn(name = "ID_USUARIO")
+	private Usuario usuario;
+	
+	@Column(name="NOME_ANIMAL") private String nomeAnimal;
+	@Column(name="DATA_PERDIDO") private String dataPerdido;
+	@Column(name="ATIVO") private String status;
+	@Column(name="DESCRICAO") private String descricao;
+	@Column(name="TIPO_ANIMAL") private String tipoAnimal;
+	@Column(name="PATH_IMG")private String pathImg;
+	@Column(name="CEP")private String cep;
+	@Column(name="LATITUDE") private String latitude;
+	@Column(name="LONGITUDE") private String longitude;
+	@Column(name="ADD_DATA") private String addData = dataHora();
+	
+	private String dataHora() {
+		return new ServiceGeral().getDateHour();
+	}
 
-	public PetPerdido(String nomeAnimal, String descricao, String tipoAnimal, String Cep) {
+	public PetPerdido() {}
+
+	public PetPerdido(Usuario usuario, String nomeAnimal, String dataPerdido, String descricao,
+			String tipoAnimal, String pathImg, String cep, String latitude, String longitude) {
+		this.usuario = usuario;
 		this.nomeAnimal = nomeAnimal;
+		this.dataPerdido = dataPerdido;
+		this.status = "S";
 		this.descricao = descricao;
 		this.tipoAnimal = tipoAnimal;
-		this.Cep = Cep;
+		this.pathImg = pathImg;
+		this.cep = cep;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.addData = dataHora();
 	}
 
 	public int getIdAnimal() {
@@ -54,10 +62,6 @@ public class PetPerdido {
 
 	public void setIdAnimal(int idAnimal) {
 		this.idAnimal = idAnimal;
-	}
-
-	public int getIdUsuario() {
-		return idUsuario;
 	}
 
 	public void setIdUsuario(int idUsuario) {
@@ -70,6 +74,8 @@ public class PetPerdido {
 
 	public void setIdDonoPetPerdido(int idDonoPetPerdido) {
 		this.idDonoPetPerdido = idDonoPetPerdido;
+	public Usuario getIdUsuario() {
+		return usuario;
 	}
 
 	public String getNomeAnimal() {
@@ -80,20 +86,20 @@ public class PetPerdido {
 		this.nomeAnimal = nomeAnimal;
 	}
 
-	public Date getDataPerdido() {
+	public String getDataPerdido() {
 		return dataPerdido;
 	}
 
-	public void setDataPerdido(Date dataPerdido) {
+	public void setDataPerdido(String dataPerdido) {
 		this.dataPerdido = dataPerdido;
 	}
 
-	public char getAtivo() {
-		return ativo;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setAtivo(char ativo) {
-		this.ativo = ativo;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getDescricao() {
@@ -121,11 +127,11 @@ public class PetPerdido {
 	}
 
 	public String getCep() {
-		return Cep;
+		return cep;
 	}
 
 	public void setCep(String cep) {
-		Cep = cep;
+		this.cep = cep;
 	}
 
 	public String getLatitude() {
@@ -144,12 +150,21 @@ public class PetPerdido {
 		this.longitude = longitude;
 	}
 
-	public Date getAddData() {
+	public String getAddData() {
 		return addData;
 	}
 
-	public void setAddData(Date addData) {
+	public void setAddData(String addData) {
 		this.addData = addData;
 	}
+
+	@Override
+	public String toString() {
+		return "PetPerdido [idAnimal=" + idAnimal + ", usuario=" + usuario + ", nomeAnimal=" + nomeAnimal
+				+ ", dataPerdido=" + dataPerdido + ", status=" + status + ", descricao=" + descricao + ", tipoAnimal="
+				+ tipoAnimal + ", pathImg=" + pathImg + ", cep=" + cep + ", latitude=" + latitude + ", longitude="
+				+ longitude + ", addData=" + addData + "]";
+	}
+	
 
 }

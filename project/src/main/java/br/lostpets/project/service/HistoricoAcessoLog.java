@@ -1,9 +1,5 @@
 package br.lostpets.project.service;
 
-/**
- * @author gamota
- *
- */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
