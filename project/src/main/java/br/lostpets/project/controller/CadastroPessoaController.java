@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.lostpets.infra.GoogleDriveConfig;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
 

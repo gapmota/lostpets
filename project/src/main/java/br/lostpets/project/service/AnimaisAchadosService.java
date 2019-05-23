@@ -47,7 +47,7 @@ public class AnimaisAchadosService {
 		
 		AnimaisAchados insert = animaisRepo.save(animal);
 		
-		if(petPerdido.getIdUsuario().getIdPessoa() == animal.getUsuarioAchou().getIdPessoa()) {
+		if(petPerdido.getUsuario().getIdPessoa() == animal.getUsuarioAchou().getIdPessoa()) {
 			confirmarAnimalAchado(animal);
 		}else {
 			//manda email para o dono pedindo confirmação
@@ -72,7 +72,7 @@ public class AnimaisAchadosService {
 			return null;
 		}		
 		
-		if(petPerdido.getIdUsuario().getIdPessoa() == animalPersistido.getUsuarioAchou().getIdPessoa()) {
+		if(petPerdido.getUsuario().getIdPessoa() == animalPersistido.getUsuarioAchou().getIdPessoa()) {
 			animalPersistido.setPontos(0);
 		} else {
 			animalPersistido.setPontos(10);

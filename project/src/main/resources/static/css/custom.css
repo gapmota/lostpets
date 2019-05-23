@@ -32,13 +32,11 @@
     border-style: solid;
     border-width: 2px;
     border-color: azure;
-    color: #fff;
     transition: all 0.2s;
 }
 
 .btn-lost:hover {
     border-color: azure;
-    color: #333;
     background-color: #fff;
     transition: all 0.2s;
 }
@@ -157,7 +155,7 @@ textarea{
     width: 350px;
     position: relative;
     height: 440px;
-    margin: 0px 10px 10px 10px;
+    margin: 0px 10px 10px 0px;
     background-color: #6e83d6;
     border-radius: 10px;
 }
@@ -279,11 +277,6 @@ table{
     min-height: 100% !important;
     top: 0px;
     bottom: 0px;
-}
-
-.content-info-pet{
-    padding: 10px;
-    
 }
 
 .dinamic-height{

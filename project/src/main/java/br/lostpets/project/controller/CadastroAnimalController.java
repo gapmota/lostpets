@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import br.lostpets.project.model.CadastroPessoaAnimalComponent;
 import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
-import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.UsuarioService;
 
 @Controller
@@ -19,7 +18,6 @@ public class CadastroAnimalController {
 	private UsuarioService usuarioService;
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal;
 	private ModelAndView modelAndView = new ModelAndView();
-	private PetPerdidoService petPerdidoService;
 	private Usuario usuario;
 	private PetPerdido petPerdido;
 	
