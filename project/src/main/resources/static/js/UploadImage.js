@@ -3,7 +3,7 @@ function readURL(input) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#blah')
+            $('#img-person')
                 .attr('src', e.target.result)
                 .width(150)
                 .height(200);
@@ -12,3 +12,9 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+$("#img-person").click(function(){
+	
+	$("#file_upload").click();
+	
+});
