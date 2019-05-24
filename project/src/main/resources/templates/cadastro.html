@@ -17,17 +17,17 @@
         <div class="row" style="overflow-x: hidden;">
             <!-- content -->
             
-                <form class="col l12 m12 s12" th:action="@{/LostPets}" th:object="${usuario}" method="Post"> <!--  -->
+                <form class="col l12 m12 s12" method="Post">
                     <div class="col l12 m12 s12">
                         <h4 class="center-align">localizar meu pet</h4>
                     </div>
                     <div class="row">
                         <div class="input-field col l6 m6 s12">
-                            <input id="nome" type="text" class="validate" th:field="*{nome}">
+                            <input id="nome" type="text" class="validate" >
                             <label for="nome">seu nome</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="email" type="email" class="validate" >
+                            <input id="email" type="email" class="validate">
                             <label for="email">e-mail</label>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <label for="telefoneMovel">celular</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="telefoneFixo" type="tel" class="validate" >
+                            <input id="telefoneFixo" type="tel" class="validate">
                             <label for="telefoneFixo">telefone</label>
                         </div>
                     </div>
@@ -67,11 +67,11 @@
                             <label for="nomeAnimal">nome do animal</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="dataPerdido" type="date" class="validate" >
+                            <input id="dataPerdido" type="date" class="validate">
                             <label for="dataPerdido">data do desaparecimento</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="cepAnimal" type="text" class="validate" >
+                            <input id="cepAnimal" type="text" class="validate">
                             <label for="cepAnimal">cep do desaparecimento</label>
                         </div>
                         <div class="input-field col l6 m6 s12">

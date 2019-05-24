@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.model.CadastroPessoaAnimalComponent;
@@ -22,15 +23,15 @@ public class CadastroAnimalController {
 	private PetPerdido petPerdido;
 	
 	@GetMapping("/LostPets/Cadastro_Animal_Perdido")
-	public ModelAndView paginaadastroAnimalPerdido() {
-		modelAndView.addObject("form", cadastroPessoaAnimal);
-		modelAndView.setViewName("cadastroPessoa");
+	public ModelAndView PaginaCadastroAnimalPerdido() {
+		modelAndView.addObject(new Usuario());
+		modelAndView.setViewName("cadastroAnimalPerdido");
 		return modelAndView;
 	}
 	
 	@PostMapping("/LostPets/Cadastro_Animal_Perdido")
-	public void cadastroAnimalPerdido(@Valid CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
-		
+	public ModelAndView cadastroAnimalPerdido(@Valid Usuario usuario) {
+		/*
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
 		boolean existe = usuarioService.verificarEmail(email);
 		
@@ -39,7 +40,7 @@ public class CadastroAnimalController {
 		}else {
 			usuario = cadastroPessoaAnimal.getUsuario();
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
-			
+			*/
 			//petPerdido = new PetPerdido(usuario, nomeAnimal, dataPerdido, descricao, tipoAnimal, pathImg, cep, latitude, longitude)
 			//usuarioService.salvarUsuario();
 			//petPerdidoService.salvarPet();
@@ -49,9 +50,9 @@ public class CadastroAnimalController {
 			System.err.print("PETPERDIDO: ");
 			System.out.println(petPerdido.toString());
 			System.err.println("CHEGOU AQUI");
-		}
+		//}
 		
-		//return new ModelAndView("/");
+		return new ModelAndView("/");
 	}
 	
 	
