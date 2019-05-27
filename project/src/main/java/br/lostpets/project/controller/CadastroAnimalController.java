@@ -5,22 +5,25 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.components.CadastroPessoaAnimalComponent;
-import br.lostpets.project.components.PessoaAnimalComponent;
 import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
+import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.UsuarioService;
 
 @Controller
 public class CadastroAnimalController {
 
 	private UsuarioService usuarioService;
-	private PessoaAnimalComponent PessoaAnimal;
+	private PetPerdidoService petPerdidoService;
 	private ModelAndView modelAndView = new ModelAndView();
 	private Usuario usuario;
 	private PetPerdido petPerdido;
+	private PetPerdido petPerdidoAtualizar;
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal = new CadastroPessoaAnimalComponent();
 	
 	@GetMapping("/LostPets/Cadastro_Animal_Perdido")
@@ -31,7 +34,7 @@ public class CadastroAnimalController {
 	}
 	
 	@PostMapping("/LostPets/Cadastro_Animal_Perdido")
-	public ModelAndView cadastroAnimalPerdido(CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
+	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files, CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
 		/*
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
 		boolean existe = usuarioService.verificarEmail(email);
@@ -45,6 +48,17 @@ public class CadastroAnimalController {
 			//petPerdido = new PetPerdido(usuario, nomeAnimal, dataPerdido, descricao, tipoAnimal, pathImg, cep, latitude, longitude)
 			//usuarioService.salvarUsuario();
 			//petPerdidoService.salvarPet();
+			
+			//comentado devido a falhar ao não inserir imagem
+			/*
+			petPerdidoAtualizar = petPerdidoService.encontrarTodos(petPerdido.getIdAnimal());
+			
+			for (MultipartFile file : files) {
+				petPerdidoAtualizar.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+			}
+			
+			petPerdidoService.salvarPet(petPerdidoAtualizar);
+			*/
 			
 			System.err.print("USUARIO: ");
 			System.out.println(usuario.toString());
