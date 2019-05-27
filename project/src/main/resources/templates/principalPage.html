@@ -16,8 +16,8 @@
 </head>
 
 <body>
-	<div id="page_load">
-		<div class="gif"></div>
+	<div id="viewProfile" class="profile_off">
+		<a href="/logoff" class="btn_sair">sair</a>
 	</div>
 
 	<div class="content-container dh">
@@ -38,6 +38,7 @@
 								</div>
 								<div class="col l8 m8 s12 height-popup-ctx valign-wrapper" style="flex-wrap: wrap;">
 									<span>
+										<input type="hidden" id="id-animal-hidden"/>
 										<h5>nome: <b id="nome_animal_info">tobias</b></h5>
 										<h5>desaparecimento: <b id="desaparecimento_animal_info">28/04/2019</b></h5>
 										<h5>regiao: <b id="regiao_animal_info">itaquera-sp</b></h5>										
@@ -63,7 +64,7 @@
 		</div>
 		<div class="container-div dh" id="listagem-pets">
 			<div class="container dh" >
-				<div class="row" style="display: flex">
+				<div class="row menu">
 					<nav>
 						<div class="nav-wrapper">
 							<form>
@@ -75,6 +76,7 @@
 						</div>
 					</nav>
 					<div class="btn-open-map"><i class="material-icons white-text" id="btn_abrir_nova_view">list</i></div>
+					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewPerfil()">person</i></div>
 				</div>
 				<div class="row">
 					<div id="map_area" class="area_listagem_on">

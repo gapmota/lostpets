@@ -36,7 +36,8 @@ public class AnimaisAchadosService {
 		return animaisRepo.getActive();
 	}
 	
-	public AnimaisAchados acharAnimal(AnimaisAchados animal){		
+	public String acharAnimal(AnimaisAchados animal){		
+		String retorno = "";
 		Usuario usuario = usuarioRepository.getOne(animal.getUsuarioAchou().getIdPessoa());
 		PetPerdido petPerdido = petPerdidoRepository.getAtivosByIdAnimal(animal.getPetPerdido().getIdAnimal());
 		
@@ -45,15 +46,17 @@ public class AnimaisAchadosService {
 		animal.setPetPerdido(petPerdido);
 		animal.setPontos(0);
 		
-		AnimaisAchados insert = animaisRepo.save(animal);
+		animaisRepo.save(animal);
 		
 		if(petPerdido.getUsuario().getIdPessoa() == animal.getUsuarioAchou().getIdPessoa()) {
 			confirmarAnimalAchado(animal);
+			retorno = "Seu animal foi encontrado por você mesmo.";
 		}else {
 			//manda email para o dono pedindo confirmação
+			retorno = "Aguardando confirmação do dono do pet.";
 		}
 		
-		return insert;
+		return retorno;
 	}
 	
 	public AnimaisAchados confirmarAnimalAchado(AnimaisAchados animal){
