@@ -22,7 +22,7 @@ public class PetPerdidosRestController {
 	PetPerdidoService petPerdidoService;
 	
 	@CrossOrigin
-	@PostMapping("/")
+	@GetMapping("/")
 	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosActive() {
 		List<PetPerdido> listPets = petPerdidoService.encontrarPetsAtivos(); 		
 		return ResponseEntity.ok(listPets);
@@ -34,4 +34,5 @@ public class PetPerdidosRestController {
 		PetPerdido listPets = petPerdidoService.encontrarUnicoPet(idAnimal); 		
 		return ResponseEntity.ok(listPets);
 	}
+	
 }

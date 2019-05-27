@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.lostpets.project.service.ServiceGeral;
 
 @Entity
@@ -27,7 +29,7 @@ public class Usuario{
 	@Column(nullable = true, name = "TELEFONE_FIXO") private String telefoneFixo;
 	@Column(nullable = true, name = "TELEFONE_CELULAR") private String telefoneCelular;
 	@Column(nullable = false, name = "EMAIL") private String email;
-	@Column(nullable = true, name = "SENHA") private String senha;
+	@Column(nullable = true, name = "SENHA") @JsonIgnore private String senha;
 	@Column(nullable = true, name = "PATH_IMG") private String idImagem;
 	@Column(nullable = true, name = "CEP") private String cep;
 	@Column(nullable = true, name = "RUA") private String rua;
