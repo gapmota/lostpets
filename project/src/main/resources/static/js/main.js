@@ -1,11 +1,10 @@
-var url_resq = "http://localhost:8080/lostpet/api/petsperdidos/";
-
 document.onresize = function(){
   map.getViewPort().resize();
   map2.getViewPort().resize();
 };
 
 window.onload = function(){
+  requestUsuarioSession();
   requestLostPets();
   alterView();
   var load = document.getElementById("page_load");
@@ -21,6 +20,8 @@ window.onload = function(){
   
 
 }
+
+
 
 window.addEventListener('resize', function () {
   map.getViewPort().resize(); 
@@ -232,22 +233,6 @@ function carregarListaMapa(listPet){
   moveMap(map);
 }
 
-function requestLostPets(){
-  $.ajax({
-    type: 'POST',
-    dataType: 'json',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    url: url_resq,
-    data: '',
-    success: function (response) {
-      carregarListaMapa(response);
-    },
-    error: function () {
-    }
-  });  
-}
 
 //map 2
 
@@ -284,3 +269,10 @@ function addLocalizacaoPetInfo(icon_url, latitude, longitude){
   map2.getViewPort().resize();
   moveMapInfo(latitude, longitude);
 }
+
+
+
+
+
+
+

@@ -12,20 +12,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.HistoricoAcessoLog;
+import br.lostpets.project.service.SessionService;
 import br.lostpets.project.service.UsuarioService;
 
 @Controller
 public class LoginController {
 
-	@Autowired 
+	@Autowired
 	private UsuarioService usuarioService;
 	@Autowired
 	private HistoricoAcessoLog historicoAcessoLog;
-	
+	@Autowired
+	private SessionService session;
+
 	private Usuario usuario;
 	private ModelAndView modelAndView;
-	
-	@RequestMapping(value = { "/", "/LostPets"}, method = RequestMethod.GET)
+
+	@RequestMapping(value = { "/", "/LostPets" }, method = RequestMethod.GET)
 	public ModelAndView loginPage() {
 		modelAndView = new ModelAndView();
 		usuario = new Usuario();
@@ -33,24 +36,23 @@ public class LoginController {
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
-	
+
 	@PostMapping("/Dashboard")
 	public ModelAndView logar(@Valid Usuario usuario, BindingResult bindingResult) {
-		
 		usuario = usuarioService.emailSenha(usuario.getEmail(), usuario.getSenha());
-		
+
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("redirect:/LostPets");
-		}
-		else if(usuario != null) {
+		} else if (usuario != null) {
 			modelAndView.setViewName("principalPage");
 			historicoAcessoLog.dataHora(usuario.getNome());
-		}
-		else {
+			session.setSessionUsuario(usuario);
+		} else {
 			modelAndView = new ModelAndView("redirect:/LostPets");
 			modelAndView.addObject("mensagem", "E-mail ou senha inválido");
 		}
+
 		return modelAndView;
-	}	
-	
+	}
+
 }
