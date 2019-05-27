@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.lostpets.project.model.CadastroPessoaAnimalComponent;
+import br.lostpets.project.components.PessoaAnimalComponent;
 import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
@@ -17,7 +17,7 @@ import br.lostpets.project.service.UsuarioService;
 public class CadastroAnimalController {
 
 	private UsuarioService usuarioService;
-	private CadastroPessoaAnimalComponent cadastroPessoaAnimal;
+	private PessoaAnimalComponent PessoaAnimal;
 	private ModelAndView modelAndView = new ModelAndView();
 	private Usuario usuario;
 	private PetPerdido petPerdido;
