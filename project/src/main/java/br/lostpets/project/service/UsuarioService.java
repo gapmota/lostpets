@@ -12,7 +12,7 @@ import br.lostpets.project.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
 
-	@Autowired 
+	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
 	@Autowired 
@@ -37,8 +37,10 @@ public class UsuarioService {
 	public boolean verificarEmail(String email) {
 		Usuario usuario = usuarioRepository.encontrarEmail(email);
 		if(usuario != null) {
+			System.err.println(usuario);
 			return (usuario.getCep() != null) && (usuario.getSenha() != null);
 		}
+		System.err.println();
 		return false;		
 	}
 	

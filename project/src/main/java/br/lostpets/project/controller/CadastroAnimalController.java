@@ -1,7 +1,6 @@
 package br.lostpets.project.controller;
 
-import javax.validation.Valid;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +15,7 @@ import br.lostpets.project.service.UsuarioService;
 @Controller
 public class CadastroAnimalController {
 
+	@Autowired
 	private UsuarioService usuarioService;
 	private PessoaAnimalComponent PessoaAnimal;
 	private ModelAndView modelAndView = new ModelAndView();
@@ -32,13 +32,13 @@ public class CadastroAnimalController {
 	
 	@PostMapping("/LostPets/Cadastro_Animal_Perdido")
 	public ModelAndView cadastroAnimalPerdido(CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
-		/*
+		
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
 		boolean existe = usuarioService.verificarEmail(email);
 		
 		if(existe) {
-			System.err.println("CHEGOU AQUI");
-		}else {*/
+			System.err.println("CHEGOU AQUI1");
+		}else {
 			usuario = cadastroPessoaAnimal.getUsuario();
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
 			
@@ -50,8 +50,7 @@ public class CadastroAnimalController {
 			System.out.println(usuario.toString());
 			System.err.print("PETPERDIDO: ");
 			System.out.println(petPerdido.toString());
-			System.err.println("CHEGOU AQUI");
-		//}
+		}
 		
 			modelAndView.setViewName("principalPage");
 			
