@@ -62,6 +62,15 @@ public class PetPerdido {
 		this.addData = dataHora();
 	}
 
+	public PetPerdido(Usuario usuario, PetPerdido petPerdido) {
+		this.usuario = usuario;
+		this.nomeAnimal = petPerdido.getNomeAnimal();
+		this.dataPerdido = petPerdido.getDataPerdido();
+		this.status = "P";
+		this.cep = petPerdido.getCep();
+		this.addData = dataHora();
+	}
+
 	public int getIdAnimal() {
 		return idAnimal;
 	}
@@ -156,6 +165,11 @@ public class PetPerdido {
 				+ ", dataPerdido=" + dataPerdido + ", status=" + status + ", descricao=" + descricao + ", tipoAnimal="
 				+ tipoAnimal + ", pathImg=" + pathImg + ", cep=" + cep + ", latitude=" + latitude + ", longitude="
 				+ longitude + ", addData=" + addData + "]";
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+		
 	}
 	
 

@@ -1,7 +1,6 @@
 package br.lostpets.project.controller;
 
-import javax.validation.Valid;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +17,10 @@ import br.lostpets.project.service.UsuarioService;
 @Controller
 public class CadastroAnimalController {
 
+	@Autowired
 	private UsuarioService usuarioService;
+
+	@Autowired
 	private PetPerdidoService petPerdidoService;
 	private ModelAndView modelAndView = new ModelAndView();
 	private Usuario usuario;
@@ -37,17 +39,24 @@ public class CadastroAnimalController {
 	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files, CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
 		/*
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
-		boolean existe = usuarioService.verificarEmail(email);
+		usuario = usuarioService.verificarEmailUsuario(email);
 		
-		if(existe) {
-			System.err.println("CHEGOU AQUI");
-		}else {*/
-			usuario = cadastroPessoaAnimal.getUsuario();
+		if(usuario != null) {
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
+			petPerdido.setStatus("P");
+			petPerdido.setUsuario(usuario);
 			
-			//petPerdido = new PetPerdido(usuario, nomeAnimal, dataPerdido, descricao, tipoAnimal, pathImg, cep, latitude, longitude)
-			//usuarioService.salvarUsuario();
-			//petPerdidoService.salvarPet();
+			petPerdidoService.salvarPet(petPerdido);
+			
+		}else {
+			usuario = cadastroPessoaAnimal.getUsuario();
+			
+			petPerdido = cadastroPessoaAnimal.getPetPerdido();
+			petPerdido.setStatus("P");
+			petPerdido.setUsuario(usuario);
+			
+			usuarioService.salvarUsuario(usuario);
+			petPerdidoService.salvarPet(petPerdido);
 			
 			//comentado devido a falhar ao não inserir imagem
 			/*
@@ -67,9 +76,7 @@ public class CadastroAnimalController {
 			System.err.println("CHEGOU AQUI");
 		//}
 		
-			modelAndView.setViewName("principalPage");
-			
-		return modelAndView;
+		return new ModelAndView("redirect:/LostPets/Cadastro_Animal_Perdido");
 	}
 	
 	
