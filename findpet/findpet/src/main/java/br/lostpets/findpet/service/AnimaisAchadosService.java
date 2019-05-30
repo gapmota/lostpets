@@ -1,6 +1,7 @@
 package br.lostpets.findpet.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,6 +85,10 @@ public class AnimaisAchadosService {
 		animalPersistido.setPetPerdido(petPerdidoAtualizado);
 		AnimaisAchados insert = animaisRepository.save(animalPersistido);
 		return insert;
+	}
+
+	public AnimaisAchados getAnimalById(UUID id) {
+		return animaisRepository.getOne(id);
 	}
 	
 }
