@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.components.CadastroPessoaAnimalComponent;
-import br.lostpets.project.components.PessoaAnimalComponent;
 import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
+import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.UsuarioService;
 
 @Controller
@@ -17,7 +17,8 @@ public class CadastroAnimalController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	private PessoaAnimalComponent PessoaAnimal;
+	@Autowired
+	private PetPerdidoService petPerdidoService;
 	private ModelAndView modelAndView = new ModelAndView();
 	private Usuario usuario;
 	private PetPerdido petPerdido;
@@ -34,27 +35,28 @@ public class CadastroAnimalController {
 	public ModelAndView cadastroAnimalPerdido(CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
 		
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
-		boolean existe = usuarioService.verificarEmail(email);
+		usuario = usuarioService.verificarEmailUsuario(email);
 		
-		if(existe) {
-			System.err.println("CHEGOU AQUI1");
+		if(usuario != null) {
+			petPerdido = cadastroPessoaAnimal.getPetPerdido();
+			petPerdido.setStatus("P");
+			petPerdido.setUsuario(usuario);
+			
+			petPerdidoService.salvarPet(petPerdido);
+			
 		}else {
 			usuario = cadastroPessoaAnimal.getUsuario();
+			
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
+			petPerdido.setStatus("P");
+			petPerdido.setUsuario(usuario);
 			
-			//petPerdido = new PetPerdido(usuario, nomeAnimal, dataPerdido, descricao, tipoAnimal, pathImg, cep, latitude, longitude)
-			//usuarioService.salvarUsuario();
-			//petPerdidoService.salvarPet();
+			usuarioService.salvarUsuario(usuario);
+			petPerdidoService.salvarPet(petPerdido);
 			
-			System.err.print("USUARIO: ");
-			System.out.println(usuario.toString());
-			System.err.print("PETPERDIDO: ");
-			System.out.println(petPerdido.toString());
 		}
 		
-			modelAndView.setViewName("principalPage");
-			
-		return modelAndView;
+		return new ModelAndView("redirect:/LostPets/Cadastro_Animal_Perdido");
 	}
 	
 	

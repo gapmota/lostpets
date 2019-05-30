@@ -46,7 +46,7 @@
                                 <img class="foto-register responsive-img" src="../img/cat.jpg">
                             </div>
                             <div class="input-field col l8 m8 s12" style="height: 222px">
-                                <textarea id="textarea1"></textarea>
+                                <textarea id="textarea1" th:field="*{petPerdido.descricao}"></textarea>
                                 <label for="textarea1" class="alter-textarea">Descreva como ocorreu o
                                     desaparecimento</label>
                             </div>
@@ -74,7 +74,7 @@
                             <input id="cepAnimal" type="text" class="validate" th:field="*{petPerdido.cep}">
                             <label for="cepAnimal">cep do desaparecimento</label>
                         </div>
-                        <div class="input-field col l6 m6 s12">
+                        <!-- <div class="input-field col l6 m6 s12">
                             <input id="ruaAnimal" type="text" class="validate">
                             <label for="ruaAnimal">rua do desaparecimento</label>
                         </div>
@@ -85,7 +85,7 @@
                         <div class="input-field col l6 m6 s12">
                             <input id="cidadeAnimal" type="text" class="validate">
                             <label for="cidadeAnimal">cidade do desaparecimento</label>
-                        </div>
+                        </div> -->
                         <div class="input-field col l12 m12 s12">
                             <button class="waves-effect waves-light btn-large btn-width-large">confirmar </button>
                         </div>

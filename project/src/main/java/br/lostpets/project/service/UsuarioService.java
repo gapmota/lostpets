@@ -34,13 +34,16 @@ public class UsuarioService {
 		return usuarioRepository.validarAcesso(email, senha);
 	}
 
+	public Usuario verificarEmailUsuario(String email) {
+		Usuario usuario = usuarioRepository.encontrarEmail(email);
+		return usuario;		
+	}
+	
 	public boolean verificarEmail(String email) {
 		Usuario usuario = usuarioRepository.encontrarEmail(email);
 		if(usuario != null) {
-			System.err.println(usuario);
 			return (usuario.getCep() != null) && (usuario.getSenha() != null);
 		}
-		System.err.println();
 		return false;		
 	}
 	

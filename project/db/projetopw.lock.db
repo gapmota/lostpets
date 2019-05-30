@@ -1,6 +1,6 @@
 #FileLock
-#Thu May 30 13:06:06 BRT 2019
-hostName=WKSDIGI004561.digisystem.corp
-id=16b097dc776b274ec8dfb5459728bb3c0050af02f70
+#Thu May 30 18:29:43 BRT 2019
+server=10.3.0.51\:49906
+hostName=HSL236
 method=file
-server=10.90.6.172\:60215
+id=16b0aa60e6d3061bed4608004d32e36782db348850b
