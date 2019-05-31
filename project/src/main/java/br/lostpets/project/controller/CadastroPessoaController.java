@@ -24,6 +24,8 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
+	private Usuario usuarioParaAtualizar;
+	
 	@GetMapping("/LostPets/Cadastro")
 	public ModelAndView cadastroPage() {
 		Usuario usuario = new Usuario();
@@ -50,7 +52,7 @@ public class CadastroPessoaController {
 		} else {
 			System.out.println("SALVEEE");
 			usuarioService.salvarUsuario(usuario);
-			Usuario usuarioParaAtualizar = usuarioService.encontrar(usuario.getIdPessoa());
+			usuarioParaAtualizar = usuarioService.encontrar(usuario.getIdPessoa());
 
 			//comentado devido a falhar ao não inserir imagem
 			/*for (MultipartFile file : files) {
