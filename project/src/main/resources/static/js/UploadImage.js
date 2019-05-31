@@ -18,3 +18,13 @@ $("#img-person").click(function(){
 	$("#file_upload").click();
 	
 });
+
+function verfImgCampo(){
+	console.log("Chamou!");
+	if(document.getElementById("file_upload").value == ""){
+		alert("Insira uma imagen");
+		console.log("Insira img");
+		return;
+	}
+		
+}

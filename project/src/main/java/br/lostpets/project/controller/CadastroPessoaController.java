@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.lostpets.infra.GoogleDriveConfig;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
 
@@ -24,7 +25,7 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
-	private Usuario usuarioParaAtualizar;
+	private Usuario usuarioComImg;
 	
 	@GetMapping("/LostPets/Cadastro")
 	public ModelAndView cadastroPage() {
@@ -50,16 +51,13 @@ public class CadastroPessoaController {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
 		} else {
-			System.out.println("SALVEEE");
-			usuarioService.salvarUsuario(usuario);
-			usuarioParaAtualizar = usuarioService.encontrar(usuario.getIdPessoa());
 
 			//comentado devido a falhar ao não inserir imagem
-			/*for (MultipartFile file : files) {
-				usuarioParaAtualizar.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
-			}*/
+			for (MultipartFile file : files) {
+				usuarioComImg.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+			}
 
-			usuarioService.salvarUsuario(usuarioParaAtualizar);
+			usuarioService.salvarUsuario(usuarioComImg);
 
 			modelAndView = new ModelAndView("redirect:/LostPets");
 			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
