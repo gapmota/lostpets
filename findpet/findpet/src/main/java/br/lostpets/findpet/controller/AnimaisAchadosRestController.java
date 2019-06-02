@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,13 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.lostpets.findpet.model.AnimaisAchados;
 import br.lostpets.findpet.service.AnimaisAchadosService;
+import br.lostpets.findpet.service.EmailService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/animaisAchados")
 public class AnimaisAchadosRestController {
 
 	@Autowired
 	private AnimaisAchadosService animaisAchadosService;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@GetMapping("/usuario/{id}")
 	public ResponseEntity<List<AnimaisAchados>> getByUsuario(@PathVariable("id") Integer idUsuario) {
@@ -42,7 +48,10 @@ public class AnimaisAchadosRestController {
 
 	@GetMapping("/confirmar/{id}/{confirma}")
 	public ResponseEntity<AnimaisAchados> acharPetPerdido(@PathVariable("confirma") int confirma, @PathVariable("id") UUID id) {
-		if(confirma == 0) { return ResponseEntity.ok(null); }
+		if(confirma == 0) {  
+			emailService.sendFind(id, false);
+			return ResponseEntity.ok(null); 
+		}
 		AnimaisAchados animal = animaisAchadosService.getAnimalById(id);
 		AnimaisAchados animalConfirmado = animaisAchadosService.confirmarAnimalAchado(animal);
 		return ResponseEntity.ok(animalConfirmado);

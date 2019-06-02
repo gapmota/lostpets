@@ -54,10 +54,13 @@ public class AnimaisAchadosService {
 			confirmarAnimalAchado(animal);
 			retorno = "Seu animal foi encontrado por você mesmo.";
 		}else {
-			emailService.send(animal.getId());
-			retorno = "Aguardando confirmação do dono do pet.";
-		}
-		
+			String status = emailService.send(animal.getId());
+			
+			if(status.equalsIgnoreCase("ok"))
+				retorno = "Aguardando confirmação do dono do pet.";
+			else
+				retorno = "erro ao enviar e-mail para o dono do pet. Tente novamente mais tarde.";
+		}		
 		return retorno;
 	}
 	
@@ -72,6 +75,7 @@ public class AnimaisAchadosService {
 		animalPersistido.setUsuarioAchou(usuario);
 		
 		if(petPerdido.getStatus() == "P") {
+			emailService.sendFind(animalPersistido.getId(), true);
 			petPerdido.setStatus("A");
 		}else {
 			return null;
