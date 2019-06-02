@@ -27,7 +27,7 @@ public class EmailService {
 			MimeMessage mail = mailSender.createMimeMessage();
 
 			MimeMessageHelper helper = new MimeMessageHelper(mail);
-			helper.setTo("mateus.covos@gmail.com");
+			helper.setTo(donoAnimal.getEmail());
 			helper.setSubject("Olá, " + donoAnimal.getNome() + "! Talvez seu animal tenha sido achado :D");
 			helper.setText(html, true);
 			mailSender.send(mail);
@@ -44,7 +44,7 @@ public class EmailService {
 			MimeMessage mail = mailSender.createMimeMessage();
 
 			MimeMessageHelper helper = new MimeMessageHelper(mail);
-			helper.setTo("mateus.covos@gmail.com");
+			helper.setTo(usuarioQueAchou.getEmail());
 			helper.setSubject("Olá, " + usuarioQueAchou.getNome() + "! temos atualizações");
 			helper.setText(html, true);
 			mailSender.send(mail);

@@ -65,32 +65,24 @@ public class AnimaisAchadosService {
 	}
 	
 	public AnimaisAchados confirmarAnimalAchado(AnimaisAchados animal){
-		
 		AnimaisAchados animalPersistido = animaisRepository.getOne(animal.getId());
 		
-		Usuario usuario = usuarioService.encontrar(animalPersistido.getUsuarioAchou().getIdPessoa());
-		PetPerdido petPerdido = petPerdidoService.encontrarUnicoPet(animalPersistido.getPetPerdido().getIdAnimal());
-		
 		animalPersistido.setStatus("A");//animal achado
-		animalPersistido.setUsuarioAchou(usuario);
 		
-		if(petPerdido.getStatus() == "P") {
-			emailService.sendFind(animalPersistido.getId(), true);
-			petPerdido.setStatus("A");
+		if(animalPersistido.getPetPerdido().getStatus().equalsIgnoreCase("P")) {
+			animalPersistido.getPetPerdido().setStatus("A");
 		}else {
 			return null;
 		}		
 		
-		if(petPerdido.getUsuario().getIdPessoa() == animalPersistido.getUsuarioAchou().getIdPessoa()) {
+		if(animalPersistido.getPetPerdido().getUsuario().getIdPessoa() == animalPersistido.getUsuarioAchou().getIdPessoa()) {
 			animalPersistido.setPontos(0);
 		} else {
 			animalPersistido.setPontos(10);
 		}
 		
-		petPerdidoService.salvarPet(petPerdido);
-		PetPerdido petPerdidoAtualizado = petPerdidoService.encontrarUnicoPet(petPerdido.getIdAnimal());
-		animalPersistido.setPetPerdido(petPerdidoAtualizado);
 		AnimaisAchados insert = animaisRepository.save(animalPersistido);
+		emailService.sendFind(animalPersistido.getId(), true);
 		return insert;
 	}
 

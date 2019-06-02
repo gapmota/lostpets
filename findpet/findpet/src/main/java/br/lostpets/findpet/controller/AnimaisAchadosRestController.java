@@ -47,13 +47,14 @@ public class AnimaisAchadosRestController {
 	}
 
 	@GetMapping("/confirmar/{id}/{confirma}")
-	public ResponseEntity<AnimaisAchados> acharPetPerdido(@PathVariable("confirma") int confirma, @PathVariable("id") UUID id) {
+	public ResponseEntity<String> acharPetPerdido(@PathVariable("confirma") int confirma, @PathVariable("id") UUID id) {
 		if(confirma == 0) {  
 			emailService.sendFind(id, false);
-			return ResponseEntity.ok(null); 
+			return ResponseEntity.ok("animal não achado. por favor feche essa aba."); 
 		}
 		AnimaisAchados animal = animaisAchadosService.getAnimalById(id);
 		AnimaisAchados animalConfirmado = animaisAchadosService.confirmarAnimalAchado(animal);
-		return ResponseEntity.ok(animalConfirmado);
+		if(animalConfirmado == null) { return ResponseEntity.ok("Ocorreu um erro. por favor feche essa aba."); }
+		return ResponseEntity.ok("O Animal foi marcado como achado :D. por favor feche essa aba.");
 	}
 }
