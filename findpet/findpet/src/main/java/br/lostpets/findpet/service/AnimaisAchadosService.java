@@ -23,6 +23,9 @@ public class AnimaisAchadosService {
 	@Autowired
 	private PetPerdidoService petPerdidoService;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	public List<AnimaisAchados> getByUsuario(Integer idUsuario){
 		Usuario usuario = usuarioService.encontrar(idUsuario);
 		if(usuario != null) {
@@ -40,7 +43,7 @@ public class AnimaisAchadosService {
 		Usuario usuario = usuarioService.encontrar(animal.getUsuarioAchou().getIdPessoa());
 		PetPerdido petPerdido = petPerdidoService.encontrarUnicoPet(animal.getPetPerdido().getIdAnimal());
 		
-		animal.setStatus("W");//aguarda a confirmação do dono
+		animal.setStatus("E");//aguarda a confirmação do dono
 		animal.setUsuarioAchou(usuario);	
 		animal.setPetPerdido(petPerdido);
 		animal.setPontos(0);
@@ -51,7 +54,7 @@ public class AnimaisAchadosService {
 			confirmarAnimalAchado(animal);
 			retorno = "Seu animal foi encontrado por você mesmo.";
 		}else {
-			//manda email para o dono pedindo confirmação
+			emailService.send(animal.getId());
 			retorno = "Aguardando confirmação do dono do pet.";
 		}
 		
