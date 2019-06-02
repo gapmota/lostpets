@@ -38,9 +38,9 @@ public class PetPerdidoRepositoryTest {
 	
 	@Before
 	public void init() {
-		usuario = new Usuario("mateus", "mateus@lost.com", "(11) 91234-1234", "(11) 1234-1234");
+		usuario = new Usuario("mateus", "mateus.covos@gmail.com", "(11) 91234-1234", "(11) 1234-1234");
 		usuarioService.salvarUsuario(usuario);
-		petPerdido = new PetPerdido(usuario,"tobias", "12/12/2018", "Descrição perdido","Gato","C://Path","00.000.000","-1","-1");
+		petPerdido = new PetPerdido(usuario,"rex", "12/12/2018", "Animal Perdido","Cachorro","https://cdn.newsapi.com.au/image/v1/67a523605bca40778c6faaad93883a3b","08473300","-23.57335879","-46.39390111");
 		petPerdidoService.salvarPet(petPerdido);
 	}
 	
@@ -50,13 +50,13 @@ public class PetPerdidoRepositoryTest {
 		assertEquals(petPerdido, pet);
 	}
 	
-	@Test
+	//@Test
 	public void pegarTodosPetPerdido() {
 		List<PetPerdido> list = petPerdidoService.encontrarTodos();
 		assertTrue(list.size() > 0);
 	}
 	
-	@Test
+	//@Test
 	public void pegarTodosPetPerdidoAtivo() {
 		List<PetPerdido> list = petPerdidoService.encontrarPetsAtivos();
 		assertTrue(list.size() > 0);
