@@ -9,10 +9,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.components.CadastroPessoaAnimalComponent;
+import br.lostpets.project.model.Endereco;
 import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.UsuarioService;
+import br.lostpets.project.service.ViaCep;
 
 @Controller
 public class CadastroAnimalController {
@@ -25,8 +27,10 @@ public class CadastroAnimalController {
 	private ModelAndView modelAndView = new ModelAndView();
 	private Usuario usuario;
 	private PetPerdido petPerdido;
-	private PetPerdido petPerdidoAtualizar;
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal = new CadastroPessoaAnimalComponent();
+	
+	private ViaCep viaCep = new ViaCep();
+	private Endereco endereco = new Endereco();
 	
 	@GetMapping("/LostPets/Cadastro_Animal_Perdido")
 	public ModelAndView PaginaCadastroAnimalPerdido() {
@@ -37,7 +41,7 @@ public class CadastroAnimalController {
 	
 	@PostMapping("/LostPets/Cadastro_Animal_Perdido")
 	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files, CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
-		/*
+		
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
 		usuario = usuarioService.verificarEmailUsuario(email);
 		
@@ -45,6 +49,10 @@ public class CadastroAnimalController {
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
 			petPerdido.setStatus("P");
 			petPerdido.setUsuario(usuario);
+			
+			String[] cepV = petPerdido.getCep().split("-");
+			String cep = cepV[0].concat(cepV[1]);
+			endereco = viaCep.buscarCep(cep);
 			
 			petPerdidoService.salvarPet(petPerdido);
 			
@@ -54,6 +62,10 @@ public class CadastroAnimalController {
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
 			petPerdido.setStatus("P");
 			petPerdido.setUsuario(usuario);
+			
+			String[] cepV = petPerdido.getCep().split("-");
+			String cep = cepV[0].concat(cepV[1]);
+			endereco = viaCep.buscarCep(cep);
 			
 			usuarioService.salvarUsuario(usuario);
 			petPerdidoService.salvarPet(petPerdido);
@@ -69,12 +81,7 @@ public class CadastroAnimalController {
 			petPerdidoService.salvarPet(petPerdidoAtualizar);
 			*/
 			
-			System.err.print("USUARIO: ");
-			System.out.println(usuario.toString());
-			System.err.print("PETPERDIDO: ");
-			System.out.println(petPerdido.toString());
-			System.err.println("CHEGOU AQUI");
-		//}
+		}
 		
 		return new ModelAndView("redirect:/LostPets/Cadastro_Animal_Perdido");
 	}

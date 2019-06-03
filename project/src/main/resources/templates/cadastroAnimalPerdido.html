@@ -37,22 +37,24 @@
                     <div class="row">
                         <div class="input-field col l6 m6 s12">
                             <input id="telefoneMovel" type="tel" class="validate" required="required" 
-                            	th:field="*{usuario.telefoneCelular}" onkeypress="$(this).mask('(00) 0000-00009')">
+                            	onkeypress="$(this).mask('(00) 00000-0009')" th:field="*{usuario.telefoneCelular}">
                             <label for="telefoneMovel">celular</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
                             <input id="telefoneFixo" type="tel" class="validate" required="required" 
-                            	th:field="*{usuario.telefoneFixo}" onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
+                            	onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14" th:field="*{usuario.telefoneFixo}">
                             <label for="telefoneFixo">telefone</label>
                         </div>
                     </div>
                     <div class="row">
                             <div class="col l4 m4 s12">
-                                <input id="file_upload" type="file" name="files" onchange="readURL(this);" accept="image/gif, image/jpeg, image/png" style="display:none;">
+                                <input id="file_upload" type="file" name="files" onchange="readURL(this);" 
+                                	accept="image/gif, image/jpeg, image/png" style="display:none;">
 								<img id="img-person" class="foto-register responsive-img"  src="../img/pic.png" alt="your image" />
                             </div>
+                            
                             <div class="input-field col l8 m8 s12" style="height: 222px">
-                                <textarea id="textarea1" th:field="*{petPerdido.descricao}" required="required"></textarea>
+                                <textarea id="textarea1" required="required" th:field="*{petPerdido.descricao}"></textarea>
                                 <label for="textarea1" class="alter-textarea">Descreva como ocorreu o
                                     desaparecimento</label>
                             </div>
@@ -78,7 +80,7 @@
                         </div>
                         <div class="input-field col l6 m6 s12">
                             <input id="cepAnimal" type="text" class="validate" required="required" 
-                            	th:field="*{petPerdido.cep}" onkeypress="$(this).mask('00000-000')">
+                            	onkeypress="$(this).mask('00000-000')" th:field="*{petPerdido.cep}">
                             <label for="cepAnimal">cep do desaparecimento</label>
                         </div>
                         <!-- <div class="input-field col l6 m6 s12">
