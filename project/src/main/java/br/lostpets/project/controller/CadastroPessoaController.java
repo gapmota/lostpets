@@ -27,9 +27,9 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
-	private Usuario usuario;
 	private Endereco endereco = new Endereco();
 	private ViaCep viaCep = new ViaCep();
+	private Usuario usuario;
 	private Usuario usuarioComImg;
 	
 	@GetMapping("/LostPets/Cadastro")
@@ -67,8 +67,8 @@ public class CadastroPessoaController {
 			usuario.setUf(endereco.getUf());
 			
 			usuarioService.salvarUsuario(usuario);
+			usuarioComImg = usuarioService.encontrar(usuario.getIdPessoa());
 			
-			//comentado devido a falhar ao não inserir imagem
 			for (MultipartFile file : files) {
 				usuarioComImg.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
 			}
