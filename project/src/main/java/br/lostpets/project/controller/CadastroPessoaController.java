@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.lostpets.infra.GoogleDriveConfig;
+import br.lostpets.project.model.Endereco;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
+import br.lostpets.project.service.ViaCep;
+import br.lostpets.project.utils.GoogleDriveConfig;
 
 @Controller
 public class CadastroPessoaController {
@@ -25,9 +27,13 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
+	private Endereco endereco = new Endereco();
+	private ViaCep viaCep = new ViaCep();
+	private Usuario usuario;
+	
 	@GetMapping("/LostPets/Cadastro")
 	public ModelAndView cadastroPage() {
-		Usuario usuario = new Usuario();
+		usuario = new Usuario();
 		modelAndView.addObject("usuario", usuario);
 		modelAndView.setViewName("cadastroPessoa");
 		return modelAndView;
@@ -49,17 +55,21 @@ public class CadastroPessoaController {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
 		} else {
-			System.out.println("SALVEEE");
+			String[] cepV = usuario.getCep().split("-");
+			String cep = cepV[0].concat(cepV[1]);
+			endereco = viaCep.buscarCep(cep);
+			
+			usuario.setRua(endereco.getLogradouro());
+			usuario.setBairro(endereco.getBairro());
+			usuario.setCidade(endereco.getLocalidade());
+			usuario.setUf(endereco.getUf());
+			
+			for (MultipartFile file : files) {
+				usuario.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+			}
+
 			usuarioService.salvarUsuario(usuario);
-			Usuario usuarioParaAtualizar = usuarioService.encontrar(usuario.getIdPessoa());
-
-			//comentado devido a falhar ao não inserir imagem
-			/*for (MultipartFile file : files) {
-				usuarioParaAtualizar.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
-			}*/
-
-			usuarioService.salvarUsuario(usuarioParaAtualizar);
-
+      
 			modelAndView = new ModelAndView("redirect:/LostPets");
 			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
 		}

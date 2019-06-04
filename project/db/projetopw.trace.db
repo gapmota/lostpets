@@ -556,3 +556,6 @@ alter table pets_perdido add constraint FKih1l6nsp4540q35fjdvmjg0af foreign key 
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2019-05-30 18:31:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "USUARIO[*]"; expected "UPDATE, USE, {"; SQL statement:
+USUARIO [42001-197]

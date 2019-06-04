@@ -1,16 +1,13 @@
-var url_resq = "http://localhost:8080/lostpet/api/petsperdidos/";
-
 document.onresize = function(){
   map.getViewPort().resize();
   map2.getViewPort().resize();
 };
 
 window.onload = function(){
+  requestUsuarioSession();
   requestLostPets();
   alterView();
-  var load = document.getElementById("page_load");
-  load.parentNode.removeChild(load);  
- 
+  
   let view = document.getElementById("modal");
 
 	if(view.classList.contains("popup-on")){
@@ -35,6 +32,17 @@ function viewQuadros(){
 		view.className = "display-flex area_listagem_off";
 	}else{
 		view.className = "display-flex area_listagem_on";
+	}
+}
+
+function viewPerfil(){
+
+	let view = document.getElementById("viewProfile");
+
+	if(view.className.includes("profile_on")){
+		view.className = "profile_off";
+	}else{
+		view.className = "profile_on";
 	}
 }
 
@@ -93,7 +101,7 @@ function openModal(id){
         type: 'GET',
         dataType: 'json',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
         },
         url: url_resq+""+id,
         data: '',
@@ -103,7 +111,8 @@ function openModal(id){
           document.getElementById("nome_animal_info").textContent = response.nomeAnimal;
           document.getElementById("desaparecimento_animal_info").textContent = response.dataPerdido;
           document.getElementById("regiao_animal_info").textContent = "aaa";
-
+          document.getElementById("id-animal-hidden").value = id;
+          
           addLocalizacaoPetInfo(response.pathImg, response.latitude, response.longitude);
 
         },
@@ -120,6 +129,9 @@ function openModal(id){
 	}
 }
 
+document.getElementById("btn-achei-pet").onclick = function(){
+	requestAcheiPetPerdido(document.getElementById("id-animal-hidden").value);
+} 
 
 
 
@@ -232,22 +244,6 @@ function carregarListaMapa(listPet){
   moveMap(map);
 }
 
-function requestLostPets(){
-  $.ajax({
-    type: 'POST',
-    dataType: 'json',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    url: url_resq,
-    data: '',
-    success: function (response) {
-      carregarListaMapa(response);
-    },
-    error: function () {
-    }
-  });  
-}
 
 //map 2
 
@@ -284,3 +280,10 @@ function addLocalizacaoPetInfo(icon_url, latitude, longitude){
   map2.getViewPort().resize();
   moveMapInfo(latitude, longitude);
 }
+
+
+
+
+
+
+

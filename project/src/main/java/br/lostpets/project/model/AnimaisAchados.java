@@ -31,6 +31,15 @@ public class AnimaisAchados {
 		this.status = "A";
 		
 	}
+	
+
+	@Override
+	public String toString() {
+		return "AnimaisAchados [id=" + id + ", usuarioAchou=" + usuarioAchou + ", petPerdido=" + petPerdido
+				+ ", dataEncontrado=" + dataEncontrado + ", pontos=" + pontos + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", status=" + status + ", addData=" + addData + "]";
+	}
+	
 	@Id
 	@GeneratedValue
 	@JsonIgnore

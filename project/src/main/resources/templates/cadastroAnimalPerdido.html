@@ -8,8 +8,11 @@
     <link rel="stylesheet" type="text/css" href="../css/materialize.css">
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
-        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" 
+    	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" 
+    	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
 
 <body>
@@ -17,36 +20,41 @@
         <div class="row" style="overflow-x: hidden;">
             <!-- content -->
             
-                <form class="col l12 m12 s12" th:action="@{/LostPets}" th:object="${form}" method="Post">
+                <form class="col l12 m12 s12" th:action="@{/LostPets/Cadastro_Animal_Perdido}" th:object="${pet}" method="Post" enctype="multipart/form-data"> <!--  -->
                     <div class="col l12 m12 s12">
                         <h4 class="center-align">localizar meu pet</h4>
                     </div>
                     <div class="row">
                         <div class="input-field col l6 m6 s12">
-                            <input id="nome" type="text" class="validate" th:field="*{form.usuario.nome}">
+                            <input id="nome" type="text" class="validate" required="required" th:field="*{usuario.nome}">
                             <label for="nome">seu nome</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="email" type="email" class="validate" th:field="*{form.usuario.email}">
+                            <input id="email" type="email" class="validate" required="required" th:field="*{usuario.email}">
                             <label for="email">e-mail</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col l6 m6 s12">
-                            <input id="telefoneMovel" type="tel" class="validate" th:field="*{form.usuario.telefoneCelular}">
+                            <input id="telefoneMovel" type="tel" class="validate" required="required" 
+                            	onkeypress="$(this).mask('(00) 00000-0009')" th:field="*{usuario.telefoneCelular}">
                             <label for="telefoneMovel">celular</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="telefoneFixo" type="tel" class="validate" th:field="*{form.usuario.telefoneFixo}">
+                            <input id="telefoneFixo" type="tel" class="validate" required="required" 
+                            	onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14" th:field="*{usuario.telefoneFixo}">
                             <label for="telefoneFixo">telefone</label>
                         </div>
                     </div>
                     <div class="row">
                             <div class="col l4 m4 s12">
-                                <img class="foto-register responsive-img" src="../img/cat.jpg">
+                                <input id="file_upload" type="file" name="files" onchange="readURL(this);" 
+                                	accept="image/gif, image/jpeg, image/png" style="display:none;">
+								<img id="img-person" class="foto-register responsive-img"  src="../img/pic.png" alt="your image" />
                             </div>
+                            
                             <div class="input-field col l8 m8 s12" style="height: 222px">
-                                <textarea id="textarea1"></textarea>
+                                <textarea id="textarea1" required="required" th:field="*{petPerdido.descricao}"></textarea>
                                 <label for="textarea1" class="alter-textarea">Descreva como ocorreu o
                                     desaparecimento</label>
                             </div>
@@ -63,18 +71,19 @@
                             </select>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="nomeAnimal" type="tel" class="validate" th:field="*{form.petPerdido.nomeAnimal}">
+                            <input id="nomeAnimal" type="text" class="validate" required="required" th:field="*{petPerdido.nomeAnimal}">
                             <label for="nomeAnimal">nome do animal</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="dataPerdido" type="date" class="validate" th:field="*{form.petPerdido.dataPerdido}">
+                            <input id="dataPerdido" type="date" class="validate" required="required" th:field="*{petPerdido.dataPerdido}">
                             <label for="dataPerdido">data do desaparecimento</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input id="cepAnimal" type="text" class="validate" th:field="*{form.petPerdido.cep}">
+                            <input id="cepAnimal" type="text" class="validate" required="required" 
+                            	onkeypress="$(this).mask('00000-000')" th:field="*{petPerdido.cep}">
                             <label for="cepAnimal">cep do desaparecimento</label>
                         </div>
-                        <div class="input-field col l6 m6 s12">
+                        <!-- <div class="input-field col l6 m6 s12">
                             <input id="ruaAnimal" type="text" class="validate">
                             <label for="ruaAnimal">rua do desaparecimento</label>
                         </div>
@@ -85,9 +94,9 @@
                         <div class="input-field col l6 m6 s12">
                             <input id="cidadeAnimal" type="text" class="validate">
                             <label for="cidadeAnimal">cidade do desaparecimento</label>
-                        </div>
+                        </div> -->
                         <div class="input-field col l12 m12 s12">
-                            <button class="waves-effect waves-light btn-large btn-width-large">confirmar </button>
+                            <button class="waves-effect waves-light btn-large btn-width-large"  onclick="verfImgCampoPet();">confirmar </button>
                         </div>
                     </div>
 
@@ -99,5 +108,5 @@
     <script type="text/javascript" src="../js/materialize.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
 </body>
-
 </html>
+<script src='../js/UploadImage.js'></script>

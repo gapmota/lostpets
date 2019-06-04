@@ -28,23 +28,23 @@
                         method="post" enctype="multipart/form-data" > <!-- onsubmit="verificarCampos(this)"  -->
                         <div class="row">
                             <div class="col l4 m4 s12" style="height: 222px;">
-								<input type="file" name="files" onchange="readURL(this);" accept="image/gif, image/jpeg, image/png">
-								<img id="blah" class="foto-register" src="#" alt="your image" />
+								<input id="file_upload" type="file" name="files" required="required" onchange="readURL(this);" accept="image/gif, image/jpeg, image/png" style="display:none;">
+								<img id="img-person" class="foto-register" src="../img/pic.png" alt="your image" />
                             </div>
                             <div class="input-field l8 m8 col s12">
                                 <input id="nome" type="text" class="validate" required="required" th:field="*{nome}" >
                                 <label for="nome">seu nome</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
-                                <input id="telefoneMovel" class="validate form-control" required="required" th:field="*{telefoneCelular}" onkeypress="$(this).mask('(00) 0000-00009')">
+                                <input type="text" id="telefoneMovel" class="validate form-control" required="required" th:field="*{telefoneCelular}" onkeypress="$(this).mask('(00) 00000-0009')">
                                 <label for="telefoneMovel">celular</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
-                                <input id="telefoneFixo" class="validate form-control" required="required" th:field="*{telefoneFixo}" onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
+                                <input type="text" id="telefoneFixo" class="validate form-control" required="required" th:field="*{telefoneFixo}" onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
                                 <label for="telefoneFixo">telefone</label>
                             </div>
 							 <div class="input-field l4 m4 col s12">
-                                <input id="cep" type="text" class="validate form-control" required="required" th:field="*{cep}" onkeypress="$(this).mask('00.000-000')">
+                                <input id="cep" type="text" class="validate form-control" required="required" th:field="*{cep}" onkeypress="$(this).mask('00000-000')">
                                 <label for="cep">cep</label>
                             </div>
                             <div class="input-field l4 m4 col s12">
@@ -62,14 +62,14 @@
                                 <input id="senha" type="password" class="validate" th:field="*{senha}" >
                                 <label for="senha">senha</label>
                             </div>
-                            <!--<div class="input-field l6 m6 col s6">
+                            <div class="input-field l6 m6 col s6">
                                 <input id="senha" type="text" class="validate" >
                                 <label for="senha">confirmar senha</label>
-                            </div>-->
+                            </div>
                         </div>
                         <div class="row">
                             <div class="input-field l12 m12 col s12">
-                                <button class="waves-effect waves-light btn-large btn-width-large" type="submit">confirmar </button>
+                                <button class="waves-effect waves-light btn-large btn-width-large" type="submit" onclick="verfImgCampoPessoa();">confirmar </button>
                             </div>
                         </div>                        
                     </form>

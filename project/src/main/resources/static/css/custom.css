@@ -32,13 +32,11 @@
     border-style: solid;
     border-width: 2px;
     border-color: azure;
-    color: #fff;
     transition: all 0.2s;
 }
 
 .btn-lost:hover {
     border-color: azure;
-    color: #333;
     background-color: #fff;
     transition: all 0.2s;
 }
@@ -92,6 +90,14 @@
     min-height: 222px;
     height: 100%;
     max-height: 222px;
+    transform: scale(1);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.foto-register:hover {
+	transform: scale(1.4);
+	transition: all 0.2s;
 }
 
 .foto-register-info{
@@ -157,13 +163,21 @@ textarea{
     width: 350px;
     position: relative;
     height: 440px;
-    margin: 0px 10px 10px 10px;
+    margin: 0px 10px 10px 0px;
     background-color: #6e83d6;
     border-radius: 10px;
 }
 
+.menu{
+	width: 100%;
+    display: flex !important;
+    position: fixed !important;
+    z-index: 9;
+}
+
+
 nav{
-    background-color: #6e83d6;
+	background-color: #6e83d6;
 }
 
 .map_style{
@@ -177,10 +191,11 @@ nav{
 }
 
 .area_listagem_off{
-    display: none;
+	display: none;
 }
 
 .area_listagem_on{
+	top: 64px;
 	position: absolute;
 	width: 100%;
 	min-height: calc(100% - 64px) /* 64px do menu + 0px da margem entre menu e card */;
@@ -279,11 +294,6 @@ table{
     min-height: 100% !important;
     top: 0px;
     bottom: 0px;
-}
-
-.content-info-pet{
-    padding: 10px;
-    
 }
 
 .dinamic-height{
@@ -411,4 +421,39 @@ table{
     align-items: center;
     font-size: 20px;
     margin-top: 40px;
+}
+
+.profile_off{
+    position: fixed;
+    width: 300px;
+    height: calc(100% - 64px);
+    background: #000;
+    right: -300px;
+    top: 64px;
+    z-index: 9;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.profile_on{
+    position: fixed;
+    width: 300px;
+    height: calc(100% - 64px);
+    background: #6e83d6;
+    right: 0px;
+    top: 64px;
+    z-index: 9;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.btn_sair{
+	    width: 100%;
+    padding: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    background: #fff;
+    color: #000;	
 }

@@ -1,5 +1,7 @@
 package br.lostpets.project.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	public List<Usuario> todosUsuario();
 
 	@Query("from Usuario where idPessoa = ?1")
-	public Usuario unicoUsuario(Long id);
+	public Usuario unicoUsuario(int id);
 
 }
