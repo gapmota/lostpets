@@ -15,10 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.model.Endereco;
-import br.lostpets.infra.GoogleDriveConfig;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
 import br.lostpets.project.service.ViaCep;
+import br.lostpets.project.utils.GoogleDriveConfig;
 
 @Controller
 public class CadastroPessoaController {
