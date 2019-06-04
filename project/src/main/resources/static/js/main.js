@@ -111,6 +111,7 @@ function openModal(id){
           document.getElementById("nome_animal_info").textContent = response.nomeAnimal;
           document.getElementById("desaparecimento_animal_info").textContent = response.dataPerdido;
           document.getElementById("regiao_animal_info").textContent = "aaa";
+          document.getElementById("foto-pet-perdido").src = response.pathImg;
           document.getElementById("id-animal-hidden").value = id;
           
           addLocalizacaoPetInfo(response.pathImg, response.latitude, response.longitude);
