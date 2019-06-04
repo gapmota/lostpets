@@ -1,5 +1,8 @@
 package br.lostpets.project.controller;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.UsuarioService;
 import br.lostpets.project.service.ViaCep;
+import br.lostpets.project.utils.GoogleDriveConfig;
 
 @Controller
 public class CadastroAnimalController {
@@ -27,6 +31,7 @@ public class CadastroAnimalController {
 	private ModelAndView modelAndView = new ModelAndView();
 	private Usuario usuario;
 	private PetPerdido petPerdido;
+	private PetPerdido petPerdidoComImg;
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal = new CadastroPessoaAnimalComponent();
 	
 	private ViaCep viaCep = new ViaCep();
@@ -40,7 +45,7 @@ public class CadastroAnimalController {
 	}
 	
 	@PostMapping("/LostPets/Cadastro_Animal_Perdido")
-	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files, CadastroPessoaAnimalComponent cadastroPessoaAnimal) {
+	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files, CadastroPessoaAnimalComponent cadastroPessoaAnimal) throws IOException, GeneralSecurityException {
 		
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
 		usuario = usuarioService.verificarEmailUsuario(email);
@@ -70,16 +75,14 @@ public class CadastroAnimalController {
 			usuarioService.salvarUsuario(usuario);
 			petPerdidoService.salvarPet(petPerdido);
 			
-			//comentado devido a falhar ao não inserir imagem
-			/*
-			petPerdidoAtualizar = petPerdidoService.encontrarTodos(petPerdido.getIdAnimal());
+			petPerdidoComImg = petPerdidoService.encontrarUnicoPet(petPerdido.getIdAnimal());
 			
 			for (MultipartFile file : files) {
-				petPerdidoAtualizar.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+				petPerdidoComImg.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
 			}
 			
-			petPerdidoService.salvarPet(petPerdidoAtualizar);
-			*/
+			petPerdidoService.salvarPet(petPerdidoComImg);
+			
 			
 		}
 		

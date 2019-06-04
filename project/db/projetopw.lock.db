@@ -1,6 +1,6 @@
 #FileLock
-#Tue Jun 04 14:20:17 BRT 2019
+#Tue Jun 04 15:26:17 BRT 2019
 hostName=NBTITMA098686.tivit.corp
-id=16b23813bd3ac91318767387f895bf5b703a2989423
+id=16b23bdde28dc23c9f344e998519014e9c3ba75e077
 method=file
-server=10.0.101.150\:53024
+server=10.255.52.104\:54619
