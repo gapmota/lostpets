@@ -61,10 +61,7 @@ public class CadastroPessoaController {
 			String cep = cepV[0].concat(cepV[1]);
 			endereco = viaCep.buscarCep(cep);
 			
-			usuario.setRua(endereco.getLogradouro());
-			usuario.setBairro(endereco.getBairro());
-			usuario.setCidade(endereco.getLocalidade());
-			usuario.setUf(endereco.getUf());
+			usuario.setEndereco(endereco);
 			
 			usuarioService.salvarUsuario(usuario);
 			
