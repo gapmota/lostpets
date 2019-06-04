@@ -31,7 +31,6 @@ public class CadastroAnimalController {
 	private ModelAndView modelAndView = new ModelAndView();
 	private Usuario usuario;
 	private PetPerdido petPerdido;
-	private PetPerdido petPerdidoComImg;
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal = new CadastroPessoaAnimalComponent();
 	
 	private ViaCep viaCep = new ViaCep();
@@ -72,18 +71,12 @@ public class CadastroAnimalController {
 			String cep = cepV[0].concat(cepV[1]);
 			endereco = viaCep.buscarCep(cep);
 			
-			usuarioService.salvarUsuario(usuario);
-			petPerdidoService.salvarPet(petPerdido);
-			
-			petPerdidoComImg = petPerdidoService.encontrarUnicoPet(petPerdido.getIdAnimal());
-			
 			for (MultipartFile file : files) {
-				petPerdidoComImg.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
 			}
 			
-			petPerdidoService.salvarPet(petPerdidoComImg);
-			
-			
+			usuarioService.salvarUsuario(usuario);
+			petPerdidoService.salvarPet(petPerdido);
 		}
 		
 		return new ModelAndView("redirect:/LostPets/Cadastro_Animal_Perdido");
