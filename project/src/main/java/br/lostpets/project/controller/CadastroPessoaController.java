@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.model.Endereco;
+import br.lostpets.infra.GoogleDriveConfig;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
 import br.lostpets.project.service.ViaCep;
@@ -29,6 +30,7 @@ public class CadastroPessoaController {
 	private Usuario usuario;
 	private Endereco endereco = new Endereco();
 	private ViaCep viaCep = new ViaCep();
+	private Usuario usuarioComImg;
 	
 	@GetMapping("/LostPets/Cadastro")
 	public ModelAndView cadastroPage() {
@@ -67,10 +69,12 @@ public class CadastroPessoaController {
 			usuarioService.salvarUsuario(usuario);
 			
 			//comentado devido a falhar ao não inserir imagem
-			/*for (MultipartFile file : files) {
-				usuarioParaAtualizar.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
-			}*/
+			for (MultipartFile file : files) {
+				usuarioComImg.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+			}
 
+			usuarioService.salvarUsuario(usuarioComImg);
+      
 			modelAndView = new ModelAndView("redirect:/LostPets");
 			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
 		}

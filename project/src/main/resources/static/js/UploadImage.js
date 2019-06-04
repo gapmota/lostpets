@@ -18,3 +18,13 @@ $("#img-person").click(function(){
 	$("#file_upload").click();
 	
 });
+
+function verfImgCampoPessoa(){
+	if(document.getElementById("file_upload").value == "")
+		alert("Ops! Você esqueceu de inserir sua foto.");		
+}
+
+function verfImgCampoPet(){
+	if(document.getElementById("file_upload").value == "")
+		alert("Ops! Você esqueceu de inserir a foto de seu Pet.");		
+}
