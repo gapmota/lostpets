@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.lostpets.project.model.Endereco;
 import br.lostpets.infra.GoogleDriveConfig;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
+import br.lostpets.project.service.ViaCep;
 
 @Controller
 public class CadastroPessoaController {
@@ -25,11 +27,14 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
+	private Usuario usuario;
+	private Endereco endereco = new Endereco();
+	private ViaCep viaCep = new ViaCep();
 	private Usuario usuarioComImg;
 	
 	@GetMapping("/LostPets/Cadastro")
 	public ModelAndView cadastroPage() {
-		Usuario usuario = new Usuario();
+		usuario = new Usuario();
 		modelAndView.addObject("usuario", usuario);
 		modelAndView.setViewName("cadastroPessoa");
 		return modelAndView;
@@ -52,13 +57,24 @@ public class CadastroPessoaController {
 			modelAndView.setViewName("cadastroPessoa");
 		} else {
 
+			String[] cepV = usuario.getCep().split("-");
+			String cep = cepV[0].concat(cepV[1]);
+			endereco = viaCep.buscarCep(cep);
+			
+			usuario.setRua(endereco.getLogradouro());
+			usuario.setBairro(endereco.getBairro());
+			usuario.setCidade(endereco.getLocalidade());
+			usuario.setUf(endereco.getUf());
+			
+			usuarioService.salvarUsuario(usuario);
+			
 			//comentado devido a falhar ao não inserir imagem
 			for (MultipartFile file : files) {
 				usuarioComImg.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
 			}
 
 			usuarioService.salvarUsuario(usuarioComImg);
-
+      
 			modelAndView = new ModelAndView("redirect:/LostPets");
 			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
 		}
