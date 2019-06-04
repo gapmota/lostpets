@@ -1,4 +1,4 @@
-package br.lostpets.project.service;
+package br.lostpets.project.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.Vector;
 
 import org.springframework.stereotype.Service;
+
+import br.lostpets.project.service.ServiceGeral;
 
 @Service
 public class HistoricoAcessoLog {
