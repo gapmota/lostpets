@@ -57,15 +57,17 @@ public class CadastroAnimalController {
 			petPerdidoService.salvarPet(petPerdido);
 			
 		}else {
-			usuario = cadastroPessoaAnimal.getUsuario();
-			
+			usuario = cadastroPessoaAnimal.getUsuario();			
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
-			petPerdido.setStatus("P");
-			petPerdido.setUsuario(usuario);
 			
 			String[] cepV = petPerdido.getCep().split("-");
 			String cep = cepV[0].concat(cepV[1]);
 			endereco = viaCep.buscarCep(cep);
+			
+			petPerdido.setStatus("P");
+			petPerdido.setUsuario(usuario);
+			petPerdido.setLatitude(endereco.getLatitude());
+			petPerdido.setLongitude(endereco.getLongitude());
 			
 			usuarioService.salvarUsuario(usuario);
 			petPerdidoService.salvarPet(petPerdido);

@@ -37,8 +37,8 @@ public class Usuario{
 	@Column(nullable = true, name = "BAIRRO") private String bairro;
 	@Column(nullable = true, name = "CIDADE") private String cidade;
 	@Column(nullable = true, name = "UF") private String uf;
-	@Column(nullable = true, name = "LATITUDE") private String latitude;
-	@Column(nullable = true, name = "LONGITUDE") private String longitude;
+	@Column(nullable = true, name = "LATITUDE") private double latitude;
+	@Column(nullable = true, name = "LONGITUDE") private double longitude;
 	@Column(nullable = false, name = "ADD_CADASTRO") private String addCadastro = dataHora();
 	@Column(nullable = true, name = "ULTIMO_ACESSO") private String ultimoAcesso;
 
@@ -52,8 +52,8 @@ public class Usuario{
 	public Usuario() {}
 	
 	public Usuario(String nome, String telefoneFixo, String telefoneCelular, String email, String senha,
-			String idImagem, String cep, String rua, String bairro, String cidade, String uf, String latitude,
-			String longitude) {
+			String idImagem, String cep, String rua, String bairro, String cidade, String uf, double latitude,
+			double longitude) {
 		this.nome = nome;
 		this.telefoneFixo = telefoneFixo;
 		this.telefoneCelular = telefoneCelular;
@@ -151,32 +151,48 @@ public class Usuario{
 	public String getRua() {
 		return rua;
 	}
+	
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
 
 	public String getBairro() {
 		return bairro;
+	}
+	
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	public String getCidade() {
 		return cidade;
 	}
+	
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
 
 	public String getUf() {
 		return uf;
 	}
+	
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
@@ -206,10 +222,13 @@ public class Usuario{
 	}
 
 	public void setEndereco(Endereco endereco) {
-		this.rua = endereco.getLogradouro();
 		this.bairro = endereco.getBairro();
 		this.cidade = endereco.getLocalidade();
 		this.uf = endereco.getUf();
+		this.rua = endereco.getLogradouro();
+		this.latitude = (endereco.getLatitude() == 0.0)? 0 : endereco.getLatitude();
+		this.longitude = endereco.getLongitude();
+		
 	}
 	
 }

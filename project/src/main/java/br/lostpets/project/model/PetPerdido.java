@@ -34,8 +34,8 @@ public class PetPerdido {
 	@Column(name="TIPO_ANIMAL") private String tipoAnimal;
 	@Column(name="PATH_IMG")private String pathImg;
 	@Column(name="CEP")private String cep;
-	@Column(name="LATITUDE") private String latitude;
-	@Column(name="LONGITUDE") private String longitude;
+	@Column(name="LATITUDE") private double latitude;
+	@Column(name="LONGITUDE") private double longitude;
 	@Column(name="ADD_DATA") private String addData = dataHora();
 	
 	@OneToMany(mappedBy = "petPerdido")
@@ -48,7 +48,7 @@ public class PetPerdido {
 	public PetPerdido() {}
 
 	public PetPerdido(Usuario usuario, String nomeAnimal, String dataPerdido, String descricao,
-			String tipoAnimal, String pathImg, String cep, String latitude, String longitude) {
+			String tipoAnimal, String pathImg, String cep, double latitude, double longitude) {
 		this.usuario = usuario;
 		this.nomeAnimal = nomeAnimal;
 		this.dataPerdido = dataPerdido;
@@ -135,19 +135,19 @@ public class PetPerdido {
 		this.cep = cep;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+	public void setLatitude(double d) {
+		this.latitude = d;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 

@@ -36,6 +36,7 @@ public class ViaCep {
  				+ "&app_id=YxULymX19IjsS2pE7KGo"
  				+ "&app_code=6isWeBIxu4YmK1hfYF6s1w"
  				+ "&gen=9";
+ 		
  		this.webTarget = this.client.target(URL).path(""); 
 		Invocation.Builder invocationBuilder =  this.webTarget.request("application/json;charset=UTF-8"); 
 		Response response = invocationBuilder.get();
@@ -49,11 +50,4 @@ public class ViaCep {
 		return endereco;
  	}
  	
- 	/*
- 	var platform = new H.service.Platform({
-  		app_id: 'YxULymX19IjsS2pE7KGo',//isso
-  		app_code: '6isWeBIxu4YmK1hfYF6s1w',// e isso tu pega no dev.heremaps
-  		useHTTPS: true
-	});
-	*/
 }

@@ -44,18 +44,18 @@ public class LoginController {
 		}		
 	}
 
-	@PostMapping("/Dashboard")
+	@PostMapping("/LostPets")
 	public ModelAndView logar(@Valid Usuario usuario, BindingResult bindingResult) {
 
 		usuario = usuarioService.emailSenha(usuario.getEmail(), usuario.getSenha());
 		if (bindingResult.hasErrors()) {
-			modelAndView = new ModelAndView("redirect:/LostPets");
+			modelAndView.setViewName("login");
 		} else if (usuario != null) {
-			modelAndView.setViewName("principalPage");
+			modelAndView = new ModelAndView("redirect:/Dashboard");
 			historicoAcessoLog.dataHora(usuario.getNome());
 			session.setSessionUsuario(usuario);
 		} else {
-			modelAndView = new ModelAndView("redirect:/LostPets");
+			modelAndView.setViewName("login");
 			modelAndView.addObject("mensagem", "E-mail ou senha inválido");
 		}
 
