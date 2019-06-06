@@ -20,5 +20,7 @@ public interface AnimaisAchadosRepository  extends JpaRepository<AnimaisAchados,
 
 	@Query("select sum(pontos) from AnimaisAchados where usuarioAchou = ?1")
 	Integer totalPontosUsuario(Usuario usuario);
+
+	List<AnimaisAchados> findAllByStatus(String string);
 	
 }

@@ -42,7 +42,7 @@ public class AnimaisAchadosRepositoryTest {
 	public void init() {
 		usuario = new Usuario("mateus", "mateus@lost.com", "(11) 91234-1234", "(11) 1234-1234");
 		usuarioRepository.save(usuario);
-		petPerdido = new PetPerdido(usuario,"tobias", "12/12/2018", "Descrição perdido","Gato","C://Path","00.000.000","Latitude","Longitude");
+		petPerdido = new PetPerdido(usuario,"tobias", "12/12/2018", "Descrição perdido","Gato","C://Path","00.000.000",0,0);
 		petPerdidoRepository.save(petPerdido);
 		achados = new AnimaisAchados(usuario, petPerdido, new Date(), 10, "latitude", "longitude");
 		animaisAchadosRepository.save(achados);

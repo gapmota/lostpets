@@ -1,5 +1,6 @@
-const url_resq = "http://localhost:8080/lostpet/api/petsperdidos/";
-const url_session = "http://localhost:8080/session/"
+const url_resq = "http://localhost:9600/lostpet/api/petsperdidos/";
+const url_session = "http://localhost:9600/session/"
+const url_usuario = "http://localhost:9600/usuario/"
 const url_animaisAchados = "http://findlostpets.azurewebsites.net/animaisAchados"
 
 var usuario = null;
@@ -21,6 +22,25 @@ function requestUsuarioSession(){
     });  
 }
 
+function requestPontosUsuario(){
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    url: url_usuario + "/pontos",
+    data: null,
+    success: function (response) {
+      let pos = 0;
+      response.forEach(ponto => {
+        addRanking(ponto, ++pos);
+      });
+    },
+    error: function () {
+    }
+  });  
+}
   
   
 function requestLostPets(){

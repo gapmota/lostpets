@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                             <div class="col l4 m4 s12">
-                                <input id="file_upload" type="file" name="files" onchange="readURL(this);" 
+                                <input id="file_upload" type="file" name="files" required="required" onchange="readURL(this);" 
                                 	accept="image/gif, image/jpeg, image/png" style="display:none;">
 								<img id="img-person" class="foto-register responsive-img"  src="../img/pic.png" alt="your image" />
                             </div>
@@ -63,11 +63,12 @@
                     <div class="row">
 
                         <div class="input-field col l6 m6 s12">
-                            <select>
-                                <option value="-1" disabled selected>selecione o tipo de pet</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                            <select th:field="*{petPerdido.tipoAnimal}">
+                                <option value="-1" selected>selecione o tipo de pet</option>
+                                <option value="ave">Ave</option>
+                                <option value="mamifero">Mamífero</option>
+                                <option value="peixe">Peixe</option>
+                                <option value="reptel">Réptel</option>                                
                             </select>
                         </div>
                         <div class="input-field col l6 m6 s12">

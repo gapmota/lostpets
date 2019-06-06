@@ -68,7 +68,7 @@ public class ConverterCSV {
 			System.exit(1);
 		}
 
-		PetPerdido pet = new PetPerdido(null, null, null, null, null, null, null, null, null);
+		PetPerdido pet = new PetPerdido(null, null, null, null, null, null, null, 0, 0);
 
 		System.out.printf("%-24s%-60s%-15s%7s\n", "Nome do animal", "Descricao", "Tipo de animal", "CEP");
 

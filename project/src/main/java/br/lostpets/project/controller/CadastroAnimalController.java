@@ -28,7 +28,7 @@ public class CadastroAnimalController {
 
 	@Autowired
 	private PetPerdidoService petPerdidoService;
-	private ModelAndView modelAndView = new ModelAndView();
+	private ModelAndView modelAndView;
 	private Usuario usuario;
 	private PetPerdido petPerdido;
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal = new CadastroPessoaAnimalComponent();
@@ -38,6 +38,7 @@ public class CadastroAnimalController {
 	
 	@GetMapping("/LostPets/Cadastro_Animal_Perdido")
 	public ModelAndView PaginaCadastroAnimalPerdido() {
+		modelAndView = new ModelAndView();
 		modelAndView.addObject("pet", cadastroPessoaAnimal);
 		modelAndView.setViewName("cadastroAnimalPerdido");
 		return modelAndView;
@@ -51,25 +52,26 @@ public class CadastroAnimalController {
 		
 		if(usuario != null) {
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
+			
+			endereco = viaCep.buscarCep(petPerdido.getCep());
+			
 			petPerdido.setStatus("P");
 			petPerdido.setUsuario(usuario);
-			
-			String[] cepV = petPerdido.getCep().split("-");
-			String cep = cepV[0].concat(cepV[1]);
-			endereco = viaCep.buscarCep(cep);
+			petPerdido.setLatitude(endereco.getLatitude());
+			petPerdido.setLongitude(endereco.getLongitude());
 			
 			petPerdidoService.salvarPet(petPerdido);
 			
 		}else {
-			usuario = cadastroPessoaAnimal.getUsuario();
-			
+			usuario = cadastroPessoaAnimal.getUsuario();			
 			petPerdido = cadastroPessoaAnimal.getPetPerdido();
+			
+			endereco = viaCep.buscarCep(petPerdido.getCep());
+			
 			petPerdido.setStatus("P");
 			petPerdido.setUsuario(usuario);
-			
-			String[] cepV = petPerdido.getCep().split("-");
-			String cep = cepV[0].concat(cepV[1]);
-			endereco = viaCep.buscarCep(cep);
+			petPerdido.setLatitude(endereco.getLatitude());
+			petPerdido.setLongitude(endereco.getLongitude());
 			
 			for (MultipartFile file : files) {
 				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));

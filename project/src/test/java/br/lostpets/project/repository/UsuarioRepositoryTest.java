@@ -33,7 +33,7 @@ public class UsuarioRepositoryTest {
 	
 	@Test
 	public void cadastraTodoUsuario() {
-		usuario = new Usuario("Nome", "Fixo", "Celular","Email","Senha","Imagem","Cep","Rua","Bairro","Cidade","Uf","Latitude","Longitude");
+		usuario = new Usuario("Nome", "Fixo", "Celular","Email","Senha","Imagem","Cep","Rua","Bairro","Cidade","Uf",0,0);
 		usuarioRepository.save(usuario);
 		
 		Usuario usuarioEmail = usuarioRepository.validarAcesso(usuario.getEmail(), usuario.getSenha());
