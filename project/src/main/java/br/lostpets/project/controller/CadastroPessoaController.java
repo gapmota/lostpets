@@ -42,7 +42,7 @@ public class CadastroPessoaController {
 	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@RequestParam(value = "files") MultipartFile[] files, @Valid Usuario usuario,
 			BindingResult bindingResult) throws IOException, GeneralSecurityException {
-
+			
 		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
 
 		if (bindingResult.hasErrors()) {
@@ -52,12 +52,10 @@ public class CadastroPessoaController {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
 			
-		} else {					
-			String[] cepV = usuario.getCep().split("-");
-			String cep = cepV[0].concat(cepV[1]);
-			endereco = viaCep.buscarCep(cep);
+		} else {	
 			
-			usuario.setEndereco(endereco);
+			endereco = viaCep.buscarCep(usuario.getCep());			
+			usuario.setEndereco(endereco);			
 			
 			usuarioService.salvarUsuario(usuario);
 			

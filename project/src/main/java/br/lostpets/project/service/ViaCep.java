@@ -22,17 +22,22 @@ public class ViaCep {
  	}
  	
  	public Endereco buscarCep(String cep){
+ 		
+ 		String[] cepV = cep.split("-");
+ 		cep = cepV[0].concat(cepV[1]);
+ 		
  		this.webTarget = this.client.target(URL+cep+FIMURL).path(""); 
 		Invocation.Builder invocationBuilder =  this.webTarget.request("application/json;charset=UTF-8"); 
 		Response response = invocationBuilder.get();
 		
 		Endereco endereco = response.readEntity(Endereco.class);
 		
-		return this.getLatitudeLongitude(endereco);
+		return this.getLatitudeLongitude(endereco, cep);
 	} 
  	
- 	private Endereco getLatitudeLongitude(Endereco endereco) {
- 		String URL = "https://geocoder.api.here.com/6.2/geocode.json?searchtext="+(endereco.getLogradouro().replaceAll(" ", "%20")+"%20"+endereco.getBairro().replaceAll(" ", "%20")+"%20Brazil").toUpperCase()
+ 	private Endereco getLatitudeLongitude(Endereco endereco, String cep) {
+ 		//+"%20"+endereco.getLogradouro().replaceAll(" ", "%20")+"%20"+endereco.getBairro().replaceAll(" ", "%20")
+ 		String URL = "https://geocoder.api.here.com/6.2/geocode.json?searchtext="+cep
  				+ "&app_id=YxULymX19IjsS2pE7KGo"
  				+ "&app_code=6isWeBIxu4YmK1hfYF6s1w"
  				+ "&gen=9";

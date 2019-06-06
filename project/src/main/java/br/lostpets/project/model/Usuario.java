@@ -212,6 +212,8 @@ public class Usuario{
 		this.ultimoAcesso = ultimoAcesso;
 	}
 	
+	
+	
 	@Override
 	public String toString() {
 		return "Usuario [idPessoa=" + idPessoa + ", nome=" + nome + ", telefoneFixo=" + telefoneFixo

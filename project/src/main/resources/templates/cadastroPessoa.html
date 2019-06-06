@@ -28,7 +28,7 @@
                         method="post" enctype="multipart/form-data" > <!-- onsubmit="verificarCampos(this)"  -->
                         <div class="row">
                             <div class="col l4 m4 s12" style="height: 222px;">
-								<input id="file_upload" type="file" name="files" required="required" onchange="readURL(this);" accept="image/gif, image/jpeg, image/png" style="display:none;">
+								<input id="file_upload" type="file" name="files" onchange="readURL(this);" accept="image/gif, image/jpeg, image/png" style="display:none;">
 								<img id="img-person" class="foto-register" src="../img/pic.png" alt="your image" />
                             </div>
                             <div class="input-field l8 m8 col s12">
@@ -63,7 +63,7 @@
                                 <label for="senha">senha</label>
                             </div>
                             <div class="input-field l6 m6 col s6">
-                                <input id="senha" type="text" class="validate" >
+                                <input id="senha" type="password" class="validate" >
                                 <label for="senha">confirmar senha</label>
                             </div>
                         </div>
