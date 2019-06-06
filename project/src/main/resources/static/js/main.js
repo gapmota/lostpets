@@ -30,8 +30,12 @@ function viewQuadros(){
 
 	if(view.className.includes("area_listagem_on")){
 		view.className = "display-flex area_listagem_off";
+		document.getElementById("viewRanking").className = "ranking_off";
+		document.getElementById("viewProfile").className = "profile_off";
 	}else{
 		view.className = "display-flex area_listagem_on";
+		document.getElementById("viewRanking").className = "ranking_off";
+		document.getElementById("viewProfile").className = "profile_off";
 	}
 }
 
@@ -42,8 +46,32 @@ function viewPerfil(){
 	if(view.className.includes("profile_on")){
 		view.className = "profile_off";
 	}else{
-		view.className = "profile_on";
+    view.className = "profile_on";
+    document.getElementById("viewRanking").className = "ranking_off";
 	}
+}
+
+function viewRanking(){
+
+	let view = document.getElementById("viewRanking");
+
+	if(view.className.includes("ranking_on")){
+		view.className = "ranking_off";
+	}else{
+    view.className = "ranking_on";
+    document.getElementById("viewProfile").className = "profile_off";
+    requestPontosUsuario();
+	}
+}
+
+function addRanking(response, pos){
+  let ranking = $("#ranking-add");
+  ranking.append("<tr>"
+  +"<td>"+pos+"</td>"
+  +"<td>"+response.nomeUsuario+"</td>"
+  +"<td>"+response.pontos+"</td>"
+  +"<td>"+response.quantidadePetsAchados+"</td>"
+  +"</tr>");
 }
 
 function viewMap(){

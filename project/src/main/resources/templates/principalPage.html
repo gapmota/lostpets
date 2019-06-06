@@ -20,6 +20,20 @@
 		<a href="/logoff" class="btn_sair">sair</a>
 	</div>
 
+	<div id="viewRanking" class="ranking_off">
+		<p class="desc-ranking">ranking</p>
+		<div class="col s12">
+            <table class="highlight" id="ranking-add">
+                <tr>
+                	<th>Posição</th>
+                    <th>Nome</th>
+                    <th>Pontos</th>
+                    <th>Achados</th>
+                </tr>
+            </table>
+          </div>
+	</div>
+
 	<div class="content-container dh">
 		<div class="container-div dh popup-off" id="modal">
 			<div class="col l12 m12 s12">
@@ -66,7 +80,7 @@
 		<div class="container-div dh" id="listagem-pets">
 			<div class="container dh" >
 				<div class="row menu">
-					<nav>
+					<nav class="no-shadows">
 						<div class="nav-wrapper">
 							<form>
 								<div class="input-field">
@@ -78,6 +92,7 @@
 					</nav>
 					<div class="btn-open-map"><i class="material-icons white-text" id="btn_abrir_nova_view">list</i></div>
 					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewPerfil()">person</i></div>
+					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewRanking()">stars</i></div>
 				</div>
 				<div class="row">
 					<div id="map_area" class="area_listagem_on">

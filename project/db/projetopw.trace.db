@@ -559,3 +559,13 @@ alter table pets_perdido add constraint FKih1l6nsp4540q35fjdvmjg0af foreign key 
 2019-05-30 18:31:16 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "USUARIO[*]"; expected "UPDATE, USE, {"; SQL statement:
 USUARIO [42001-197]
+2019-06-06 03:16:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "Latitude" [22018-197]
+2019-06-06 03:20:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "Latitude" [22018-197]
+2019-06-06 03:20:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "Latitude" [22018-197]
+2019-06-06 03:21:53 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "Latitude" [22018-197]
+2019-06-06 03:25:47 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "Latitude" [22018-197]

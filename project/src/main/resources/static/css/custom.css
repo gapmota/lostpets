@@ -423,11 +423,11 @@ table{
     margin-top: 40px;
 }
 
-.profile_off{
+.ranking_off, .profile_off{
     position: fixed;
     width: 300px;
     height: calc(100% - 64px);
-    background: #000;
+    background: #6e83d6;
     right: -300px;
     top: 64px;
     z-index: 9;
@@ -435,9 +435,9 @@ table{
     transition: all 0.2s;
 }
 
-.profile_on{
+.ranking_on, .profile_on{
     position: fixed;
-    width: 300px;
+    width: 360px;
     height: calc(100% - 64px);
     background: #6e83d6;
     right: 0px;
@@ -445,6 +445,27 @@ table{
     z-index: 9;
     overflow: hidden;
     transition: all 0.2s;
+}
+
+.ranking_on, .ranking_ff, table{
+	flex-wrap: wrap;
+	color: #fff;	
+}
+
+.ranking_on{
+	overflow-y: scroll;
+}
+
+td, th{
+	text-align: center !important;
+}
+
+.desc-ranking{
+	width: 100%;
+	paddiing: 10px;
+	text-align: center;
+	color: #fff;
+	font-size: 28px;
 }
 
 .btn_sair{
@@ -456,4 +477,26 @@ table{
     position: absolute;
     background: #fff;
     color: #000;	
+}
+
+
+
+
+
+
+
+.ranking_ont::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ranking_on::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+.ranking_on::-webkit-scrollbar-thumb {
+    background: #aaa;
+}
+
+.no-shadows {
+    box-shadow: none!important;
 }
