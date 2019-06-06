@@ -60,6 +60,10 @@ public class CadastroAnimalController {
 			petPerdido.setLatitude(endereco.getLatitude());
 			petPerdido.setLongitude(endereco.getLongitude());
 			
+			for (MultipartFile file : files) {
+				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+			}
+			
 			petPerdidoService.salvarPet(petPerdido);
 			
 		}else {
