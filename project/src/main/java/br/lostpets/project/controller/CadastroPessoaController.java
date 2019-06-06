@@ -18,6 +18,7 @@ import br.lostpets.project.model.Endereco;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
 import br.lostpets.project.service.ViaCep;
+import br.lostpets.project.utils.GoogleDriveConfig;
 
 @Controller
 public class CadastroPessoaController {
@@ -26,10 +27,9 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
-	private Usuario usuario;
 	private Endereco endereco = new Endereco();
 	private ViaCep viaCep = new ViaCep();
-	private Usuario usuarioComImg;
+	private Usuario usuario;
 	
 	@GetMapping("/LostPets/Cadastro")
 	public ModelAndView cadastroPage() {
@@ -51,19 +51,17 @@ public class CadastroPessoaController {
 		} else if (existe) {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
-			
-		} else {	
-			
-			endereco = viaCep.buscarCep(usuario.getCep());			
+		} else {
+			String[] cepV = usuario.getCep().split("-");
+			String cep = cepV[0].concat(cepV[1]);
+			endereco = viaCep.buscarCep(cep);
 			usuario.setEndereco(endereco);			
 			
-			usuarioService.salvarUsuario(usuario);
-			
-			//comentado devido a falhar ao não inserir imagem
-			/*for (MultipartFile file : files) {
-				usuarioComImg.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+			for (MultipartFile file : files) {
+				usuario.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
 			}
-			usuarioService.salvarUsuario(usuarioComImg);*/
+
+			usuarioService.salvarUsuario(usuario);
       
 			modelAndView = new ModelAndView("redirect:/LostPets");
 			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");

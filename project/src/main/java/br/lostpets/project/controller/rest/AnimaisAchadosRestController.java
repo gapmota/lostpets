@@ -1,4 +1,4 @@
-package br.lostpets.project.controller;
+package br.lostpets.project.controller.rest;
 
 import java.util.List;
 

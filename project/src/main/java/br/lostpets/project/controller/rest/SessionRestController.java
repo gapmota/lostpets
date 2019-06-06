@@ -1,4 +1,4 @@
-package br.lostpets.project.controller;
+package br.lostpets.project.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

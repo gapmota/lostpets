@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.model.Usuario;
-import br.lostpets.project.service.HistoricoAcessoLog;
 import br.lostpets.project.service.SessionService;
 import br.lostpets.project.service.UsuarioService;
+import br.lostpets.project.utils.HistoricoAcessoLog;
 
 @Controller
 public class LoginController {

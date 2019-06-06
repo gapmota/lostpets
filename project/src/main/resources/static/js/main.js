@@ -1,3 +1,5 @@
+const url_gdrive = "https://drive.google.com/open?id=";
+
 document.onresize = function(){
   map.getViewPort().resize();
   map2.getViewPort().resize();
@@ -139,10 +141,10 @@ function openModal(id){
           document.getElementById("nome_animal_info").textContent = response.nomeAnimal;
           document.getElementById("desaparecimento_animal_info").textContent = response.dataPerdido;
           document.getElementById("regiao_animal_info").textContent = "aaa";
-          document.getElementById("foto-pet-perdido").src = response.pathImg;
+          document.getElementById("foto-pet-perdido").src = url_gdrive+response.pathImg;
           document.getElementById("id-animal-hidden").value = id;
           
-          addLocalizacaoPetInfo(response.pathImg, response.latitude, response.longitude);
+          addLocalizacaoPetInfo(url_gdrive+response.pathImg, response.latitude, response.longitude);
 
         },
         error: function () {
@@ -243,7 +245,7 @@ function carregarListaMapa(listPet){
   listPet.forEach(pet => {
     div.innerHTML += "<div class='card-lost dp-f'>"
     +"<div class='area_foto'>"
-    +"<img src='"+pet.pathImg+"' class='foto_pet'>"
+    +"<img src='"+url_gdrive+pet.pathImg+"' class='foto_pet'>"
     +"</div>"
     +"<div>"
     +"<table>"
@@ -268,7 +270,7 @@ function carregarListaMapa(listPet){
     +"<div class='btn_info' onclick='openModal("+pet.idAnimal+")'>+</div>"
     +"</div>";
 
-    addLocalizacaoPet(pet.pathImg, pet.latitude, pet.longitude);
+    addLocalizacaoPet(url_gdrive+pet.pathImg, pet.latitude, pet.longitude);
   });
   moveMap(map);
 }
