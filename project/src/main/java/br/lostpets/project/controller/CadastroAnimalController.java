@@ -36,7 +36,7 @@ public class CadastroAnimalController {
 	private ViaCep viaCep = new ViaCep();
 	private Endereco endereco = new Endereco();
 	
-	@GetMapping("/LostPets/Cadastro_Animal_Perdido")
+	@GetMapping("/LostPets/Cadastro-Animal-Perdido")
 	public ModelAndView PaginaCadastroAnimalPerdido() {
 		modelAndView = new ModelAndView();
 		modelAndView.addObject("pet", cadastroPessoaAnimal);
@@ -44,7 +44,7 @@ public class CadastroAnimalController {
 		return modelAndView;
 	}
 	
-	@PostMapping("/LostPets/Cadastro_Animal_Perdido")
+	@PostMapping("/LostPets/Cadastro-Animal-Perdido")
 	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files, CadastroPessoaAnimalComponent cadastroPessoaAnimal) throws IOException, GeneralSecurityException {
 		
 		String email = cadastroPessoaAnimal.getUsuario().getEmail();
@@ -85,7 +85,7 @@ public class CadastroAnimalController {
 			petPerdidoService.salvarPet(petPerdido);
 		}
 		
-		return new ModelAndView("redirect:/LostPets/Cadastro_Animal_Perdido");
+		return new ModelAndView("redirect:/LostPets/Cadastro-Animal-Perdido");
 	}
 	
 	
