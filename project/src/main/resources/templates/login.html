@@ -24,11 +24,19 @@
 						<div class="carousel-fixed-item center-xy">
 							<div class="container center-align">
 								<div class="container btn-lost center-align">
-									<a href="/LostPets/Cadastro_Animal_Perdido" class="gambiarra">perdi meu pet</a>
+									<a href="/LostPets/Cadastro_Animal_Perdido" class="gambiarra">
+										perdi meu pet</a>
 								</div>
 							</div>
 						</div>
-						<div class="carousel-item red lighten-2 white-text" href="#one!">
+						
+						<div class="carousel-item red lighten-2 white-text" th:each="fotos: ${fotoAnimais}">
+							<div class="container">
+								<img class="responsive-img" th:src=@{${fotos.pathImg}} />
+							</div>
+						</div>
+						
+						<!-- <div class="carousel-item red lighten-2 white-text" href="#one!">
 							<div class="container"></div>
 						</div>
 						<div class="carousel-item amber darken-2 white-text" href="#two!">
@@ -39,36 +47,45 @@
 						</div>
 						<div class="carousel-item blue white-text" href="#four!">
 							<div class="container"></div>
-						</div>
+						</div> -->
+						
+						
 					</div>
-				</section>				
+				</section>
 			</div>
 
 			<!-- content login -->
 			<div class="col l4 m4 s12 white dh">
-			<form class="col s12" th:action="@{/LostPets}" th:object="${usuario}" method="post" onsubmit="return validarPreenchimento(this);">
-				
+				<form class="col s12" th:action="@{/LostPets}"
+					th:object="${usuario}" method="post"
+					onsubmit="return validarPreenchimento(this);">
+
 					<div class="col s12 dh valign-wrapper">
 						<div class="container center-align">
 							<div class="input-field col s12">
 								<input id="login" type="text" class="validate"
 									th:field="*{email}" name="email"> <label for="login">usuário</label>
-							</div><!--  --> 
+							</div>
+							
 							<div class="input-field col s12">
 								<input id="senha" type="password" class="validate"
-								th:field="*{senha}"	 name="senha"> <label for="senha">senha</label>
-							</div><!--  -->
+									th:field="*{senha}" name="senha"> <label for="senha">senha</label>
+							</div>
+							
 							<div class="container">
-								<button type="submit" class="waves-effect waves-light btn-small btn-width">entrar</button>
-								<a href="/LostPets/Cadastro" style="-webkit-appearance: none;" class="waves-effect waves-light btn-small btn-width">ser caçador</a>
+								<button type="submit"
+									class="waves-effect waves-light btn-small btn-width">entrar</button>
+								<a href="/LostPets/Cadastro" style="-webkit-appearance: none;"
+									class="waves-effect waves-light btn-small btn-width">ser
+									caçador</a>
 							</div>
 							<span th:utext="${mensagem}"></span>
 						</div>
 					</div>
-				
-			</form>
-		</div>
-			
+
+				</form>
+			</div>
+
 		</div>
 	</div>
 
