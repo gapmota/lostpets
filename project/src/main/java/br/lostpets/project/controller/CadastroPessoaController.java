@@ -58,7 +58,7 @@ public class CadastroPessoaController {
 			usuario.setEndereco(endereco);			
 			
 			for (MultipartFile file : files) {
-				usuario.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+				usuario.setIdImagem(GoogleDriveConfig.uploadFile(file));
 			}
 
 			usuarioService.salvarUsuario(usuario);
