@@ -61,7 +61,7 @@ public class CadastroAnimalController {
 			petPerdido.setLongitude(endereco.getLongitude());
 			
 			for (MultipartFile file : files) {
-				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
 			}
 			
 			petPerdidoService.salvarPet(petPerdido);
@@ -78,7 +78,7 @@ public class CadastroAnimalController {
 			petPerdido.setLongitude(endereco.getLongitude());
 			
 			for (MultipartFile file : files) {
-				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
 			}
 			
 			usuarioService.salvarUsuario(usuario);
