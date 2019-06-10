@@ -84,20 +84,11 @@
                             	onkeypress="$(this).mask('00000-000')" th:field="*{petPerdido.cep}">
                             <label for="cepAnimal">cep do desaparecimento</label>
                         </div>
-                        <!-- <div class="input-field col l6 m6 s12">
-                            <input id="ruaAnimal" type="text" class="validate">
-                            <label for="ruaAnimal">rua do desaparecimento</label>
+                        <div class="input-field col l4 m6 s12">
+                            <button class="waves-effect waves-light btn-large btn-width-large red" onclick="redirectLogin()">cancelar</button>
                         </div>
-                        <div class="input-field col l6 m6 s12">
-                            <input id="bairroAnimal" type="text" class="validate">
-                            <label for="bairroAnimal">bairro do desaparecimento</label>
-                        </div>
-                        <div class="input-field col l6 m6 s12">
-                            <input id="cidadeAnimal" type="text" class="validate">
-                            <label for="cidadeAnimal">cidade do desaparecimento</label>
-                        </div> -->
-                        <div class="input-field col l12 m12 s12">
-                            <button class="waves-effect waves-light btn-large btn-width-large"  onclick="verfImgCampoPet();">confirmar </button>
+                        <div class="input-field col l7 m6 s12 offset-l1">
+                            <button class="waves-effect waves-light btn-large btn-width-large green" onclick="verfImgCampoPet();">confirmar </button>
                         </div>
                     </div>
 
@@ -109,5 +100,11 @@
     <script type="text/javascript" src="../js/materialize.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
 </body>
+
 </html>
 <script src='../js/UploadImage.js'></script>
+<script>
+function redirectLogin(){
+	window.location.href = "http://localhost:9600/LostPets";
+}
+</script>

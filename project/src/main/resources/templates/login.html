@@ -29,27 +29,13 @@
 								</div>
 							</div>
 						</div>
-						
-						<div class="carousel-item red lighten-2 white-text" th:each="fotos: ${fotoAnimais}">
+
+						<div class="carousel-item red lighten-2 white-text"
+							th:each="fotos: ${fotoAnimais}">
 							<div class="container">
 								<img class="responsive-img" th:src=@{${fotos.pathImg}} />
 							</div>
 						</div>
-						
-						<!-- <div class="carousel-item red lighten-2 white-text" href="#one!">
-							<div class="container"></div>
-						</div>
-						<div class="carousel-item amber darken-2 white-text" href="#two!">
-							<div class="container"></div>
-						</div>
-						<div class="carousel-item green white-text" href="#three!">
-							<div class="container"></div>
-						</div>
-						<div class="carousel-item blue white-text" href="#four!">
-							<div class="container"></div>
-						</div> -->
-						
-						
 					</div>
 				</section>
 			</div>
@@ -62,16 +48,18 @@
 
 					<div class="col s12 dh valign-wrapper">
 						<div class="container center-align">
+							<img
+								src="..\img\logo_preto_00000.png" alt="LostPets" height="180" width="320">
 							<div class="input-field col s12">
 								<input id="login" type="text" class="validate"
 									th:field="*{email}" name="email"> <label for="login">usuário</label>
 							</div>
-							
+
 							<div class="input-field col s12">
 								<input id="senha" type="password" class="validate"
 									th:field="*{senha}" name="senha"> <label for="senha">senha</label>
 							</div>
-							
+
 							<div class="container">
 								<button type="submit"
 									class="waves-effect waves-light btn-small btn-width">entrar</button>

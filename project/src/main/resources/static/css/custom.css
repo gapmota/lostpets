@@ -27,6 +27,7 @@
 }
 
 .btn-lost {
+	background-color: rgba(188,188,188, 0.4);
     border-radius: 50px;
     cursor: pointer;
     border-style: solid;
@@ -45,8 +46,9 @@
 	color: #ffffff;	
     display: block;
     width: 100%;
-	padding: 15px;
+	padding: 9px;
     transition: all 0.2s;
+    font-size: 23px !important;
 }
 .gambiarra:hover {
     color: #333;

@@ -49,7 +49,13 @@ public class LoginController {
 			
 		} else {
 			String mensagem;
-			mensagem = msn ? "<span class=\"COLOCAR MATERIALIZE\">Email ou senha Incorretos</span>": "";
+			if(msn) {
+				msn = !msn;
+				mensagem = MensagensAlertas.EMAIL_SENHA_INCORRETO.getMensagem();
+			}
+			else {
+				mensagem = MensagensAlertas.VAZIO.getMensagem(); 
+			}
 			
 			model.addAttribute("mensagem", mensagem);
 			return "login";	
