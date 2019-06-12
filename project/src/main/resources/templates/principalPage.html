@@ -90,9 +90,10 @@
 							</form>
 						</div>
 					</nav>
+					<div class="btn-open-map"><i class="material-icons white-text" onclick="changeModel()">stars</i></div>
 					<div class="btn-open-map"><i class="material-icons white-text" id="btn_abrir_nova_view">list</i></div>
 					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewPerfil()">person</i></div>
-					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewRanking()">stars</i></div>
+					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewRanking()">stars</i></div>		
 				</div>
 				<div class="row">
 					<div id="map_area" class="area_listagem_on">
@@ -100,29 +101,29 @@
 					</div>
 					<div class="display-flex area_listagem_off" id="quadros">
 						
-						<div class="card-lost dp-f">
+						<div id="card-lost-color" class="card-lost dp-f">
 							<div class="area_foto ">
 								<img src="../img/cat.jpg" alt="" class="foto_pet">
 							</div>
 							<div>
 								<table>
 									<tr>
-										<td class="desc_pet">nome</td>
+										<td id = "desc_pet_color" class="desc_pet">nome</td>
 									</tr>
 									<tr>
-										<td class="desc_info_pet">murilo</td>
+										<td id = "desc_info_pet_color" class="desc_info_pet">murilo</td>
 									</tr>
 									<tr>
-										<td class="desc_pet">desaparecimento</td>
+										<td id = "desc_pet_color1" class="desc_pet">desaparecimento</td>
 									</tr>
 									<tr>
-										<td class="desc_info_pet">01/02/2019</td>
+										<td id = "desc_info_pet_color1" class="desc_info_pet">01/02/2019</td>
 									</tr>
 									<tr>
-										<td class="desc_pet">região</td>
+										<td id = "desc_pet_color2" class="desc_pet">região</td>
 									</tr>
 									<tr>
-										<td class="desc_info_pet">itaquera-sp</td>
+										<td id = "desc_info_pet_color2" class="desc_info_pet">itaquera-sp</td>
 									</tr>
 								</table>
 							</div>

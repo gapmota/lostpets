@@ -162,7 +162,39 @@ function openModal(id){
 
 document.getElementById("btn-achei-pet").onclick = function(){
 	requestAcheiPetPerdido(document.getElementById("id-animal-hidden").value);
-} 
+	
+
+}
+
+//----------------------------------------------------------------------
+var color = 0;
+function changeModel(){
+	if (color == 0){
+		document.getElementById("card-lost-color").style.backgroundColor = "red";
+		document.getElementById("desc_pet_color").style.color = "white";	
+		document.getElementById("desc_info_pet_color").style.color = "white";
+		document.getElementById("desc_pet_color1").style.color = "white";	
+		document.getElementById("desc_info_pet_color1").style.color = "white";
+		document.getElementById("desc_pet_color2").style.color = "white";	
+		document.getElementById("desc_info_pet_color2").style.color = "white";
+		document.getElementById("quadros").style.backgroundColor = "black";
+		
+		color = 1;
+		
+	}else if (color == 1){
+		document.getElementById("card-lost-color").style.backgroundColor = "green";
+		document.getElementById("desc_pet_color").style.color = "black";	
+		document.getElementById("desc_info_pet_color").style.color = "black";
+		document.getElementById("desc_pet_color1").style.color = "black";	
+		document.getElementById("desc_info_pet_color1").style.color = "black";
+		document.getElementById("desc_pet_color2").style.color = "black";	
+		document.getElementById("desc_info_pet_color2").style.color = "black";
+		document.getElementById("quadros").style.backgroundColor = "white";
+		color =0;
+	}	
+}
+//----------------------------------------------------------------------
+ 
 
 
 
