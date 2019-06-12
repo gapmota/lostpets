@@ -7,12 +7,14 @@
 <title>lostpet | perdi meu pet</title>
 <link rel="stylesheet" type="text/css" href="../css/materialize.css">
 <link rel="stylesheet" type="text/css" href="../css/custom.css">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"
 	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
 	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script	type="text/javascript" src="../cadastroPessoa.js"></script>
 </head>
 
 <body style="background-image: url(http://www.blogangeloni.com.br/wp-content/uploads/2013/09/caes-2.jpg); background-repeat: no-repeat; background-size: cover;">
@@ -21,23 +23,23 @@
 
 			<form class="col l10 m10 s12" th:action="@{/LostPets/Cadastro}"
 				th:object="${usuario}" method="post" enctype="multipart/form-data"
-				style="background-color: rgb(255, 255, 255, 0.85); border-radius: 10px; padding: 0% 5% 3% 5%;">
+				style="background-color: rgb(255, 255, 255, 0.85); border-radius: 10px; padding: 0% 0% 3% 5%;">
 				<h4 class="center-align">registrar-se</h4>				
 				<!-- onsubmit="verificarCampos(this)"  -->
 				<div class="row">
 					<div class="col l5 m5 s12 offset-m2"
-						style="margin-top: 1rem; padding-left: 2%; text-align: center">
+						style="margin-top: 1rem; text-align: center">
 						<input id="file_upload" type="file" name="files"
 							onchange="readURL(this);"
 							accept="image/gif, image/jpeg, image/png" style="display: none">
 						<img id="img-person" class="foto-register" src="../img/pic.png"
 							alt="your image" style="min-width: 250px !important" />
 					</div>
-					<div class="input-field l7 m12 col s12">
+					<div class="input-field l6 m12 col s12">
 						<input id="nome" type="text" class="validate" required="required"
 							th:field="*{nome}"> <label for="nome">seu nome</label>
 					</div>
-					<div class="input-field l4 m6 col s12">
+					<div class="input-field l3 m6 col s12">
 						<input type="text" id="telefoneMovel"
 							class="validate form-control" required="required"
 							th:field="*{telefoneCelular}"
@@ -50,38 +52,52 @@
 							onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
 						<label for="telefoneFixo">telefone</label>
 					</div>
-					<div class="input-field l3 m6 col s12">
+					<div class="input-field l2 m6 col s12">
 						<input id="cep" type="text" class="validate form-control"
 							required="required" th:field="*{cep}"
 							onkeypress="$(this).mask('00000-000')"> <label for="cep">cep</label>
 					</div>
+					
+					<!-- inserindo campos a mais de cadastro para localizar pessoa  -->
 					<div class="input-field l4 m6 col s12">
+						<input id="rua" type="text" class="validate"
+							th:field="*{rua}"> <label for="rua">rua</label>
+					</div>
+					<div class="input-field l5 m6 col s12">
+						<input id="bairro" type="text" class="validate"
+							th:field="*{bairro}"> <label for="bairro">bairro</label>
+					</div>
+					<div class="input-field l5 m6 col s12">
 						<input id="cidade" type="text" class="validate"
 							th:field="*{cidade}"> <label for="cidade">cidade</label>
 					</div>
+					<div class="input-field l1 m6 col s12">
+						<input id="uf" type="text" class="validate"
+							th:field="*{uf}"> <label for="uf">UF</label>
+					</div>
 				</div>
 				<div class="row">
-					<div class="input-field l12 m12 col s12">
+					<div class="input-field l5 m12 col s12">
 						<input id="email" type="email" class="validate"
 							required="required" th:field="*{email}"> <label
 							for="email">e-mail</label>
 					</div>
-					<div class="input-field l6 m6 col s12">
+					<div class="input-field l3 m6 col s12">
 						<input id="senha" type="password" class="validate"
 							th:field="*{senha}"> <label for="senha">senha</label>
 					</div>
-					<div class="input-field l6 m6 col s12">
-						<input id="senha" type="password" class="validate"> <label
-							for="senha">confirmar senha</label>
+					<div class="input-field l3 m6 col s12">
+						<input id="confirmarSenha" type="password" class="validate"> <label
+							for="confirmarSenha">confirmar senha</label>
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-field col l4 m6 s12">
+					<div class="input-field col l5 m6 s12">
 						<button
 							class="waves-effect waves-light btn-large btn-width-large red"
 							onclick="redirectLogin()">cancelar</button>
 					</div>
-					<div class="input-field col l7 m6 s12 offset-l1">
+					<div class="input-field col l5 m6 s12 offset-l1">
 						<button class="waves-effect waves-light btn-large btn-width-large"
 							type="submit" onclick="verfImgCampoPessoa();">confirmar</button>
 					</div>
