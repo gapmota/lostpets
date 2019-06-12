@@ -17,7 +17,18 @@ window.onload = function(){
     view.classList.add("popup-off");
   }
 
-  
+
+	if(localStorage["color_theme"] == null){
+		localStorage.setItem("color_theme", "0");
+	}else{
+		
+		if(localStorage["color_theme"] == "0"){
+			localStorage.setItem("color_theme", "1");
+		}else{
+			localStorage.setItem("color_theme", "0");
+		}
+		changeModel();
+	}
 
 }
 
@@ -167,30 +178,55 @@ document.getElementById("btn-achei-pet").onclick = function(){
 }
 
 //----------------------------------------------------------------------
-var color = 0;
+
+var row_menu = document.getElementsByClassName("nav-wrapper");
+var botoes = document.getElementsByClassName("btn-open-map");
+var card_lost = document.getElementsByClassName("card-lost");
+var desc_pet = document.getElementsByClassName("desc_pet");
+var desc_info_pet = document.getElementsByClassName("desc_info_pet");
+var cor0 = "white";
+var cor1 = "black";
+var cor0Card = "#6e83d6";
+
 function changeModel(){
-	if (color == 0){
-		document.getElementById("card-lost-color").style.backgroundColor = "red";
-		document.getElementById("desc_pet_color").style.color = "white";	
-		document.getElementById("desc_info_pet_color").style.color = "white";
-		document.getElementById("desc_pet_color1").style.color = "white";	
-		document.getElementById("desc_info_pet_color1").style.color = "white";
-		document.getElementById("desc_pet_color2").style.color = "white";	
-		document.getElementById("desc_info_pet_color2").style.color = "white";
+	if (localStorage["color_theme"] == "0"){
+		document.getElementById("icon").innerHTML = "invert_colors_on";
+		row_menu[0].style.backgroundColor = "red";
+		for (var i = 0; i < botoes.length; i++) {
+			botoes[i].style.backgroundColor = "red";
+			
+		}
+		for (var i = 0; i < card_lost.length; i++) {
+			card_lost[i].style.backgroundColor = "red";
+		}
+		
+		for (var i = 0; i < desc_pet.length; i++) {
+			desc_pet[i].style.color = cor0;
+			desc_info_pet[i].style.color = cor0;
+		}
+			
 		document.getElementById("quadros").style.backgroundColor = "black";
 		
-		color = 1;
+		localStorage.setItem("color_theme", "1");
 		
-	}else if (color == 1){
-		document.getElementById("card-lost-color").style.backgroundColor = "green";
-		document.getElementById("desc_pet_color").style.color = "black";	
-		document.getElementById("desc_info_pet_color").style.color = "black";
-		document.getElementById("desc_pet_color1").style.color = "black";	
-		document.getElementById("desc_info_pet_color1").style.color = "black";
-		document.getElementById("desc_pet_color2").style.color = "black";	
-		document.getElementById("desc_info_pet_color2").style.color = "black";
+	}else if (localStorage["color_theme"] == "1"){
+		document.getElementById("icon").innerHTML = "invert_colors_off";
+		row_menu[0].style.backgroundColor = cor0Card;
+		for (var i = 0; i < botoes.length; i++) {
+			botoes[i].style.backgroundColor = cor0Card;
+			
+		}
+		for (var i = 0; i < card_lost.length; i++) {
+			card_lost[i].style.backgroundColor = cor0Card;
+		}
+		for (var i = 0; i < desc_pet.length; i++) {
+			desc_pet[i].style.color = cor1;
+			desc_info_pet[i].style.color = cor1;
+		}
+			
 		document.getElementById("quadros").style.backgroundColor = "white";
-		color =0;
+		
+		localStorage.setItem("color_theme", "0");
 	}	
 }
 //----------------------------------------------------------------------
