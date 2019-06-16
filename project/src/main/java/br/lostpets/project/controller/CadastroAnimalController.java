@@ -65,6 +65,7 @@ public class CadastroAnimalController {
 			}
 			
 			petPerdidoService.salvarPet(petPerdido);
+			//chama o pdf aqui
 			
 		}else {
 			usuario = cadastroPessoaAnimal.getUsuario();			

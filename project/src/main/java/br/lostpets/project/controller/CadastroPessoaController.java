@@ -27,8 +27,6 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
-	private Endereco endereco = new Endereco();
-	private ViaCep viaCep = new ViaCep();
 	private Usuario usuario;
 	
 	@GetMapping("/LostPets/Cadastro")
@@ -52,10 +50,7 @@ public class CadastroPessoaController {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
 		} else {
-			String[] cepV = usuario.getCep().split("-");
-			String cep = cepV[0].concat(cepV[1]);
-			endereco = viaCep.buscarCep(cep);
-			usuario.setEndereco(endereco);
+			
 			/*
 			for (MultipartFile file : files) {
 				usuario.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));

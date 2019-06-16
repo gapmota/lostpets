@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.lostpets.project.model.AnimaisAchados;
+import br.lostpets.project.model.Endereco;
 import br.lostpets.project.model.PontosUsuario;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.repository.AnimaisAchadosRepository;
@@ -31,6 +32,12 @@ public class UsuarioService {
 	}
 	
 	public void salvarUsuario(Usuario usuario) {
+		
+		if(usuario.getCep() != null) {
+			ViaCep viaCep = new ViaCep();
+			usuario.setEndereco(viaCep.buscarCep(usuario.getCep()));	
+		}
+		
 		usuarioRepository.save(usuario);		
     }
 
