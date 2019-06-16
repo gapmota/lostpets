@@ -38,13 +38,8 @@ public class CadastroPessoaController {
 	}
 
 	@PostMapping("/LostPets/Cadastro")
-<<<<<<< HEAD
-	public ModelAndView cadastrar(/*@RequestParam(value = "files") MultipartFile[] files,*/ @Valid Usuario usuario,
-			BindingResult bindingResult) throws IOException, GeneralSecurityException {
-=======
 	public ModelAndView cadastrar(@RequestParam(value = "files") MultipartFile[] files, @Valid Usuario usuario,
 			BindingResult bindingResult) throws IOException, GeneralSecurityException  {
->>>>>>> origin/develop
 			
 		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
 

@@ -1,4 +1,4 @@
-const url_gdrive = "https://drive.google.com/open?id=";
+const url_gdrive = "https://drive.google.com/uc?id=";
 
 document.onresize = function(){
   map.getViewPort().resize();

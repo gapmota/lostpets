@@ -84,6 +84,7 @@ public class UsuarioService {
 				}
 			}
 		}
+		pontosUsuario.removeIf(usuario -> usuario.getPontos() < 1);
 		pontosUsuario.sort(Comparator.comparing(PontosUsuario::getPontos).reversed());
 		return pontosUsuario;
 	}
