@@ -1,3 +1,3 @@
-murilo;ele � estranho slah;cachorro;8472285
-tibu;ele � gatao;gato;342342
-miau;ele � branco;rato;2034920349
+murilo;ele é estranho slah;cachorro;8472285
+tibu;ele é gatao;gato;342342
+miau;ele é branco;rato;2034920349

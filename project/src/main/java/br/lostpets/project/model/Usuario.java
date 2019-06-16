@@ -32,15 +32,15 @@ public class Usuario{
 	@Column(nullable = false, name = "EMAIL") private String email;
 	@Column(nullable = true, name = "SENHA") @JsonIgnore private String senha;
 	@Column(nullable = true, name = "PATH_IMG") private String idImagem;
-	@Column(nullable = true, name = "CEP") private String cep;
-	@Column(nullable = true, name = "RUA") private String rua;
+	@Column(nullable = true, name = "CEP") @JsonIgnore private String cep;
+	@Column(nullable = true, name = "RUA") @JsonIgnore private String rua;
 	@Column(nullable = true, name = "BAIRRO") private String bairro;
-	@Column(nullable = true, name = "CIDADE") private String cidade;
+	@Column(nullable = true, name = "CIDADE") @JsonIgnore private String cidade;
 	@Column(nullable = true, name = "UF") private String uf;
-	@Column(nullable = true, name = "LATITUDE") private double latitude;
-	@Column(nullable = true, name = "LONGITUDE") private double longitude;
+	@Column(nullable = true, name = "LATITUDE") @JsonIgnore private double latitude;
+	@Column(nullable = true, name = "LONGITUDE") @JsonIgnore private double longitude;
 	@Column(nullable = false, name = "ADD_CADASTRO") private String addCadastro = dataHora();
-	@Column(nullable = true, name = "ULTIMO_ACESSO") private String ultimoAcesso;
+	@Column(nullable = true, name = "ULTIMO_ACESSO") @JsonIgnore private String ultimoAcesso;
 
 	@OneToMany(mappedBy = "usuarioAchou")
 	private List<AnimaisAchados> animaisAchados;	

@@ -21,6 +21,13 @@ public class PetPerdidosRestController {
 	PetPerdidoService petPerdidoService;
 	
 	@CrossOrigin
+	@GetMapping("/usuario/{id}")
+	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosUsuario(@PathVariable("id") int id) {
+		List<PetPerdido> listPets = petPerdidoService.encontrarTodosByUsuario(id); 		
+		return ResponseEntity.ok(listPets);
+	}
+	
+	@CrossOrigin
 	@GetMapping("/")
 	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosActive() {
 		List<PetPerdido> listPets = petPerdidoService.encontrarPetsAtivos(); 		

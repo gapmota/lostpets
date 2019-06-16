@@ -1,0 +1,47 @@
+<!DOCTYPE html5>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta>
+	<title>lostpet | perfil</title>
+	<link rel="stylesheet" type="text/css" href="../css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="../css/custom.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body style="overflow-x: hidden;">
+	<div class="col dh l12 m12 s12">
+		<a href="/Dashboard" class="home"></a>
+		<div class="row">
+			<div class="col l12 m12 s12 header-perfil blue">
+				<div class="col l3 m3 s3">
+					<img class="foto-perfil" id="foto_usuario_perfil" scr="#">
+				</div>
+				<div class="col l9 m9 s9 size-infos">
+					<h5 id="nome_usuario"></h5>
+					<h5 id="qnt_pets"></h5>
+					<h5 id="regiao_usuario"></h5>
+					<h5 id="contato_usuario"></h5>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col dh l12 m12 s12">
+		<div class="row">
+			<h5 id="text_pet_usuario" style="padding: 20px;"></h5>
+			
+			<div id="quadros" style="padding: 20px;">
+						
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script src="../js/usuarioPerfil.js"></script>
+</body>
+
+</html>
