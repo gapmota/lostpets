@@ -27,8 +27,6 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
-	private Endereco endereco = new Endereco();
-	private ViaCep viaCep = new ViaCep();
 	private Usuario usuario;
 	
 	@GetMapping("/LostPets/Cadastro")
@@ -40,8 +38,13 @@ public class CadastroPessoaController {
 	}
 
 	@PostMapping("/LostPets/Cadastro")
+<<<<<<< HEAD
+	public ModelAndView cadastrar(/*@RequestParam(value = "files") MultipartFile[] files,*/ @Valid Usuario usuario,
+			BindingResult bindingResult) throws IOException, GeneralSecurityException {
+=======
 	public ModelAndView cadastrar(@RequestParam(value = "files") MultipartFile[] files, @Valid Usuario usuario,
 			BindingResult bindingResult) throws IOException, GeneralSecurityException  {
+>>>>>>> origin/develop
 			
 		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
 
@@ -52,16 +55,13 @@ public class CadastroPessoaController {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
 		} else {
-			String[] cepV = usuario.getCep().split("-");
-			String cep = cepV[0].concat(cepV[1]);
-			endereco = viaCep.buscarCep(cep);
-			usuario.setEndereco(endereco);			
 			
+			/*
 			for (MultipartFile file : files) {
 				if(!file.isEmpty())
 					usuario.setIdImagem(GoogleDriveConfig.uploadFile(file));
 			}
-
+			*/
 			usuarioService.salvarUsuario(usuario);
       
 			modelAndView = new ModelAndView("redirect:/LostPets");
