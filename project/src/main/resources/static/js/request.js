@@ -33,6 +33,7 @@ function requestPontosUsuario(){
     data: null,
     success: function (response) {
       let pos = 0;
+      $("#ranking-add").empty();
       response.forEach(ponto => {
         addRanking(ponto, ++pos);
       });
