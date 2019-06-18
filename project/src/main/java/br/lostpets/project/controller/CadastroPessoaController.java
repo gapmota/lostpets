@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.lostpets.project.model.Endereco;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
-import br.lostpets.project.service.ViaCep;
-import br.lostpets.project.utils.GoogleDriveConfig;
 
 @Controller
 public class CadastroPessoaController {
@@ -38,13 +35,8 @@ public class CadastroPessoaController {
 	}
 
 	@PostMapping("/LostPets/Cadastro")
-<<<<<<< HEAD
-	public ModelAndView cadastrar(/*@RequestParam(value = "files") MultipartFile[] files,*/ @Valid Usuario usuario,
-			BindingResult bindingResult) throws IOException, GeneralSecurityException {
-=======
 	public ModelAndView cadastrar(@RequestParam(value = "files") MultipartFile[] files, @Valid Usuario usuario,
 			BindingResult bindingResult) throws IOException, GeneralSecurityException  {
->>>>>>> origin/develop
 			
 		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
 
@@ -65,7 +57,7 @@ public class CadastroPessoaController {
 			usuarioService.salvarUsuario(usuario);
       
 			modelAndView = new ModelAndView("redirect:/LostPets");
-			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
+			//modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
 		}
 		return modelAndView;
 	}

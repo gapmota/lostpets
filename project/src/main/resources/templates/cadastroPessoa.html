@@ -54,41 +54,39 @@
 					</div>
 					<div class="input-field l2 m6 col s12">
 						<input id="cep" type="text" class="validate form-control"
-							required="required" th:field="*{cep}"
-							onkeypress="$(this).mask('00000-000')"> <label for="cep">cep</label>
+							required="required" th:field="*{cep}" onkeypress="$(this).mask('00000-000')" 
+							onblur="pesquisacep(this.value);"> 
+							<label for="cep">cep</label>
 					</div>
-					
-					<!-- inserindo campos a mais de cadastro para localizar pessoa  -->
 					<div class="input-field l4 m6 col s12">
-						<input id="rua" type="text" class="validate"
-							th:field="*{rua}"> <label for="rua">rua</label>
+						<input id="rua" type="text" class="validate" th:field="*{rua}"> 
+						<label for="rua">rua</label>
 					</div>
 					<div class="input-field l5 m6 col s12">
-						<input id="bairro" type="text" class="validate"
-							th:field="*{bairro}"> <label for="bairro">bairro</label>
+						<input id="bairro" type="text" class="validate" th:field="*{bairro}"> 
+						<label for="bairro">bairro</label>
 					</div>
 					<div class="input-field l5 m6 col s12">
-						<input id="cidade" type="text" class="validate"
-							th:field="*{cidade}"> <label for="cidade">cidade</label>
+						<input id="cidade" type="text" class="validate" th:field="*{cidade}"> 
+						<label for="cidade">cidade</label>
 					</div>
 					<div class="input-field l1 m6 col s12">
-						<input id="uf" type="text" class="validate"
-							th:field="*{uf}"> <label for="uf">UF</label>
+						<input id="uf" type="text" class="validate" th:field="*{uf}" maxlength="2"> 
+						<label for="uf">UF</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field l5 m12 col s12">
-						<input id="email" type="email" class="validate"
-							required="required" th:field="*{email}"> <label
-							for="email">e-mail</label>
+						<input id="email" type="email" class="validate" required="required" th:field="*{email}"> 
+						<label for="email">e-mail</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input id="senha" type="password" class="validate"
-							th:field="*{senha}"> <label for="senha">senha</label>
+						<input id="senha" type="password" class="validate" th:field="*{senha}"> 
+						<label for="senha">senha</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input id="confirmarSenha" type="password" class="validate"> <label
-							for="confirmarSenha">confirmar senha</label>
+						<input id="confirmarSenha" type="password" class="validate"> 
+						<label for="confirmarSenha">confirmar senha</label>
 					</div>
 				</div>
 				<div class="row">
@@ -104,17 +102,11 @@
 				</div>
 			</form>
 			<span th:utext="${mensagem}"></span>
-
 		</div>
 	</div>
-
-	<script type="text/javascript" src="../js/materialize.js"></script>
-	<script type="text/javascript" src="../js/login.js"></script>
 </body>
 </html>
-<script src='../js/UploadImage.js'></script>
-<script>
-function redirectLogin(){
-	window.location.href = "http://localhost:9600/LostPets";
-}
-</script>
+
+	<script type="text/javascript" src="../js/cadastroPessoa.js"></script>
+	<script type="text/javascript" src="../js/materialize.js"></script>
+	<script type="text/javascript" src='../js/UploadImage.js'></script>

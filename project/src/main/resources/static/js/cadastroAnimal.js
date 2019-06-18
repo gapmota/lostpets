@@ -1,39 +1,25 @@
-function redirectLogin(){
-	window.location.href = "http://localhost:9600/LostPets";
-}
-
 function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.
-            document.getElementById('rua').focus();
             document.getElementById('rua').value=("");
-            document.getElementById('bairro').focus();
             document.getElementById('bairro').value=("");
-            document.getElementById('cidade').focus();
             document.getElementById('cidade').value=("");
-            document.getElementById('uf').focus();
             document.getElementById('uf').value=("");
-
-            document.getElementById('cep').focus();
+            document.getElementById('ibge').value=("");
     }
 
     function meu_callback(conteudo) {
         if (!("erro" in conteudo)) {
             //Atualiza os campos com os valores.
-            document.getElementById('rua').focus();
             document.getElementById('rua').value=(conteudo.logradouro);
-            document.getElementById('bairro').focus();
             document.getElementById('bairro').value=(conteudo.bairro);
-            document.getElementById('cidade').focus();
             document.getElementById('cidade').value=(conteudo.localidade);
-            document.getElementById('uf').focus();
             document.getElementById('uf').value=(conteudo.uf);
-            
-            document.getElementById('email').focus();
+            document.getElementById('ibge').value=(conteudo.ibge);
         } //end if.
         else {
             //CEP não Encontrado.
             limpa_formulário_cep();
-            document.getElementById('cep').classList.add('invalid');
+            alert("CEP não encontrado.");
         }
     }
         
@@ -51,7 +37,12 @@ function limpa_formulário_cep() {
             //Valida o formato do CEP.
             if(validacep.test(cep)) {
 
-                document.getElementById('cep').classList.remove('invalid');
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+                document.getElementById('ibge').value="...";
 
                 //Cria um elemento javascript.
                 var script = document.createElement('script');
@@ -66,7 +57,7 @@ function limpa_formulário_cep() {
             else {
                 //cep é inválido.
                 limpa_formulário_cep();
-                document.getElementById('cep').classList.add('invalid');
+                alert("Formato de CEP inválido.");
             }
         } //end if.
         else {
@@ -74,7 +65,3 @@ function limpa_formulário_cep() {
             limpa_formulário_cep();
         }
     };
-    
-    
-    // inserir apos validação de dados
-    // alert("CEP não encontrado.");

@@ -1,14 +1,6 @@
 #FileLock
-<<<<<<< HEAD
-#Sun Jun 16 16:32:47 BRT 2019
-hostName=Mateus-PC
-id=16b61c704858224b8ce1a49442cf9513a33c8a647d1
+#Mon Jun 17 21:10:54 BRT 2019
+hostName=HSL208
+id=16b67ec16ebdc224763c9dd683b74b1f3b7325569c9
 method=file
-server=192.168.56.1\:49867
-=======
-#Fri Jun 07 11:59:28 BRT 2019
-hostName=NBTITMA098686.tivit.corp
-id=16b3273a60f766eff8bff465ace29639d3817710d99
-method=file
-server=169.254.14.214\:57566
->>>>>>> origin/develop
+server=10.3.0.34\:62357
