@@ -18,18 +18,7 @@ window.onload = function(){
   }
 
 
-	if(localStorage["color_theme"] == null){
-		localStorage.setItem("color_theme", "0");
-	}else{
-		
-		if(localStorage["color_theme"] == "0"){
-			localStorage.setItem("color_theme", "1");
-		}else{
-			localStorage.setItem("color_theme", "0");
-		}
-		changeModel();
-	}
-
+	
 }
 
 window.addEventListener('resize', function () {
@@ -184,47 +173,53 @@ var botoes = document.getElementsByClassName("btn-open-map");
 var card_lost = document.getElementsByClassName("card-lost");
 var desc_pet = document.getElementsByClassName("desc_pet");
 var desc_info_pet = document.getElementsByClassName("desc_info_pet");
-var cor0 = "white";
-var cor1 = "black";
-var cor0Card = "#6e83d6";
+
+var cor0 = "#0b0f12";
+var cor0Card = "#5C72C8";
+var cor0menu = "#3E56B3";
+
+var cor1 = "#EDF4F6";
+var cor1Card = "#181e23";
+var cor1menu = "#111518";
 
 function changeModel(){
 	if (localStorage["color_theme"] == "0"){
 		document.getElementById("icon").innerHTML = "invert_colors_on";
-		row_menu[0].style.backgroundColor = "red";
+		row_menu[0].style.backgroundColor = cor1menu;
 		for (var i = 0; i < botoes.length; i++) {
-			botoes[i].style.backgroundColor = "red";
+			botoes[i].style.backgroundColor = cor1menu;
 			
 		}
 		for (var i = 0; i < card_lost.length; i++) {
-			card_lost[i].style.backgroundColor = "red";
+			card_lost[i].style.backgroundColor = cor1Card;
 		}
 		
 		for (var i = 0; i < desc_pet.length; i++) {
-			desc_pet[i].style.color = cor0;
-			desc_info_pet[i].style.color = cor0;
+			desc_pet[i].style.color = cor1;
+			desc_info_pet[i].style.color = cor1;
 		}
 			
-		document.getElementById("quadros").style.backgroundColor = "black";
+		document.getElementById("quadros").style.backgroundColor = "#484848";
 		
 		localStorage.setItem("color_theme", "1");
 		
 	}else if (localStorage["color_theme"] == "1"){
 		document.getElementById("icon").innerHTML = "invert_colors_off";
-		row_menu[0].style.backgroundColor = cor0Card;
+		row_menu[0].style.backgroundColor = cor0menu;
+		
 		for (var i = 0; i < botoes.length; i++) {
-			botoes[i].style.backgroundColor = cor0Card;
+			botoes[i].style.backgroundColor = cor0menu;
 			
 		}
 		for (var i = 0; i < card_lost.length; i++) {
 			card_lost[i].style.backgroundColor = cor0Card;
 		}
 		for (var i = 0; i < desc_pet.length; i++) {
-			desc_pet[i].style.color = cor1;
-			desc_info_pet[i].style.color = cor1;
+			desc_pet[i].style.color = cor0;
+			desc_info_pet[i].style.color = cor0;
 		}
 			
-		document.getElementById("quadros").style.backgroundColor = "white";
+		document.getElementById("quadros").style.backgroundColor = "d7dfe7";
 		
 		localStorage.setItem("color_theme", "0");
 	}	
