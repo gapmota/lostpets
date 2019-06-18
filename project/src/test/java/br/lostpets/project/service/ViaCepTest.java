@@ -8,7 +8,7 @@ public class ViaCepTest {
 	
 	@Test
 	public void viaCep() {
-		System.out.println(viaCep.buscarCep("08411570"));
+		System.out.println(viaCep.getLatitudeLongitude("08411-570"));
 	}
 	
 }

@@ -37,27 +37,26 @@ public class CadastroPessoaController {
 	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@RequestParam(value = "files") MultipartFile[] files, @Valid Usuario usuario,
 			BindingResult bindingResult) throws IOException, GeneralSecurityException  {
-			
-		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
 
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("cadastroPessoa");
 			
-		} else if (existe) {
+		} else if (usuarioService.verificarEmail(usuario.getEmail())) {
+			
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
 		} else {
-			
+			usuarioService.salvarUsuario(usuario);
+      
+			modelAndView = new ModelAndView("redirect:/LostPets");
+			//modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
+
 			/*
 			for (MultipartFile file : files) {
 				if(!file.isEmpty())
 					usuario.setIdImagem(GoogleDriveConfig.uploadFile(file));
 			}
 			*/
-			usuarioService.salvarUsuario(usuario);
-      
-			modelAndView = new ModelAndView("redirect:/LostPets");
-			//modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
 		}
 		return modelAndView;
 	}

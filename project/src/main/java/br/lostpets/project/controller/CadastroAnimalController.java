@@ -32,10 +32,10 @@ public class CadastroAnimalController {
 	private Usuario usuario;
 	private PetPerdido petPerdido;
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal = new CadastroPessoaAnimalComponent();
-	
+
 	private ViaCep viaCep = new ViaCep();
 	private Endereco endereco = new Endereco();
-	
+
 	@GetMapping("/LostPets/Cadastro-Animal-Perdido")
 	public ModelAndView PaginaCadastroAnimalPerdido() {
 		modelAndView = new ModelAndView();
@@ -43,54 +43,42 @@ public class CadastroAnimalController {
 		modelAndView.setViewName("cadastroAnimalPerdido");
 		return modelAndView;
 	}
-	
+
 	@PostMapping("/LostPets/Cadastro-Animal-Perdido")
-	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files, CadastroPessoaAnimalComponent cadastroPessoaAnimal) throws IOException, GeneralSecurityException {
+	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files,
+			CadastroPessoaAnimalComponent cadastroPessoaAnimal) throws IOException, GeneralSecurityException {
+
+		usuario = cadastroPessoaAnimal.getUsuario();
+		petPerdido = cadastroPessoaAnimal.getPetPerdido();
+
+		usuario = usuarioService.verificarEmailUsuario(usuario.getEmail());
 		
-		String email = cadastroPessoaAnimal.getUsuario().getEmail();
-		usuario = usuarioService.verificarEmailUsuario(email);
-		
-		if(usuario != null) {
-			petPerdido = cadastroPessoaAnimal.getPetPerdido();
-			
-			endereco = viaCep.buscarCep(petPerdido.getCep());
-			
-			petPerdido.setStatus("P");
-			petPerdido.setUsuario(usuario);
-			petPerdido.setLatitude(endereco.getLatitude());
-			petPerdido.setLongitude(endereco.getLongitude());
-			
-			for (MultipartFile file : files) {
-				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
-			}
-			
+		endereco = viaCep.getLatitudeLongitude(petPerdido.getCep());
+
+		petPerdido.setStatus("P");
+		petPerdido.setUsuario(usuario);
+		petPerdido.setLatitude(endereco.getLatitude());
+		petPerdido.setLongitude(endereco.getLongitude());
+
+		if (usuario != null) {
 			petPerdidoService.salvarPet(petPerdido);
-			//chama o pdf aqui
-			
-		}else {
-			usuario = cadastroPessoaAnimal.getUsuario();			
-			petPerdido = cadastroPessoaAnimal.getPetPerdido();
-			
-			endereco = viaCep.buscarCep(petPerdido.getCep());
-			
-			petPerdido.setStatus("P");
-			petPerdido.setUsuario(usuario);
-			petPerdido.setLatitude(endereco.getLatitude());
-			petPerdido.setLongitude(endereco.getLongitude());
-			
+			// chama o pdf aqui
+
 			for (MultipartFile file : files) {
 				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
 			}
-			
+
+		} else {
 			usuarioService.salvarUsuario(usuario);
 			petPerdidoService.salvarPet(petPerdido);
+
+			for (MultipartFile file : files) {
+				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
+			}
+
 		}
-		
+
 		return new ModelAndView("redirect:/LostPets/Cadastro-Animal-Perdido");
 	}
-	
-	
-	
-	
-	
+
 }
