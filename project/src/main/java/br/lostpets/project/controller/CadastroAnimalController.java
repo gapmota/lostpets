@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.components.CadastroPessoaAnimalComponent;
 import br.lostpets.project.model.Endereco;
+import br.lostpets.project.model.InfoPet;
 import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.PetPerdidoService;
@@ -77,7 +78,10 @@ public class CadastroAnimalController {
 			}
 
 		}
-
+		
+		
+		
+		
 		return new ModelAndView("redirect:/LostPets/Cadastro-Animal-Perdido");
 	}
 
