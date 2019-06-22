@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import br.lostpets.findpet.service.ServiceGeral;
 
+
 @Entity
 @Table(name="PETS_PERDIDO")
 public class PetPerdido {
@@ -31,11 +32,16 @@ public class PetPerdido {
 	@Column(name="DATA_PERDIDO") private String dataPerdido;
 	@Column(name="ATIVO") private String status;
 	@Column(name="DESCRICAO") private String descricao;
+	@Column(name="DESCRICAO_ANIMAL") private String descricaoAnimal;
 	@Column(name="TIPO_ANIMAL") private String tipoAnimal;
 	@Column(name="PATH_IMG")private String pathImg;
 	@Column(name="CEP")private String cep;
-	@Column(name="LATITUDE") private String latitude;
-	@Column(name="LONGITUDE") private String longitude;
+	@Column(name = "RUA") private String rua;
+	@Column(name = "BAIRRO") private String bairro;
+	@Column(name = "CIDADE") private String cidade;
+	@Column(name = "UF") private String uf;
+	@Column(name="LATITUDE") private double latitude;
+	@Column(name="LONGITUDE") private double longitude;
 	@Column(name="ADD_DATA") private String addData = dataHora();
 	
 	@OneToMany(mappedBy = "petPerdido")
@@ -48,7 +54,7 @@ public class PetPerdido {
 	public PetPerdido() {}
 
 	public PetPerdido(Usuario usuario, String nomeAnimal, String dataPerdido, String descricao,
-			String tipoAnimal, String pathImg, String cep, String latitude, String longitude) {
+			String tipoAnimal, String pathImg, String cep, double latitude, double longitude) {
 		this.usuario = usuario;
 		this.nomeAnimal = nomeAnimal;
 		this.dataPerdido = dataPerdido;
@@ -59,6 +65,15 @@ public class PetPerdido {
 		this.cep = cep;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.addData = dataHora();
+	}
+
+	public PetPerdido(Usuario usuario, PetPerdido petPerdido) {
+		this.usuario = usuario;
+		this.nomeAnimal = petPerdido.getNomeAnimal();
+		this.dataPerdido = petPerdido.getDataPerdido();
+		this.status = "P";
+		this.cep = petPerdido.getCep();
 		this.addData = dataHora();
 	}
 
@@ -126,19 +141,19 @@ public class PetPerdido {
 		this.cep = cep;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+	public void setLatitude(double d) {
+		this.latitude = d;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
@@ -149,13 +164,60 @@ public class PetPerdido {
 	public void setAddData(String addData) {
 		this.addData = addData;
 	}
+	
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getDescricaoAnimal() {
+		return descricaoAnimal;
+	}
+
+	public void setDescricaoAnimal(String descricaoAnimal) {
+		this.descricaoAnimal = descricaoAnimal;
+	}
 
 	@Override
 	public String toString() {
 		return "PetPerdido [idAnimal=" + idAnimal + ", usuario=" + usuario + ", nomeAnimal=" + nomeAnimal
-				+ ", dataPerdido=" + dataPerdido + ", status=" + status + ", descricao=" + descricao + ", tipoAnimal="
-				+ tipoAnimal + ", pathImg=" + pathImg + ", cep=" + cep + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", addData=" + addData + "]";
+				+ ", dataPerdido=" + dataPerdido + ", status=" + status + ", descricao=" + descricao
+				+ ", descricaoAnimal=" + descricaoAnimal + ", tipoAnimal=" + tipoAnimal + ", pathImg=" + pathImg
+				+ ", cep=" + cep + ", rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", uf=" + uf
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", addData=" + addData + ", animaisAchados="
+				+ animaisAchados + "]";
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+		
 	}
 	
 
