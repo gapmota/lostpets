@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.lostpets.project.model.Endereco;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
-import br.lostpets.project.service.ViaCep;
-import br.lostpets.project.utils.GoogleDriveConfig;
 
 @Controller
 public class CadastroPessoaController {
@@ -40,27 +37,36 @@ public class CadastroPessoaController {
 	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@RequestParam(value = "files") MultipartFile[] files, @Valid Usuario usuario,
 			BindingResult bindingResult) throws IOException, GeneralSecurityException  {
-			
-		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
 
+		Usuario usuario2 = usuarioService.verificarEmailUsuario(usuario.getEmail());
+		
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("cadastroPessoa");
-			
-		} else if (existe) {
+			modelAndView.setViewName("cadastroPessoa");			
+		} 
+		else if (usuarioService.verificarEmail(usuario.getEmail())) {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
-		} else {
-			
+		} 
+		else {
+			if(usuario2 == null) {
+				usuarioService.salvarUsuario(usuario);      
+				modelAndView = new ModelAndView("redirect:/LostPets");
+			}
+			else {
+				usuario2.setBairro(usuario.getBairro());
+				usuario2.setCep(usuario.getCep());
+				usuario2.setCidade(usuario.getCidade());
+				usuario2.setRua(usuario.getRua());
+				usuario2.setUf(usuario.getSenha());
+				usuario2.setSenha(usuario.getSenha());
+				usuarioService.salvarUsuario(usuario2);
+			}
 			/*
 			for (MultipartFile file : files) {
 				if(!file.isEmpty())
 					usuario.setIdImagem(GoogleDriveConfig.uploadFile(file));
 			}
 			*/
-			usuarioService.salvarUsuario(usuario);
-      
-			modelAndView = new ModelAndView("redirect:/LostPets");
-			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
 		}
 		return modelAndView;
 	}

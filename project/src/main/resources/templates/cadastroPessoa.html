@@ -11,10 +11,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"
 	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-	crossorigin="anonymous"></script>
-	
+	crossorigin="anonymous"></script>	
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-<script	type="text/javascript" src="../cadastroPessoa.js"></script>
+
 </head>
 
 <body style="background-image: url(http://www.blogangeloni.com.br/wp-content/uploads/2013/09/caes-2.jpg); background-repeat: no-repeat; background-size: cover;">
@@ -22,7 +21,7 @@
 		<div class="col l10 m10 s12 offset-l2 offset-m2">
 
 			<form class="col l10 m10 s12" th:action="@{/LostPets/Cadastro}"
-				th:object="${usuario}" method="post" enctype="multipart/form-data"
+				th:object="${usuario}" method="post" enctype="multipart/form-data" onsubmit="verificarPreenchimento()"
 				style="background-color: rgb(255, 255, 255, 0.85); border-radius: 10px; padding: 0% 0% 3% 5%;">
 				<h4 class="center-align">registrar-se</h4>				
 				<!-- onsubmit="verificarCampos(this)"  -->
@@ -40,55 +39,49 @@
 							th:field="*{nome}"> <label for="nome">seu nome</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input type="text" id="telefoneMovel"
-							class="validate form-control" required="required"
-							th:field="*{telefoneCelular}"
-							onkeypress="$(this).mask('(00) 00000-0009')"> <label
-							for="telefoneMovel">celular</label>
+						<input type="text" id="telefoneMovel" class="validate form-control" required="required"
+							th:field="*{telefoneCelular}" onkeypress="$(this).mask('(00) 00000-0009')"> 
+						<label for="telefoneMovel">celular</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input type="text" id="telefoneFixo" class="validate form-control"
-							required="required" th:field="*{telefoneFixo}"
-							onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
+						<input type="text" id="telefoneFixo" class="validate form-control" required="required" 
+							th:field="*{telefoneFixo}" onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
 						<label for="telefoneFixo">telefone</label>
 					</div>
 					<div class="input-field l2 m6 col s12">
-						<input id="cep" type="text" class="validate form-control"
-							required="required" th:field="*{cep}"
-							onkeypress="$(this).mask('00000-000')"> <label for="cep">cep</label>
+						<input id="cep" type="text" class="validate form-control" required="required" 
+							th:field="*{cep}" onkeypress="$(this).mask('00000-000')" onblur="pesquisacep(this.value);"> 
+							<label for="cep">cep</label>
 					</div>
-					
-					<!-- inserindo campos a mais de cadastro para localizar pessoa  -->
 					<div class="input-field l4 m6 col s12">
-						<input id="rua" type="text" class="validate"
-							th:field="*{rua}"> <label for="rua">rua</label>
+						<input id="rua" type="text" class="validate" th:field="*{rua}"> 
+						<label for="rua">rua</label>
 					</div>
 					<div class="input-field l5 m6 col s12">
-						<input id="bairro" type="text" class="validate"
-							th:field="*{bairro}"> <label for="bairro">bairro</label>
+						<input id="bairro" type="text" class="validate" th:field="*{bairro}"> 
+						<label for="bairro">bairro</label>
 					</div>
-					<div class="input-field l5 m6 col s12">
-						<input id="cidade" type="text" class="validate"
-							th:field="*{cidade}"> <label for="cidade">cidade</label>
+					<div class="input-field l5 m4 col s12">
+						<input id="cidade" type="text" class="validate" th:field="*{cidade}"> 
+						<label for="cidade">cidade</label>
 					</div>
-					<div class="input-field l1 m6 col s12">
-						<input id="uf" type="text" class="validate"
-							th:field="*{uf}"> <label for="uf">UF</label>
+					<div class="input-field l1 m2 col s12">
+						<input id="uf" type="text" class="validate" th:field="*{uf}" maxlength="2"> 
+						<label for="uf">UF</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field l5 m12 col s12">
-						<input id="email" type="email" class="validate"
-							required="required" th:field="*{email}"> <label
-							for="email">e-mail</label>
+						<input id="email" type="email" class="validate" required="required" th:field="*{email}"> 
+						<label for="email">e-mail</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input id="senha" type="password" class="validate"
-							th:field="*{senha}"> <label for="senha">senha</label>
+						<input id="senha" type="password" class="validate" required="required" th:field="*{senha}"> 
+						<label for="senha">senha</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input id="confirmarSenha" type="password" class="validate"> <label
-							for="confirmarSenha">confirmar senha</label>
+						<input id="confirmarSenha" type="password" class="validate" required="required"> 
+						<label for="confirmarSenha">confirmar senha</label>
 					</div>
 				</div>
 				<div class="row">
@@ -104,17 +97,11 @@
 				</div>
 			</form>
 			<span th:utext="${mensagem}"></span>
-
 		</div>
 	</div>
-
-	<script type="text/javascript" src="../js/materialize.js"></script>
-	<script type="text/javascript" src="../js/login.js"></script>
 </body>
 </html>
-<script src='../js/UploadImage.js'></script>
-<script>
-function redirectLogin(){
-	window.location.href = "http://localhost:9600/LostPets";
-}
-</script>
+	<script type="text/javascript" src="../js/cadastroPessoa.js"></script>
+	<script type="text/javascript" src="../js/viaCep.js"></script>
+	<script type="text/javascript" src="../js/materialize.js"></script>
+	<script type="text/javascript" src='../js/UploadImage.js'></script>

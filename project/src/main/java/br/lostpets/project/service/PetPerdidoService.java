@@ -34,6 +34,10 @@ public class PetPerdidoService {
 		return petPerdidoRepository.findAll();
 	}
 
+	public List<PetPerdido> encontrarPetsAtivosNNull() {
+		return petPerdidoRepository.getAtivosNNull();
+	}
+	
 	public List<PetPerdido> encontrarTodosByUsuario(int id) {
 		Usuario usuario = usuarioService.encontrar(id);
 		if(usuario == null) { return null; }

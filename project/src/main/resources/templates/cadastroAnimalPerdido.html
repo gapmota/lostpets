@@ -2,109 +2,150 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta>
-    <title>lostpet | perdi meu pet</title>
-    <link rel="stylesheet" type="text/css" href="../css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../css/custom.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js" 
-    	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js" 
-    	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<meta charset="utf-8">
+<meta>
+<title>lostpet | perdi meu pet</title>
+<link rel="stylesheet" type="text/css" href="../css/materialize.css">
+<link rel="stylesheet" type="text/css" href="../css/custom.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+	integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
 
-<body style="background-image: url(http://www.blogangeloni.com.br/wp-content/uploads/2013/09/caes-2.jpg); background-repeat: no-repeat; background-size: cover;">
-    <div>
-        <div class="row" style="padding: 1.6rem;justify-content: center;display: flex;">
-            <!-- content -->
-            <div class="col l10 m10 s12" style="margin-left: 0px;">
-                <form class="col l12 m12 s12" th:action="@{/LostPets/Cadastro-Animal-Perdido}" th:object="${pet}" method="Post" enctype="multipart/form-data" style="background-color: rgb(255, 255, 255, 0.85); border-radius: 10px; padding: 20px;"> <!--  -->
-                    <div class="col l12 m12 s12">
-                        <h4 class="center-align">localizar meu pet</h4>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col l6 m6 s12">
-                            <input id="nome" type="text" class="validate" required="required" th:field="*{usuario.nome}">
-                            <label for="nome">seu nome</label>
-                        </div>
-                        <div class="input-field col l6 m6 s12">
-                            <input id="email" type="email" class="validate" required="required" th:field="*{usuario.email}">
-                            <label for="email">e-mail</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col l6 m6 s12">
-                            <input id="telefoneMovel" type="tel" class="validate" required="required" 
-                            	onkeypress="$(this).mask('(00) 00000-0009')" th:field="*{usuario.telefoneCelular}">
-                            <label for="telefoneMovel">celular</label>
-                        </div>
-                        <div class="input-field col l6 m6 s12">
-                            <input id="telefoneFixo" type="tel" class="validate" required="required" 
-                            	onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14" th:field="*{usuario.telefoneFixo}">
-                            <label for="telefoneFixo">telefone</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col l4 m4 s12">
-                                <input id="file_upload" type="file" name="files" required="required" onchange="readURL(this);" 
-                                	accept="image/gif, image/jpeg, image/png" style="display:none;">
-								<img id="img-person" class="foto-register"  src="../img/pic.png" alt="your image" />
-                            </div>
-                            
-                            <div class="input-field col l8 m8 s12" style="height: 222px">
-                                <textarea id="textarea1" required="required" th:field="*{petPerdido.descricao}"></textarea>
-                                <label for="textarea1" class="alter-textarea">Descreva como ocorreu o
-                                    desaparecimento</label>
-                            </div>
-                        </div>
-                    <br>
-                    <div class="row">
+<body
+	style="background-image: url(http://revistaplanetapet.com.br/uploads/conteudo/conteudo/2017/06/jINMt/castracao-um-ato-de-amor-com-o-pet-20160531100018-FjwEro_600x450.jpg); background-repeat: no-repeat; background-size: cover;">
+	<div class="row" style="margin: 1.6rem 0rem 1.5rem 0rem;">
+		<div class="col l10 m10 s12 offset-l2 offset-m2">
+			<!-- content -->
 
-                        <div class="input-field col l6 m6 s12">
-                            <select th:field="*{petPerdido.tipoAnimal}">
-                                <option value="-1" selected>selecione o tipo de pet</option>
-                                <option value="ave">Ave</option>
-                                <option value="mamifero">Mamífero</option>
-                                <option value="peixe">Peixe</option>
-                                <option value="reptel">Réptel</option>                                
-                            </select>
-                        </div>
-                        <div class="input-field col l6 m6 s12">
-                            <input id="nomeAnimal" type="text" class="validate" required="required" th:field="*{petPerdido.nomeAnimal}">
-                            <label for="nomeAnimal">nome do animal</label>
-                        </div>
-                        <div class="input-field col l6 m6 s12">
-                            <input id="dataPerdido" type="date" class="validate" required="required" th:field="*{petPerdido.dataPerdido}">
-                            <label for="dataPerdido">data do desaparecimento</label>
-                        </div>
-                        <div class="input-field col l6 m6 s12">
-                            <input id="cepAnimal" type="text" class="validate" required="required" 
-                            	onkeypress="$(this).mask('00000-000')" th:field="*{petPerdido.cep}">
-                            <label for="cepAnimal">cep do desaparecimento</label>
-                        </div>
-                        <div class="input-field col l4 m6 s12">
-                            <button class="waves-effect waves-light btn-large btn-width-large red" onclick="redirectLogin()">cancelar</button>
-                        </div>
-                        <div class="input-field col l7 m6 s12 offset-l1">
-                            <button class="waves-effect waves-light btn-large btn-width-large green" onclick="verfImgCampoPet();">confirmar </button>
-                        </div>
-                    </div>
+			<form class="col l10 m10 s12"
+				th:action="@{/LostPets/Cadastro-Animal-Perdido}" th:object="${pet}"
+				method="Post" enctype="multipart/form-data"
+				style="background-color: rgb(255, 255, 255, 0.85); border-radius: 10px; padding: 0% 5% 3% 5%;">
+				<!--  -->
+				<div class="col l12 m12 s12">
+					<h4 class="center-align">localizar meu pet</h4>
+				</div>
+				<div class="row">
+					<div class="input-field col l6 m6 s12">
+						<input id="nome" type="text" class="validate" required="required"
+							th:field="*{usuario.nome}"> <label for="nome">seu
+							nome</label>
+					</div>
+					<div class="input-field col l6 m6 s12">
+						<input id="email" type="email" class="validate"
+							required="required" th:field="*{usuario.email}"> <label
+							for="email">e-mail</label>
+					</div>
+				</div>
+				<div class="row" style="margin-bottom: 1rem;">
+					<div class="input-field col l6 m6 s12">
+						<input id="telefoneMovel" type="tel" class="validate"
+							required="required" onkeypress="$(this).mask('(00) 00000-0009')"
+							th:field="*{usuario.telefoneCelular}"> <label
+							for="telefoneMovel">celular</label>
+					</div>
+					<div class="input-field col l6 m6 s12">
+						<input id="telefoneFixo" type="tel" class="validate"
+							required="required" onkeypress="$(this).mask('(00) 0000-0000')"
+							maxlength="14" th:field="*{usuario.telefoneFixo}"> <label
+							for="telefoneFixo">telefone</label>
+					</div>
+				</div>
+				<div class="row" style="padding-right: 12px;">
+					<div class="col l6 m6 s12" style="text-align: center;">
+						<input id="file_upload" type="file" name="files"
+							required="required" onchange="readURL(this);"
+							accept="image/gif, image/jpeg, image/png" style="display: none;">
+						<img id="img-person" class="foto-register responsive-img"
+							src="../img/pic.png" alt="your image"
+							style="min-width: 216px !important" />
+					</div>
 
-                </form>
-			</div>
-            </div>
-        </div>
-        
-    <script type="text/javascript" src="../js/materialize.js"></script>
-    <script type="text/javascript" src="../js/login.js"></script>
+					<div class="input-field col l6 m6 s12" style="height: 200px">
+						<textarea id="textarea1" required="required"
+							th:field="*{petPerdido.descricao}" style="padding: 5%;">
+                                	</textarea>
+						<label for="textarea1" class="alter-textarea"
+							style="margin-left: 5%;"> Detalhe o desaparecimento</label>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="input-field col l6 m6 s12">
+						<input id="nomeAnimal" type="text" class="validate"
+							required="required" th:field="*{petPerdido.nomeAnimal}">
+						<label for="nomeAnimal">nome do animal</label>
+					</div>
+					<div class="input-field col l6 m6 s12">
+						<select th:field="*{petPerdido.tipoAnimal}">
+							<option value="-1" selected>selecione o tipo de pet</option>
+							<option value="ave">Ave</option>
+							<option value="mamifero">Mamífero</option>
+							<option value="peixe">Peixe</option>
+							<option value="reptel">Réptel</option>
+						</select>
+					</div>
+					<div class="input-field col l6 m6 s12" style="height: 51px;">
+						<textarea id="descrAnimal" th:field="*{petPerdido.descricaoAnimal}" 
+							style="width: 94% !important;padding: 5%;height: 64px !important;"></textarea>
+						<label for="descrAnimal" class="alter-textarea" style="margin-left: 5%;">descrição do animal</label>
+					</div>
+					<div class="input-field col l6 m6 s12">
+						<input id="dataPerdido" type="date" class="validate"
+							required="required" th:field="*{petPerdido.dataPerdido}">
+						<label for="dataPerdido">data do desaparecimento</label>
+					</div>
+					<div class="input-field l6 m6 col s12">
+						<input id="cep" type="text" class="validate"
+							required="required" onkeypress="$(this).mask('00000-000')"
+							th:field="*{petPerdido.cep}" onblur="pesquisacep(this.value);">
+						<label for="cep">cep do desaparecimento</label>
+					</div>
+					<div class="input-field l6 m6 col s12">
+						<input id="bairro" type="text" class="validate"
+							th:field="*{petPerdido.bairro}"> <label for="bairro">bairro</label>
+					</div>
+					<div class="input-field l6 m6 col s12">
+						<input id="rua" type="text" class="validate"
+							th:field="*{petPerdido.rua}"> <label for="rua">rua</label>
+					</div>
+					<div class="input-field l4 m4 col s9">
+						<input id="cidade" type="text" class="validate"
+							th:field="*{petPerdido.cidade}"> <label for="cidade">cidade</label>
+					</div>
+					<div class="input-field l2 m2 col s3">
+						<input id="uf" type="text" class="validate"
+							th:field="*{petPerdido.uf}" maxlength="2"> <label
+							for="uf">UF</label>
+					</div>
+					<div class="input-field col l6 m6 s12">
+						<button
+							class="waves-effect waves-light btn-large btn-width-large red"
+							onclick="redirectLogin()">cancelar</button>
+					</div>
+					<div class="input-field col l6 m6 s12">
+						<button
+							class="waves-effect waves-light btn-large btn-width-large green"
+							onclick="verfImgCampoPet();">confirmar</button>
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
 </body>
-
 </html>
+
 <script src='../js/UploadImage.js'></script>
-<script>
-function redirectLogin(){
-	window.location.href = "http://lostpets.azurewebsites.net/LostPets";
-}
-</script>
+<script type="text/javascript" src="../js/cadastroAnimal.js"></script>
+<script type="text/javascript" src="../js/viaCep.js"></script>
+<script type="text/javascript" src="../js/materialize.js"></script>
+<script type="text/javascript" src="../js/login.js"></script>

@@ -40,7 +40,7 @@ public class LoginController {
 	public String loginPage(Usuario usuario, Model model) {
 		
 		List<PetPerdido> pets;		
-		pets = petPerdidoService.encontrarPetsAtivos();
+		pets = petPerdidoService.encontrarPetsAtivosNNull();
 		model.addAttribute("fotoAnimais", pets);
 		
 		if (session.existsSessionUsuario()) {

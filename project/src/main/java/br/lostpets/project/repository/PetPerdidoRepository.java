@@ -16,9 +16,9 @@ public interface PetPerdidoRepository extends JpaRepository<PetPerdido, Integer>
 	List<PetPerdido> getAtivos();
 
 	@Query("from PetPerdido where status = 'P' and idAnimal = ?1")
-	PetPerdido getAtivosByIdAnimal(int idAnimal);
-	
-	@Query("from PetPerdido where usuario = ?1")
-	List<PetPerdido> encontrarTodosByUsuario(Usuario usuario);
+	public PetPerdido getAtivosByIdAnimal(int idAnimal);
+
+	@Query("from PetPerdido where status = 'P' and pathImg is not null")
+	public List<PetPerdido> getAtivosNNull();
 	
 }

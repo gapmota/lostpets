@@ -19,65 +19,67 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
-	@Autowired 
+
+	@Autowired
 	private AnimaisAchadosRepository animaisAchados;
-	
-	public List<Usuario> encontrarTodos(){
+
+	public List<Usuario> encontrarTodos() {
 		return usuarioRepository.findAll();
 	}
-	
+
 	public Usuario encontrar(int id) {
 		return usuarioRepository.unicoUsuario(id);
 	}
 	
-	public void salvarUsuario(Usuario usuario) {
-		
-		if(usuario.getCep() != null) {
+	public Usuario salvarUsuario(Usuario usuario) {
+
+		if (usuario.getCep() != null) {
 			ViaCep viaCep = new ViaCep();
-			usuario.setEndereco(viaCep.buscarCep(usuario.getCep()));	
+			Endereco endereco = viaCep.getLatitudeLongitude(usuario.getCep());
+			usuario.setLatitude(endereco.getLatitude());
+			usuario.setLongitude(endereco.getLongitude());
 		}
-		
-		usuarioRepository.save(usuario);		
-    }
+		return usuarioRepository.save(usuario);
+	}
 
 	public Usuario emailSenha(String email, String senha) {
 		return usuarioRepository.validarAcesso(email, senha);
 	}
 
 	public Usuario verificarEmailUsuario(String email) {
-		Usuario usuario = usuarioRepository.encontrarEmail(email);
-		return usuario;		
+		return usuarioRepository.encontrarEmail(email);
 	}
-	
+
 	public boolean verificarEmail(String email) {
 		Usuario usuario = usuarioRepository.encontrarEmail(email);
-		if(usuario != null) {
+		if (usuario != null) {
 			return (usuario.getCep() != null) && (usuario.getSenha() != null);
 		}
-		return false;		
+		return false;
 	}
-	
+
 	public int totalPontosUsuario(Integer idUsuario) {
 		Usuario usuario = usuarioRepository.getOne(idUsuario);
 		Integer total = animaisAchados.totalPontosUsuario(usuario);
-		if(total == null) { return 0; }
+		if (total == null) {
+			return 0;
+		}
 		return total;
 	}
 
 	public List<PontosUsuario> totalPontosUsuarioTodosUsuario() {
 		List<AnimaisAchados> animaisEncontrados = animaisAchados.findAllByStatus("A");
 		List<Usuario> usuarios = usuarioRepository.findAll();
-		
+
 		List<PontosUsuario> pontosUsuario = new ArrayList<>();
-		
+
 		for (int i = 0; i < usuarios.size(); i++) {
 			Usuario u = usuarios.get(i);
 			int petsAchados = 0;
 			pontosUsuario.add(new PontosUsuario(u.getIdPessoa(), 0, u.getNome(), petsAchados));
 			for (int j = 0; j < animaisEncontrados.size(); j++) {
 				AnimaisAchados animal = animaisEncontrados.get(j);
-				if(u.getIdPessoa() == animal.getUsuarioAchou().getIdPessoa()) {
+				if (u.getIdPessoa() == animal.getUsuarioAchou().getIdPessoa()) {
 					int pontos = pontosUsuario.get(i).getPontos() + animal.getPontos();
 					pontosUsuario.get(i).setPontos(pontos);
 					pontosUsuario.get(i).setQuantidadePetsAchados(++petsAchados);
@@ -88,11 +90,9 @@ public class UsuarioService {
 		pontosUsuario.sort(Comparator.comparing(PontosUsuario::getPontos).reversed());
 		return pontosUsuario;
 	}
-	
+
 	/*
-	public void delete(Long id) {
-		usuarioRepository.delete(id);
-	}
-	*/
-	
+	 * public void delete(Long id) { usuarioRepository.delete(id); }
+	 */
+
 }
