@@ -19,26 +19,28 @@ public class PetPerdidosRestController {
 
 	@Autowired
 	PetPerdidoService petPerdidoService;
-	
-	@CrossOrigin
-	@GetMapping("/usuario/{id}")
-	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosUsuario(@PathVariable("id") int id) {
-		List<PetPerdido> listPets = petPerdidoService.encontrarTodosByUsuario(id); 		
-		return ResponseEntity.ok(listPets);
-	}
-	
+
+	/*
+	 * @CrossOrigin
+	 * 
+	 * @GetMapping("/usuario/{id}") public ResponseEntity<List<PetPerdido>>
+	 * getAllPetsPerdidosUsuario(@PathVariable("id") int id) { List<PetPerdido>
+	 * listPets = petPerdidoService.encontrarTodosByUsuario(id); return
+	 * ResponseEntity.ok(listPets); }
+	 */
+
 	@CrossOrigin
 	@GetMapping("/")
 	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosActive() {
-		List<PetPerdido> listPets = petPerdidoService.encontrarPetsAtivos(); 		
+		List<PetPerdido> listPets = petPerdidoService.encontrarPetsAtivos();
 		return ResponseEntity.ok(listPets);
 	}
-	
+
 	@CrossOrigin
 	@GetMapping("/{idAnimal}")
 	public ResponseEntity<PetPerdido> getAllPetsPerdidosActiveById(@PathVariable("idAnimal") int idAnimal) {
-		PetPerdido listPets = petPerdidoService.encontrarUnicoPet(idAnimal); 		
+		PetPerdido listPets = petPerdidoService.encontrarUnicoPet(idAnimal);
 		return ResponseEntity.ok(listPets);
 	}
-	
+
 }

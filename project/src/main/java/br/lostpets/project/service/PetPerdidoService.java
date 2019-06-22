@@ -14,14 +14,14 @@ public class PetPerdidoService {
 
 	@Autowired
 	private PetPerdidoRepository petPerdidoRepository;
-	
+
 	@Autowired
-	private UsuarioService usuarioService; 
-	
-	public List<PetPerdido> encontrarPetsAtivos(){
+	private UsuarioService usuarioService;
+
+	public List<PetPerdido> encontrarPetsAtivos() {
 		return petPerdidoRepository.getAtivos();
 	}
-	
+
 	public PetPerdido encontrarUnicoPet(int id) {
 		return petPerdidoRepository.getAtivosByIdAnimal(id);
 	}
@@ -37,11 +37,11 @@ public class PetPerdidoService {
 	public List<PetPerdido> encontrarPetsAtivosNNull() {
 		return petPerdidoRepository.getAtivosNNull();
 	}
-	
-	public List<PetPerdido> encontrarTodosByUsuario(int id) {
-		Usuario usuario = usuarioService.encontrar(id);
-		if(usuario == null) { return null; }
-		return petPerdidoRepository.encontrarTodosByUsuario(usuario);
-	}
-	
+
+	/*
+	 * public List<PetPerdido> encontrarTodosByUsuario(int id) { Usuario usuario =
+	 * usuarioService.encontrar(id); if(usuario == null) { return null; } return
+	 * petPerdidoRepository.encontrarTodosByUsuario(usuario); }
+	 */
+
 }
