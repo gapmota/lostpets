@@ -22,7 +22,7 @@
 
 			<form class="col l10 m10 s12" th:action="@{/LostPets/Cadastro}"
 				th:object="${usuario}" method="post" enctype="multipart/form-data" onsubmit="verificarPreenchimento()"
-				style="background-color: rgb(255, 255, 255, 0.85); border-radius: 10px; padding: 0% 5% 3% 5%;">
+				style="background-color: rgb(255, 255, 255, 0.85); border-radius: 10px; padding: 0% 0% 3% 5%;">
 				<h4 class="center-align">registrar-se</h4>				
 				<!-- onsubmit="verificarCampos(this)"  -->
 				<div class="row">
@@ -39,22 +39,18 @@
 							th:field="*{nome}"> <label for="nome">seu nome</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input type="text" id="telefoneMovel"
-							class="validate form-control" required="required"
-							th:field="*{telefoneCelular}"
-							onkeypress="$(this).mask('(00) 00000-0009')"> <label
-							for="telefoneMovel">celular</label>
+						<input type="text" id="telefoneMovel" class="validate form-control" required="required"
+							th:field="*{telefoneCelular}" onkeypress="$(this).mask('(00) 00000-0009')"> 
+						<label for="telefoneMovel">celular</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input type="text" id="telefoneFixo" class="validate form-control"
-							required="required" th:field="*{telefoneFixo}"
-							onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
+						<input type="text" id="telefoneFixo" class="validate form-control" required="required" 
+							th:field="*{telefoneFixo}" onkeypress="$(this).mask('(00) 0000-0000')" maxlength="14">
 						<label for="telefoneFixo">telefone</label>
 					</div>
 					<div class="input-field l2 m6 col s12">
-						<input id="cep" type="text" class="validate form-control"
-							required="required" th:field="*{cep}" onkeypress="$(this).mask('00000-000')" 
-							onblur="pesquisacep(this.value);"> 
+						<input id="cep" type="text" class="validate form-control" required="required" 
+							th:field="*{cep}" onkeypress="$(this).mask('00000-000')" onblur="pesquisacep(this.value);"> 
 							<label for="cep">cep</label>
 					</div>
 					<div class="input-field l4 m6 col s12">
@@ -80,11 +76,11 @@
 						<label for="email">e-mail</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input id="senha" type="password" class="validate" th:field="*{senha}"> 
+						<input id="senha" type="password" class="validate" required="required" th:field="*{senha}"> 
 						<label for="senha">senha</label>
 					</div>
 					<div class="input-field l3 m6 col s12">
-						<input id="confirmarSenha" type="password" class="validate"> 
+						<input id="confirmarSenha" type="password" class="validate" required="required"> 
 						<label for="confirmarSenha">confirmar senha</label>
 					</div>
 				</div>
@@ -106,5 +102,6 @@
 </body>
 </html>
 	<script type="text/javascript" src="../js/cadastroPessoa.js"></script>
+	<script type="text/javascript" src="../js/viaCep.js"></script>
 	<script type="text/javascript" src="../js/materialize.js"></script>
 	<script type="text/javascript" src='../js/UploadImage.js'></script>

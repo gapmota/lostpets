@@ -38,19 +38,29 @@ public class CadastroPessoaController {
 	public ModelAndView cadastrar(@RequestParam(value = "files") MultipartFile[] files, @Valid Usuario usuario,
 			BindingResult bindingResult) throws IOException, GeneralSecurityException  {
 
+		Usuario usuario2 = usuarioService.verificarEmailUsuario(usuario.getEmail());
+		
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("cadastroPessoa");
-			
-		} else if (usuarioService.verificarEmail(usuario.getEmail())) {
-			
+			modelAndView.setViewName("cadastroPessoa");			
+		} 
+		else if (usuarioService.verificarEmail(usuario.getEmail())) {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
-		} else {
-			usuarioService.salvarUsuario(usuario);
-      
-			modelAndView = new ModelAndView("redirect:/LostPets");
-			//modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
-
+		} 
+		else {
+			if(usuario2 == null) {
+				usuarioService.salvarUsuario(usuario);      
+				modelAndView = new ModelAndView("redirect:/LostPets");
+			}
+			else {
+				usuario2.setBairro(usuario.getBairro());
+				usuario2.setCep(usuario.getCep());
+				usuario2.setCidade(usuario.getCidade());
+				usuario2.setRua(usuario.getRua());
+				usuario2.setUf(usuario.getSenha());
+				usuario2.setSenha(usuario.getSenha());
+				usuarioService.salvarUsuario(usuario2);
+			}
 			/*
 			for (MultipartFile file : files) {
 				if(!file.isEmpty())

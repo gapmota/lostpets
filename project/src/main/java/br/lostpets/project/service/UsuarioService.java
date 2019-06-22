@@ -30,16 +30,16 @@ public class UsuarioService {
 	public Usuario encontrar(int id) {
 		return usuarioRepository.unicoUsuario(id);
 	}
+	
+	public Usuario salvarUsuario(Usuario usuario) {
 
-	public void salvarUsuario(Usuario usuario) {
-
-		ViaCep viaCep = new ViaCep();
-		Endereco endereco = viaCep.getLatitudeLongitude(usuario.getCep());
-
-		usuario.setLatitude(endereco.getLatitude());
-		usuario.setLongitude(endereco.getLongitude());
-		
-		usuarioRepository.save(usuario);
+		if (usuario.getCep() != null) {
+			ViaCep viaCep = new ViaCep();
+			Endereco endereco = viaCep.getLatitudeLongitude(usuario.getCep());
+			usuario.setLatitude(endereco.getLatitude());
+			usuario.setLongitude(endereco.getLongitude());
+		}
+		return usuarioRepository.save(usuario);
 	}
 
 	public Usuario emailSenha(String email, String senha) {
@@ -47,8 +47,7 @@ public class UsuarioService {
 	}
 
 	public Usuario verificarEmailUsuario(String email) {
-		Usuario usuario = usuarioRepository.encontrarEmail(email);
-		return usuario;
+		return usuarioRepository.encontrarEmail(email);
 	}
 
 	public boolean verificarEmail(String email) {

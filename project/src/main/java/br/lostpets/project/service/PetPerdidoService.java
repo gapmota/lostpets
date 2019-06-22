@@ -28,5 +28,9 @@ public class PetPerdidoService {
 	public List<PetPerdido> encontrarTodos() {
 		return petPerdidoRepository.findAll();
 	}
+
+	public List<PetPerdido> encontrarPetsAtivosNNull() {
+		return petPerdidoRepository.getAtivosNNull();
+	}
 	
 }

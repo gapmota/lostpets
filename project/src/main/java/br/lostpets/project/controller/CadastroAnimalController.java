@@ -48,19 +48,20 @@ public class CadastroAnimalController {
 	public ModelAndView cadastroAnimalPerdido(@RequestParam(value = "files") MultipartFile[] files,
 			CadastroPessoaAnimalComponent cadastroPessoaAnimal) throws IOException, GeneralSecurityException {
 
-		usuario = cadastroPessoaAnimal.getUsuario();
+		Usuario usuario1 = cadastroPessoaAnimal.getUsuario();
 		petPerdido = cadastroPessoaAnimal.getPetPerdido();
 
-		usuario = usuarioService.verificarEmailUsuario(usuario.getEmail());
+		usuario = usuarioService.verificarEmailUsuario(usuario1.getEmail());
 		
 		endereco = viaCep.getLatitudeLongitude(petPerdido.getCep());
 
 		petPerdido.setStatus("P");
-		petPerdido.setUsuario(usuario);
 		petPerdido.setLatitude(endereco.getLatitude());
 		petPerdido.setLongitude(endereco.getLongitude());
 
 		if (usuario != null) {
+
+			petPerdido.setUsuario(usuario);
 			petPerdidoService.salvarPet(petPerdido);
 			// chama o pdf aqui
 
@@ -69,7 +70,9 @@ public class CadastroAnimalController {
 			}
 
 		} else {
-			usuarioService.salvarUsuario(usuario);
+			usuario1 = usuarioService.salvarUsuario(usuario1);
+			System.err.println("RETORNO DO SALVAR FOI: "+usuario1);
+			petPerdido.setUsuario(usuario1);
 			petPerdidoService.salvarPet(petPerdido);
 
 			for (MultipartFile file : files) {
