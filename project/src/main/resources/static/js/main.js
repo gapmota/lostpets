@@ -1,4 +1,5 @@
-const url_gdrive = "https://drive.google.com/open?id=";
+const url_gdrive = "https://drive.google.com/uc?id=";
+const url_meuPerfil = "http://lostpets.azurewebsites.net/perfil/";
 
 document.onresize = function(){
   map.getViewPort().resize();
@@ -162,7 +163,12 @@ function openModal(id){
 
 document.getElementById("btn-achei-pet").onclick = function(){
 	requestAcheiPetPerdido(document.getElementById("id-animal-hidden").value);
-} 
+};
+
+document.getElementById("meuPerfil").onclick = function(){
+	window.location.href= url_meuPerfil+""+usuario.idPessoa;
+}
+
 
 
 
@@ -274,6 +280,7 @@ function carregarListaMapa(listPet){
   });
   moveMap(map);
 }
+
 
 
 //map 2

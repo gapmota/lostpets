@@ -7,12 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.lostpets.project.model.PetPerdido;
+import br.lostpets.project.model.Usuario;
 
 @Repository
 public interface PetPerdidoRepository extends JpaRepository<PetPerdido, Integer>{ 
 
 	@Query("from PetPerdido where status = 'P'")
-	public List<PetPerdido> getAtivos();
+	List<PetPerdido> getAtivos();
 
 	@Query("from PetPerdido where status = 'P' and idAnimal = ?1")
 	public PetPerdido getAtivosByIdAnimal(int idAnimal);

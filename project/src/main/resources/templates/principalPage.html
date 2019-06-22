@@ -17,7 +17,8 @@
 
 <body>
 	<div id="viewProfile" class="profile_off">
-		<a href="/logoff" class="btn_sair">sair</a>
+		<div class="row" style="height: 45px;"><a href="#" id="meuPerfil" class="btn_sair">perfil</a></div>
+		<div class="row" style="height: 45px;"><a href="/logoff" class="btn_sair">sair</a></div>
 	</div>
 
 	<div id="viewRanking" class="ranking_off">
@@ -43,8 +44,8 @@
 						<div class="row marginNone">
 							<div class="row">
 							<label th:value="nome"></label>
-								<h2 class="title-popup" id="nome_animal_info_title">tobias</h2>
-								<h5 class="subtitle-popup" id="tipo_animal_info_title">cachorro</h5>
+								<h2 class="title-popup" id="nome_animal_info_title"></h2>
+								<h5 class="subtitle-popup" id="tipo_animal_info_title"></h5>
 							</div>
 							<div class="row marginNone content-info-pet ">
 								<div class="col l4 m4 s12 height-popup-ctx valign-wrapper">
@@ -54,9 +55,9 @@
 								<div class="col l8 m8 s12 height-popup-ctx valign-wrapper" style="flex-wrap: wrap;">
 									<span>
 										<input type="hidden" id="id-animal-hidden"/>
-										<h5>nome: <b id="nome_animal_info">tobias</b></h5>
-										<h5>desaparecimento: <b id="desaparecimento_animal_info">28/04/2019</b></h5>
-										<h5>regiao: <b id="regiao_animal_info">itaquera-sp</b></h5>										
+										<h5>nome: <b id="nome_animal_info"></b></h5>
+										<h5>desaparecimento: <b id="desaparecimento_animal_info"></b></h5>
+										<h5>regiao: <b id="regiao_animal_info"></b></h5>										
 										<div id="btn-achei-pet" class="btn-achei">achei</div>
 									</span>									
 									
@@ -91,8 +92,8 @@
 						</div>
 					</nav>
 					<div class="btn-open-map"><i class="material-icons white-text" id="btn_abrir_nova_view">list</i></div>
-					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewPerfil()">person</i></div>
 					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewRanking()">stars</i></div>
+					<div class="btn-open-map"><i class="material-icons white-text" onclick="viewPerfil()">person</i></div>
 				</div>
 				<div class="row">
 					<div id="map_area" class="area_listagem_on">
@@ -100,34 +101,7 @@
 					</div>
 					<div class="display-flex area_listagem_off" id="quadros">
 						
-						<div class="card-lost dp-f">
-							<div class="area_foto ">
-								<img src="../img/cat.jpg" alt="" class="foto_pet">
-							</div>
-							<div>
-								<table>
-									<tr>
-										<td class="desc_pet">nome</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">murilo</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">desaparecimento</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">01/02/2019</td>
-									</tr>
-									<tr>
-										<td class="desc_pet">região</td>
-									</tr>
-									<tr>
-										<td class="desc_info_pet">itaquera-sp</td>
-									</tr>
-								</table>
-							</div>
-							<div class="btn_info" onclick="openModal()">+</div>
-						</div>
+						
 
 					</div>
 				</div>
