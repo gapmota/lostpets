@@ -26,7 +26,6 @@ public class CadastroPessoaController {
 
 	private Usuario usuario;
 	
-	// LoginController de onde deveria levar a página de login
 	@Autowired
 	private LoginController login;
 	
@@ -54,9 +53,7 @@ public class CadastroPessoaController {
 		else {
 			if(usuario2 == null) {
 				usuarioService.salvarUsuario(usuario); 
-				//Aqui deveria redirecionar a página inicial
-				login.logar(usuario);
-				modelAndView = new ModelAndView("redirect:/Dashboard");
+				return login.logar(usuario);
 			}
 			else {
 				usuario2.setBairro(usuario.getBairro());
