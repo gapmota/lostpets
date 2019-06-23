@@ -78,7 +78,7 @@ public class UsuarioService {
 	public List<PontosUsuario> totalPontosUsuarioTodosUsuario() {
 		List<AnimaisAchados> animaisEncontrados = animaisAchados.findAllByStatus("A");
 		List<Usuario> usuarios = usuarioRepository.findAll();
-
+		usuarios.removeIf(usuario -> usuario.getSenha() == null);
 		List<PontosUsuario> pontosUsuario = new ArrayList<>();
 
 		for (int i = 0; i < usuarios.size(); i++) {
@@ -95,6 +95,7 @@ public class UsuarioService {
 			}
 		}
 		pontosUsuario.removeIf(usuario -> usuario.getPontos() < 1);
+		
 		pontosUsuario.sort(Comparator.comparing(PontosUsuario::getPontos).reversed());
 		return pontosUsuario;
 	}
