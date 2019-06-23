@@ -70,8 +70,6 @@ public class ConverterCSV {
 
 		PetPerdido pet = new PetPerdido(null, null, null, null, null, null, null, 0, 0);
 
-		System.out.printf("%-24s%-60s%-15s%7s\n", "Nome do animal", "Descricao", "Tipo de animal", "CEP");
-
 		try {
 			while (in.hasNext()) {
 
@@ -79,9 +77,6 @@ public class ConverterCSV {
 				pet.setDescricao(in.next());
 				pet.setTipoAnimal(in.next());
 				pet.setCep(in.next());
-
-				System.out.printf("%-24s%-60s%-17s%12s\n", pet.getNomeAnimal(), pet.getDescricao(), pet.getTipoAnimal(),
-						pet.getCep());
 			}
 		} catch (NoSuchElementException elementException) {
 			System.err.println("Arquivo com problemas.");
