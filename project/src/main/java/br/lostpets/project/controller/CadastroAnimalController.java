@@ -65,7 +65,7 @@ public class CadastroAnimalController {
 			// chama o pdf aqui
 
 			for (MultipartFile file : files) {
-				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
+				petPerdido.setPathImg("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
 			}
 			
 			petPerdidoService.salvarPet(petPerdido);
@@ -76,7 +76,7 @@ public class CadastroAnimalController {
 			petPerdido.setUsuario(usuario1);
 			
 			for (MultipartFile file : files) {
-				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
+				petPerdido.setPathImg("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
 			}
 			
 			petPerdidoService.salvarPet(petPerdido);

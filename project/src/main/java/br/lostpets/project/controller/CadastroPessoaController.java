@@ -56,7 +56,7 @@ public class CadastroPessoaController {
 				
 				for (MultipartFile file : files) {
 					if(!file.isEmpty())
-						usuario.setIdImagem(GoogleDriveConfig.uploadFile(file));
+						usuario.setIdImagem("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
 				}
 				
 				usuarioService.salvarUsuario(usuario); 
@@ -66,7 +66,7 @@ public class CadastroPessoaController {
 				
 				for (MultipartFile file : files) {
 					if(!file.isEmpty())
-						usuario.setIdImagem(GoogleDriveConfig.uploadFile(file));
+						usuario.setIdImagem("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
 				}
 				
 				usuario2.setBairro(usuario.getBairro());
