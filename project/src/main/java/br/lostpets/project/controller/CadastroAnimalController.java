@@ -63,23 +63,23 @@ public class CadastroAnimalController {
 		if (usuario != null) {
 
 			petPerdido.setUsuario(usuario);
-			petPerdidoService.salvarPet(petPerdido);
 			// chama o pdf aqui
 
 			for (MultipartFile file : files) {
 				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
 			}
-
+			
+			petPerdidoService.salvarPet(petPerdido);
 		} else {
 			usuario1 = usuarioService.salvarUsuario(usuario1);
 			System.err.println("RETORNO DO SALVAR FOI: "+usuario1);
 			petPerdido.setUsuario(usuario1);
-			petPerdidoService.salvarPet(petPerdido);
-
+			
 			for (MultipartFile file : files) {
 				petPerdido.setPathImg(GoogleDriveConfig.uploadFile(file));
 			}
-
+			
+			petPerdidoService.salvarPet(petPerdido);
 		}
 		
 		
