@@ -67,16 +67,6 @@ function viewRanking(){
 	}
 }
 
-function addRanking(response, pos){
-  let ranking = $("#ranking-add");
-  ranking.append("<tr>"
-  +"<td>"+pos+"</td>"
-  +"<td>"+response.nomeUsuario+"</td>"
-  +"<td>"+response.pontos+"</td>"
-  +"<td>"+response.quantidadePetsAchados+"</td>"
-  +"</tr>");
-}
-
 function viewMap(){
 	
 	let view = document.getElementById("map_area");

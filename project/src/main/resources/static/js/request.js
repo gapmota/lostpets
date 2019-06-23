@@ -23,6 +23,16 @@ function requestUsuarioSession(){
 }
 
 function requestPontosUsuario(){
+	
+	$("#ranking-add").empty();
+    $("#ranking-add").append("<tr>"
+              	+"<th>Posição</th>"
+              	+"<th>Nome</th>"
+              	+"<th>Pontos</th>"
+              	+"<th>Achados</th>"
+              	+"</tr>");
+    
+	
   $.ajax({
     type: 'GET',
     dataType: 'json',
@@ -33,9 +43,17 @@ function requestPontosUsuario(){
     data: null,
     success: function (response) {
       let pos = 0;
-      $("#ranking-add").empty();
+      
       response.forEach(ponto => {
-        addRanking(ponto, ++pos);
+    	  
+    	  $("#ranking-add").append("<tr>"
+    			  +"<td>"+(++pos)+"</td>"
+    			  +"<td>"+ponto.nomeUsuario+"</td>"
+    			  +"<td>"+ponto.pontos+"</td>"
+    			  +"<td>"+ponto.quantidadePetsAchados+"</td>"
+    			  +"</tr>");
+    	  
+        
       });
     },
     error: function () {
