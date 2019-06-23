@@ -76,6 +76,7 @@ public class CadastroPessoaController {
 				usuario2.setUf(usuario.getSenha());
 				usuario2.setSenha(usuario.getSenha());
 				usuarioService.salvarUsuario(usuario2);
+				return login.logar(usuario);
 			}
 			
 			
