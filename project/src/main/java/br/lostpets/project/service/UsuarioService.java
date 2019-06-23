@@ -60,6 +60,14 @@ public class UsuarioService {
 
 	public int totalPontosUsuario(Integer idUsuario) {
 		Usuario usuario = usuarioRepository.getOne(idUsuario);
+		
+		if(usuario == null) {
+			return 0;
+		}
+		if(usuario.getSenha() == null) {
+			return 0;
+		}
+		
 		Integer total = animaisAchados.totalPontosUsuario(usuario);
 		if (total == null) {
 			return 0;

@@ -1,7 +1,7 @@
-const url_usuario_request = "http://lostpets.azurewebsites.net/usuario/"
+const url_usuario_request = "http://localhost:8080/usuario/"
 const url_gdrive = "https://drive.google.com/uc?id=";
-const url_usuario_perfil = "http://lostpets.azurewebsites.net/usuario/"
-const url_resq_perfil = "http://lostpets.azurewebsites.net/lostpet/api/petsperdidos/usuario/";
+const url_usuario_perfil = "http://localhost:8080/usuario/"
+const url_resq_perfil = "http://localhost:8080/petperdido/usuario/";
 	
 	
 let url = window.location.href.split("/");
@@ -15,10 +15,9 @@ function getPontosUsuario(id) {
         headers: {
             'Content-Type': 'application/json'
         },
-        url: url_usuario_perfil + "/pontos/40",
+        url: url_usuario_perfil + "pontos/"+id,
         data: null,
         success: function (response) {
-        	console.log(response);
             document.getElementById("qnt_pets").textContent = (response / 10)+" pets encontrados";
         },
         error: function () {
@@ -36,17 +35,25 @@ $.ajax({
     url: url_usuario_request + "" + id,
     data: '',
     success: function (response) {
-    	console.log(response);
         document.getElementById("nome_usuario").textContent = response.nome;
+        if(response.bairro != null){
         document.getElementById("regiao_usuario").textContent = response.bairro+" - "+response.uf;
+        }
         document.getElementById("contato_usuario").textContent = response.email+" | cell: "+response.telefoneCelular+" | fixo: "+response.telefoneFixo;
-        document.getElementById("foto_usuario_perfil").src  = response.idImagem;
+        
+        if(response.idImagem != null){
+        	document.getElementById("foto_usuario_perfil").src  = url_gdrive+response.idImagem;
+        }
+        
         document.getElementById("text_pet_usuario").textContent = "pets de "+response.nome;
-        getPontosUsuario(id);
+        
+        if(response.bairro != null){
+        	getPontosUsuario(id);
+        }
         requestLostPets(id);
     },
     error: function () {
-        console.log("pqp");
+        
     }
 });
 
@@ -77,7 +84,7 @@ function carregarPets(listPet){
 	    +"<td class='desc_pet'>região</td>"
 	    +"</tr>"
 	    +"<tr>"
-	    +"<td class='desc_info_pet'>itaquera-sp</td>"
+	    +"<td class='desc_info_pet'>"+pet.bairro +" - "+pet.uf+"</td>"
 	    +"</tr>"
 	    +"<tr>"
 	    +"<td class='desc_pet'>status</td>"
@@ -102,7 +109,6 @@ function requestLostPets(id){
       url: url_resq_perfil+id,
       data: null,
       success: function (response) {
-    	  console.log(response);
     	  carregarPets(response);
       },
       error: function () {

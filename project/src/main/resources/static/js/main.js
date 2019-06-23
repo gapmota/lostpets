@@ -1,5 +1,5 @@
 const url_gdrive = "https://drive.google.com/uc?id=";
-const url_meuPerfil = "http://lostpets.azurewebsites.net/perfil/";
+const url_meuPerfil = "http://localhost:8080/perfil/";
 
 
 document.onresize = function(){
@@ -142,7 +142,7 @@ function openModal(id){
           document.getElementById("tipo_animal_info_title").textContent = response.tipoAnimal;
           document.getElementById("nome_animal_info").textContent = response.nomeAnimal;
           document.getElementById("desaparecimento_animal_info").textContent = response.dataPerdido;
-          document.getElementById("regiao_animal_info").textContent = "aaa";
+          document.getElementById("regiao_animal_info").textContent = response.bairro+" - "+response.uf;
           document.getElementById("foto-pet-perdido").src = url_gdrive+response.pathImg;
           document.getElementById("id-animal-hidden").value = id;
           
@@ -286,7 +286,7 @@ function carregarListaMapa(listPet){
     +"<td class='desc_pet'>região</td>"
     +"</tr>"
     +"<tr>"
-    +"<td class='desc_info_pet'>itaquera-sp</td>"
+    +"<td class='desc_info_pet'>"+pet.bairro +" - "+pet.uf+"</td>"
     +"</tr>"
     +"</table>"
     +"</div>"

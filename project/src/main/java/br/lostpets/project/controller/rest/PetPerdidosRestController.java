@@ -20,14 +20,13 @@ public class PetPerdidosRestController {
 	@Autowired
 	PetPerdidoService petPerdidoService;
 
-	/*
-	 * @CrossOrigin
-	 * 
-	 * @GetMapping("/usuario/{id}") public ResponseEntity<List<PetPerdido>>
-	 * getAllPetsPerdidosUsuario(@PathVariable("id") int id) { List<PetPerdido>
-	 * listPets = petPerdidoService.encontrarTodosByUsuario(id); return
-	 * ResponseEntity.ok(listPets); }
-	 */
+	@CrossOrigin
+
+	@GetMapping("/usuario/{id}")
+	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosUsuario(@PathVariable("id") int id) {
+		List<PetPerdido> listPets = petPerdidoService.encontrarTodosByUsuario(id);
+		return ResponseEntity.ok(listPets);
+	}
 
 	@CrossOrigin
 	@GetMapping("/")
@@ -42,7 +41,7 @@ public class PetPerdidosRestController {
 		PetPerdido listPets = petPerdidoService.encontrarUnicoPet(idAnimal);
 		return ResponseEntity.ok(listPets);
 	}
-	
+
 	@CrossOrigin
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosByNome(@PathVariable("nome") String nome) {
