@@ -14,7 +14,7 @@ import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.service.PetPerdidoService;
 
 @RestController
-@RequestMapping("/lostpet/api/petsperdidos")
+@RequestMapping("/petperdido")
 public class PetPerdidosRestController {
 
 	@Autowired
@@ -40,6 +40,13 @@ public class PetPerdidosRestController {
 	@GetMapping("/{idAnimal}")
 	public ResponseEntity<PetPerdido> getAllPetsPerdidosActiveById(@PathVariable("idAnimal") int idAnimal) {
 		PetPerdido listPets = petPerdidoService.encontrarUnicoPet(idAnimal);
+		return ResponseEntity.ok(listPets);
+	}
+	
+	@CrossOrigin
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<PetPerdido>> getAllPetsPerdidosByNome(@PathVariable("nome") String nome) {
+		List<PetPerdido> listPets = petPerdidoService.encontrarAnimalComONome(nome);
 		return ResponseEntity.ok(listPets);
 	}
 
