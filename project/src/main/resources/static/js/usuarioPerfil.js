@@ -1,5 +1,4 @@
 const url_usuario_request = "http://localhost:8080/usuario/"
-const url_gdrive = "https://drive.google.com/uc?id=";
 const url_usuario_perfil = "http://localhost:8080/usuario/"
 const url_resq_perfil = "http://localhost:8080/petperdido/usuario/";
 	
@@ -42,7 +41,7 @@ $.ajax({
         document.getElementById("contato_usuario").textContent = response.email+" | cell: "+response.telefoneCelular+" | fixo: "+response.telefoneFixo;
         
         if(response.idImagem != null){
-        	document.getElementById("foto_usuario_perfil").src  = url_gdrive+response.idImagem;
+        	document.getElementById("foto_usuario_perfil").src  = response.idImagem;
         }
         
         document.getElementById("text_pet_usuario").textContent = "pets de "+response.nome;
@@ -66,7 +65,7 @@ function carregarPets(listPet){
 	  listPet.forEach(pet => {
 	    div.innerHTML += "<div class='card-lost dp-f' style='height: 460px !important;''>"
 	    +"<div class='area_foto'>"
-	    +"<img src='"+url_gdrive+pet.pathImg+"' class='foto_pet'>"
+	    +"<img src='"+pet.pathImg+"' class='foto_pet'>"
 	    +"</div>"
 	    +"<div>"
 	    +"<table>"
