@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.components.CadastroPessoaAnimalComponent;
 import br.lostpets.project.model.Endereco;
-import br.lostpets.project.model.InfoPet;
 import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.PetPerdidoService;
@@ -73,6 +72,7 @@ public class CadastroAnimalController {
 		} else {
 			usuario1 = usuarioService.salvarUsuario(usuario1);
 			System.err.println("RETORNO DO SALVAR FOI: "+usuario1);
+			
 			petPerdido.setUsuario(usuario1);
 			
 			for (MultipartFile file : files) {
@@ -82,10 +82,7 @@ public class CadastroAnimalController {
 			petPerdidoService.salvarPet(petPerdido);
 		}
 		
-		
-		
-		
-		return new ModelAndView("redirect:/LostPets/Cadastro-Animal-Perdido");
+		return new ModelAndView("redirect:/LostPets");
 	}
 
 }
