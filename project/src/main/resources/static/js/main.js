@@ -1,6 +1,7 @@
 const url_gdrive = "https://drive.google.com/uc?id=";
 const url_meuPerfil = "http://lostpets.azurewebsites.net/perfil/";
 
+
 document.onresize = function(){
   map.getViewPort().resize();
   map2.getViewPort().resize();
@@ -242,9 +243,25 @@ function addLocalizacaoPet(icon_url, latitude, longitude){
   map.getViewPort().resize();
 }
 
+let inputPesquisa = document.getElementById("search");
+
+inputPesquisa.addEventListener("keypress", function(event) {
+  if (event.keyCode === 13) {
+    if(inputPesquisa.value.length > 2) {
+      requestLostPetsByNome(inputPesquisa.value);
+      event.preventDefault();
+
+    }else{
+      requestLostPets();
+      inputPesquisa.value = "";
+      event.preventDefault();
+    }
+  }
+});
+
 
 function carregarListaMapa(listPet){
-  
+  map.removeObjects(map.getObjects ());
   let div = document.getElementById("quadros");
   div.innerHTML = "";
   
