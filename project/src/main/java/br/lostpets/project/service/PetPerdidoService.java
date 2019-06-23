@@ -1,22 +1,28 @@
 package br.lostpets.project.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.lostpets.project.model.PetPerdido;
+import br.lostpets.project.model.Usuario;
 import br.lostpets.project.repository.PetPerdidoRepository;
 
 @Service
 public class PetPerdidoService {
 
 	@Autowired
-	PetPerdidoRepository petPerdidoRepository;
-	public List<PetPerdido> encontrarPetsAtivos(){
+	private PetPerdidoRepository petPerdidoRepository;
+
+	@Autowired
+	private UsuarioService usuarioService;
+
+	public List<PetPerdido> encontrarPetsAtivos() {
 		return petPerdidoRepository.getAtivos();
 	}
-	
+
 	public PetPerdido encontrarUnicoPet(int id) {
 		return petPerdidoRepository.getAtivosByIdAnimal(id);
 	}
@@ -28,5 +34,26 @@ public class PetPerdidoService {
 	public List<PetPerdido> encontrarTodos() {
 		return petPerdidoRepository.findAll();
 	}
+
+	public List<PetPerdido> encontrarPetsAtivosNNull() {
+		return petPerdidoRepository.getAtivosNNull();
+	}
+
+	public List<PetPerdido> encontrarTodosByUsuario(int id) {
+		Usuario usuario = usuarioService.encontrar(id);
+		if (usuario == null) {
+			return null;
+		}
+		return petPerdidoRepository.encontrarTodosByUsuario(usuario);
+	}
 	
+	public List<PetPerdido> encontrarAnimalComONome(String nome){
+		List<PetPerdido> pets = this.encontrarPetsAtivos();
+		
+		List<PetPerdido> petsFiltrados = pets.stream()
+			    .filter(p -> p.getNomeAnimal().toUpperCase().contains(nome.toUpperCase())).collect(Collectors.toList());
+		
+		return petsFiltrados;
+	}
+
 }

@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.lostpets.project.model.Endereco;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
-import br.lostpets.project.service.ViaCep;
 import br.lostpets.project.utils.GoogleDriveConfig;
 
 @Controller
@@ -27,9 +25,10 @@ public class CadastroPessoaController {
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
 
-	private Endereco endereco = new Endereco();
-	private ViaCep viaCep = new ViaCep();
 	private Usuario usuario;
+	
+	@Autowired
+	private LoginController login;
 	
 	@GetMapping("/LostPets/Cadastro")
 	public ModelAndView cadastroPage() {
@@ -41,30 +40,47 @@ public class CadastroPessoaController {
 
 	@PostMapping("/LostPets/Cadastro")
 	public ModelAndView cadastrar(@RequestParam(value = "files") MultipartFile[] files, @Valid Usuario usuario,
-			BindingResult bindingResult) throws IOException, GeneralSecurityException {
-			
-		boolean existe = usuarioService.verificarEmail(usuario.getEmail());
+			BindingResult bindingResult) throws IOException, GeneralSecurityException  {
 
+		Usuario usuario2 = usuarioService.verificarEmailUsuario(usuario.getEmail());
+		
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("cadastroPessoa");
-			
-		} else if (existe) {
+			modelAndView.setViewName("cadastroPessoa");			
+		} 
+		else if (usuarioService.verificarEmail(usuario.getEmail())) {
 			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
 			modelAndView.setViewName("cadastroPessoa");
-		} else {
-			String[] cepV = usuario.getCep().split("-");
-			String cep = cepV[0].concat(cepV[1]);
-			endereco = viaCep.buscarCep(cep);
-			usuario.setEndereco(endereco);			
-			
-			for (MultipartFile file : files) {
-				usuario.setIdImagem(GoogleDriveConfig.uploadFile(GoogleDriveConfig.convert(file), GoogleDriveConfig.getService()));
+		} 
+		else {
+			if(usuario2 == null) {
+				
+				for (MultipartFile file : files) {
+					if(!file.isEmpty())
+						usuario.setIdImagem("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
+				}
+				
+				usuarioService.salvarUsuario(usuario); 
+				return login.logar(usuario);
 			}
-
-			usuarioService.salvarUsuario(usuario);
-      
-			modelAndView = new ModelAndView("redirect:/LostPets");
-			modelAndView.addObject("mensagem", "Usuário cadastrado com sucesso!");
+			else {
+				
+				for (MultipartFile file : files) {
+					if(!file.isEmpty())
+						usuario.setIdImagem("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
+				}
+				
+				usuario2.setBairro(usuario.getBairro());
+				usuario2.setCep(usuario.getCep());
+				usuario2.setCidade(usuario.getCidade());
+				usuario2.setRua(usuario.getRua());
+				usuario2.setUf(usuario.getSenha());
+				usuario2.setSenha(usuario.getSenha());
+				usuarioService.salvarUsuario(usuario2);
+				return login.logar(usuario);
+			}
+			
+			
+			
 		}
 		return modelAndView;
 	}

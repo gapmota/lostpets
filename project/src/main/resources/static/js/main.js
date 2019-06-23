@@ -1,4 +1,5 @@
-const url_gdrive = "https://drive.google.com/open?id=";
+const url_meuPerfil = url_local+"/perfil/";
+
 
 document.onresize = function(){
   map.getViewPort().resize();
@@ -66,16 +67,6 @@ function viewRanking(){
 	}
 }
 
-function addRanking(response, pos){
-  let ranking = $("#ranking-add");
-  ranking.append("<tr>"
-  +"<td>"+pos+"</td>"
-  +"<td>"+response.nomeUsuario+"</td>"
-  +"<td>"+response.pontos+"</td>"
-  +"<td>"+response.quantidadePetsAchados+"</td>"
-  +"</tr>");
-}
-
 function viewMap(){
 	
 	let view = document.getElementById("map_area");
@@ -140,11 +131,11 @@ function openModal(id){
           document.getElementById("tipo_animal_info_title").textContent = response.tipoAnimal;
           document.getElementById("nome_animal_info").textContent = response.nomeAnimal;
           document.getElementById("desaparecimento_animal_info").textContent = response.dataPerdido;
-          document.getElementById("regiao_animal_info").textContent = "aaa";
-          document.getElementById("foto-pet-perdido").src = url_gdrive+response.pathImg;
+          document.getElementById("regiao_animal_info").textContent = response.bairro+" - "+response.uf;
+          document.getElementById("foto-pet-perdido").src = response.pathImg;
           document.getElementById("id-animal-hidden").value = id;
           
-          addLocalizacaoPetInfo(url_gdrive+response.pathImg, response.latitude, response.longitude);
+          addLocalizacaoPetInfo(response.pathImg, response.latitude, response.longitude);
 
         },
         error: function () {
@@ -162,7 +153,12 @@ function openModal(id){
 
 document.getElementById("btn-achei-pet").onclick = function(){
 	requestAcheiPetPerdido(document.getElementById("id-animal-hidden").value);
-} 
+};
+
+document.getElementById("meuPerfil").onclick = function(){
+	window.location.href= url_meuPerfil+""+usuario.idPessoa;
+}
+
 
 
 
@@ -236,16 +232,32 @@ function addLocalizacaoPet(icon_url, latitude, longitude){
   map.getViewPort().resize();
 }
 
+let inputPesquisa = document.getElementById("search");
+
+inputPesquisa.addEventListener("keypress", function(event) {
+  if (event.keyCode === 13) {
+    if(inputPesquisa.value.length > 2) {
+      requestLostPetsByNome(inputPesquisa.value);
+      event.preventDefault();
+
+    }else{
+      requestLostPets();
+      inputPesquisa.value = "";
+      event.preventDefault();
+    }
+  }
+});
+
 
 function carregarListaMapa(listPet){
-  
+  map.removeObjects(map.getObjects ());
   let div = document.getElementById("quadros");
   div.innerHTML = "";
   
   listPet.forEach(pet => {
     div.innerHTML += "<div class='card-lost dp-f'>"
     +"<div class='area_foto'>"
-    +"<img src='"+url_gdrive+pet.pathImg+"' class='foto_pet'>"
+    +"<img src='"+pet.pathImg+"' class='foto_pet'>"
     +"</div>"
     +"<div>"
     +"<table>"
@@ -263,17 +275,18 @@ function carregarListaMapa(listPet){
     +"<td class='desc_pet'>região</td>"
     +"</tr>"
     +"<tr>"
-    +"<td class='desc_info_pet'>itaquera-sp</td>"
+    +"<td class='desc_info_pet'>"+pet.bairro +" - "+pet.uf+"</td>"
     +"</tr>"
     +"</table>"
     +"</div>"
     +"<div class='btn_info' onclick='openModal("+pet.idAnimal+")'>+</div>"
     +"</div>";
 
-    addLocalizacaoPet(url_gdrive+pet.pathImg, pet.latitude, pet.longitude);
+    addLocalizacaoPet(pet.pathImg, pet.latitude, pet.longitude);
   });
   moveMap(map);
 }
+
 
 
 //map 2

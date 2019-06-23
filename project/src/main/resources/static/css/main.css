@@ -93,10 +93,10 @@ table{
 	padding: 0px 0px 0px 10px;
 }
 .desc_info_pet{
-	font-size: 22px;
+	font-size: 100%;
 	font-weight: bold;
 	text-align: center;
-	padding: 0px 0px 12px 10px;
+	padding: 0px 0px 19px 10px;
 }
 
 table{

@@ -1,5 +1,15 @@
 package br.lostpets.project.utils;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.security.GeneralSecurityException;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -14,16 +24,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.security.GeneralSecurityException;
-import java.util.Collections;
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
+import com.google.api.services.drive.model.Permission;
 
 public class GoogleDriveConfig {
 
@@ -56,16 +57,30 @@ public class GoogleDriveConfig {
 				.setApplicationName(APPLICATION_NAME).build();
 	}
 
-	public static String uploadFile(java.io.File image, Drive service) throws IOException, GeneralSecurityException {
+	public static String uploadFile(MultipartFile file) throws IOException, GeneralSecurityException {
+		java.io.File image = convert(file);
+
 		File fileMetadata = new File();
 		fileMetadata.setName(image.getName());
 		fileMetadata.setMimeType("image/*");
-		java.io.File filePath = new java.io.File(image.getAbsolutePath());;
+		java.io.File filePath = new java.io.File(image.getAbsolutePath());
+		;
 		FileContent mediaContent = new FileContent("image/*", filePath);
 		File img = getService().files().create(fileMetadata, mediaContent).setFields("id").execute();
 		filePath.delete();
 
+		createPublicPermission(img.getId());
+
 		return img.getId();
+	}
+
+	public static Permission createPublicPermission(String googleFileId) throws IOException, GeneralSecurityException {
+		Permission newPermission = new Permission();
+		newPermission.setType("anyone");
+		newPermission.setRole("reader");
+
+		Drive driveService = getService();
+		return driveService.permissions().create(googleFileId, newPermission).execute();
 	}
 
 	public static java.io.File convert(MultipartFile file) throws IOException {
@@ -74,7 +89,7 @@ public class GoogleDriveConfig {
 		FileOutputStream fos = new FileOutputStream(convFile);
 		fos.write(file.getBytes());
 		fos.close();
-		
+
 		return convFile;
 	}
 }

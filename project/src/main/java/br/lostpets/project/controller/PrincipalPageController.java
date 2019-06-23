@@ -22,4 +22,9 @@ public class PrincipalPageController {
 		}
 	}
 	
+	@GetMapping("/perfil/{id}")
+	public String abrirPerfilUsuario() {
+		return "usuarioPerfil";
+	}
+	
 }

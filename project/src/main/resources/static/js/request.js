@@ -1,6 +1,6 @@
-const url_resq = "http://lostpets.azurewebsites.net/lostpet/api/petsperdidos/";
-const url_session = "http://lostpets.azurewebsites.net/session/"
-const url_usuario = "http://lostpets.azurewebsites.net/usuario/"
+const url_resq = url_local+"/petperdido/";
+const url_session = url_local+"/session/";
+const url_usuario = url_local+"/usuario/";
 const url_animaisAchados = "http://findlostpets.azurewebsites.net/animaisAchados"
 
 var usuario = null;
@@ -23,6 +23,16 @@ function requestUsuarioSession(){
 }
 
 function requestPontosUsuario(){
+	
+	$("#ranking-add").empty();
+    $("#ranking-add").append("<tr>"
+              	+"<th>Posição</th>"
+              	+"<th>Nome</th>"
+              	+"<th>Pontos</th>"
+              	+"<th>Achados</th>"
+              	+"</tr>");
+    
+	
   $.ajax({
     type: 'GET',
     dataType: 'json',
@@ -33,8 +43,17 @@ function requestPontosUsuario(){
     data: null,
     success: function (response) {
       let pos = 0;
+      
       response.forEach(ponto => {
-        addRanking(ponto, ++pos);
+    	  
+    	  $("#ranking-add").append("<tr>"
+    			  +"<td>"+(++pos)+"</td>"
+    			  +"<td>"+ponto.nomeUsuario+"</td>"
+    			  +"<td>"+ponto.pontos+"</td>"
+    			  +"<td>"+ponto.quantidadePetsAchados+"</td>"
+    			  +"</tr>");
+    	  
+        
       });
     },
     error: function () {
@@ -58,6 +77,24 @@ function requestLostPets(){
       error: function () {
       }
     });  
+}
+
+function requestLostPetsByNome(nomePet){
+  
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    url: url_resq+"nome/"+nomePet,
+    data: null,
+    success: function (response) {
+      carregarListaMapa(response);
+    },
+    error: function () {
+    }
+  });  
 }
 
 function requestAcheiPetPerdido(idAnimalPerdido){

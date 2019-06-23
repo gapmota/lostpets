@@ -31,9 +31,14 @@ public class PetPerdido {
 	@Column(name="DATA_PERDIDO") private String dataPerdido;
 	@Column(name="ATIVO") private String status;
 	@Column(name="DESCRICAO") private String descricao;
+	@Column(name="DESCRICAO_ANIMAL") private String descricaoAnimal;
 	@Column(name="TIPO_ANIMAL") private String tipoAnimal;
 	@Column(name="PATH_IMG")private String pathImg;
 	@Column(name="CEP")private String cep;
+	@Column(name = "RUA") private String rua;
+	@Column(name = "BAIRRO") private String bairro;
+	@Column(name = "CIDADE") private String cidade;
+	@Column(name = "UF") private String uf;
 	@Column(name="LATITUDE") private double latitude;
 	@Column(name="LONGITUDE") private double longitude;
 	@Column(name="ADD_DATA") private String addData = dataHora();
@@ -158,13 +163,55 @@ public class PetPerdido {
 	public void setAddData(String addData) {
 		this.addData = addData;
 	}
+	
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getDescricaoAnimal() {
+		return descricaoAnimal;
+	}
+
+	public void setDescricaoAnimal(String descricaoAnimal) {
+		this.descricaoAnimal = descricaoAnimal;
+	}
 
 	@Override
 	public String toString() {
 		return "PetPerdido [idAnimal=" + idAnimal + ", usuario=" + usuario + ", nomeAnimal=" + nomeAnimal
-				+ ", dataPerdido=" + dataPerdido + ", status=" + status + ", descricao=" + descricao + ", tipoAnimal="
-				+ tipoAnimal + ", pathImg=" + pathImg + ", cep=" + cep + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", addData=" + addData + "]";
+				+ ", dataPerdido=" + dataPerdido + ", status=" + status + ", descricao=" + descricao
+				+ ", descricaoAnimal=" + descricaoAnimal + ", tipoAnimal=" + tipoAnimal + ", pathImg=" + pathImg
+				+ ", cep=" + cep + ", rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", uf=" + uf
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", addData=" + addData + ", animaisAchados="
+				+ animaisAchados + "]";
 	}
 
 	public void setUsuario(Usuario usuario) {
