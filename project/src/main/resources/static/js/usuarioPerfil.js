@@ -1,6 +1,7 @@
-const url_usuario_request = "http://localhost:8080/usuario/"
-const url_usuario_perfil = "http://localhost:8080/usuario/"
-const url_resq_perfil = "http://localhost:8080/petperdido/usuario/";
+
+const url_usuario_request = url_local+"/usuario/"
+const url_usuario_perfil = url_local+"/usuario/"
+const url_resq_perfil = url_local+"/petperdido/usuario/";
 	
 	
 let url = window.location.href.split("/");

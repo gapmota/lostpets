@@ -1,3 +1,3 @@
-function redirectLogin(){
-	window.location.href = "http://localhost:8080/LostPets";
+function redirectLogin() {
+	window.location.href = url_local+"/LostPets";
 }

@@ -1,6 +1,6 @@
-const url_resq = "http://localhost:8080/petperdido/";
-const url_session = "http://localhost:8080/session/";
-const url_usuario = "http://localhost:8080/usuario/";
+const url_resq = url_local+"/petperdido/";
+const url_session = url_local+"/session/";
+const url_usuario = url_local+"/usuario/";
 const url_animaisAchados = "http://findlostpets.azurewebsites.net/animaisAchados"
 
 var usuario = null;

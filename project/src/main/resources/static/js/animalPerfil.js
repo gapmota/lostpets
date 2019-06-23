@@ -3,7 +3,7 @@ window.onload = function() {
 	let url = window.location.href.split("/");
 	let id = url[url.length-1];
 
-	let url_resq = "http://localhost:8080/petperdido/";
+	let url_resq = url_local+"/petperdido/";
 	
 	$.ajax({
 				dataType : 'json',
@@ -40,7 +40,7 @@ window.onload = function() {
 
 	function requestUsuarioSession(){
 		
-		let url_session = "http://localhost:8080/session/"
+		let url_session = url_local+"/session/"
 		
 	    $.ajax({
 	      type: 'GET',

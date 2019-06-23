@@ -1,4 +1,4 @@
-const url_meuPerfil = "http://localhost:8080/perfil/";
+const url_meuPerfil = url_local+"/perfil/";
 
 
 document.onresize = function(){

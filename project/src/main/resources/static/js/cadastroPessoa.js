@@ -1,5 +1,5 @@
 function redirectLogin() {
-	window.location.href = "http://localhost:8080/LostPets";
+	window.location.href = url_local+"/LostPets";
 }
 
 // inserir apos validação de dados
