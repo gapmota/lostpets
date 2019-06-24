@@ -33,6 +33,7 @@ public class CadastroAnimalController {
 	private PetPerdido petPerdido;
 	private CadastroPessoaAnimalComponent cadastroPessoaAnimal = new CadastroPessoaAnimalComponent();
 
+	private static boolean cadastrado;
 	private ViaCep viaCep = new ViaCep();
 	private Endereco endereco = new Endereco();
 
@@ -71,7 +72,6 @@ public class CadastroAnimalController {
 			petPerdidoService.salvarPet(petPerdido);
 		} else {
 			usuario1 = usuarioService.salvarUsuario(usuario1);
-			System.err.println("RETORNO DO SALVAR FOI: "+usuario1);
 			
 			petPerdido.setUsuario(usuario1);
 			
@@ -81,8 +81,16 @@ public class CadastroAnimalController {
 			
 			petPerdidoService.salvarPet(petPerdido);
 		}
-		
+		cadastrado = true;
 		return new ModelAndView("redirect:/LostPets");
 	}
 
+	static boolean isCadastrado() {
+		return cadastrado;
+	}
+
+	public static void setCadastrado(boolean cadastradoRef) {
+		cadastrado = cadastradoRef;
+	}
+	
 }

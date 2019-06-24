@@ -23,6 +23,7 @@
 			<form class="col l10 m10 s12" th:action="@{/LostPets/Cadastro}"
 				th:object="${usuario}" method="post" enctype="multipart/form-data" onsubmit="verificarPreenchimento()"
 				style="background-color: rgb(255, 255, 255, 0.85); border-radius: 10px; padding: 0% 0% 3% 5%;">
+				<div style="position: initial;float: right;" th:utext="${mensagem}"></div>
 				<h4 class="center-align">registrar-se</h4>				
 				<!-- onsubmit="verificarCampos(this)"  -->
 				<div class="row">
@@ -95,8 +96,7 @@
 							type="submit" onclick="verfImgCampoPessoa();">confirmar</button>
 					</div>
 				</div>
-			</form>
-			<span th:utext="${mensagem}"></span>
+			</form>			
 		</div>
 	</div>
 </body>

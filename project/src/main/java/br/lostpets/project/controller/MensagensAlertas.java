@@ -2,6 +2,7 @@ package br.lostpets.project.controller;
 
 public enum MensagensAlertas {
 
+	VAZIO(""),
 	EMAIL_SENHA_INCORRETO("<div id=\"card-alert\" class=\"card red\">\r\n" + 
 			"                      <div class=\"card-content white-text\">\r\n" + 
 			"                        <p><font style=\"vertical-align: inherit;\"><font style=\"vertical-align: inherit;\">" +
@@ -9,7 +10,20 @@ public enum MensagensAlertas {
 			"						</font></font></p>\r\n" + 
 			"                      </div>\r\n" + 
 			"                    </div>"),
-	VAZIO("");
+	EMAIL_JA_CADASTRADO("<div id=\"card-alert\" class=\"card red\">\r\n" + 
+			"                      <div class=\"card-content white-text\">\r\n" + 
+			"                        <p><font style=\"vertical-align: inherit;\"><font style=\"vertical-align: inherit;\">" +
+			" 							AVISO: Email já cadastrado" +
+			"						</font></font></p>\r\n" + 
+			"                      </div>\r\n" + 
+			"                    </div>"),
+	PET_CADASTRADO_SUCESSO("<div id=\"card-alert\" class=\"card green\">\r\n" + 
+			"                      <div class=\"card-content white-text\">\r\n" + 
+			"                        <p><font style=\"vertical-align: inherit;\"><font style=\"vertical-align: inherit;\">" +
+			" 							INFO: Animal cadastrado com SUCESSO" +
+			"						</font></font></p>\r\n" + 
+			"                      </div>\r\n" + 
+			"                    </div>");
 	
 	
 	private String mensagem;
