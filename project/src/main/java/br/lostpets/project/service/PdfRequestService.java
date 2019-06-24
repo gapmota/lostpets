@@ -17,24 +17,26 @@ import br.lostpets.project.model.PetPerdido;
 @Service
 public class PdfRequestService {
 	
-	private static final String URL_REQUEST = "http://localhost:8080/exportpdf";
+	private static final String URL_REQUEST = "http://localhost:8081/exportpdf";
+	//private static final String URL_REQUEST = "http://pdflostpets.azurewebsites.net/exportpdf";
 	
 	private Client client;
  	private WebTarget webTarget;
-// 	private final static String URL = "http://viacep.com.br/ws/";
-// 	private final static String FIMURL = "/json/";
 
  	public PdfRequestService() {
  		this.client = ClientBuilder.newClient(); 
  	}
  	
  	
- 	public void downloadPdf(PetPerdido pet) {
+ 	public String downloadPdf(PetPerdido pet) {
  		InfoPet petRequest = new InfoPet(pet);
  		
  		this.webTarget = this.client.target(URL_REQUEST).path(""); 
 		Invocation.Builder invocationBuilder =  this.webTarget.request("application/json;charset=UTF-8"); 
-		invocationBuilder.post(Entity.entity(petRequest, "application/json;charset=UTF-8"));
+		Response response = invocationBuilder.post(Entity.entity(petRequest, "application/json;charset=UTF-8"));
+		
+		return response.readEntity(String.class);
+		
  	}
 	
 }

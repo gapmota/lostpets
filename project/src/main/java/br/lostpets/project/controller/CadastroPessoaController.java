@@ -24,7 +24,7 @@ public class CadastroPessoaController {
 	@Autowired
 	private UsuarioService usuarioService;
 	private ModelAndView modelAndView = new ModelAndView();
-
+	
 	private Usuario usuario;
 	
 	@Autowired
@@ -48,7 +48,7 @@ public class CadastroPessoaController {
 			modelAndView.setViewName("cadastroPessoa");			
 		} 
 		else if (usuarioService.verificarEmail(usuario.getEmail())) {
-			modelAndView.addObject("mensagemSucesso", "E-mail já cadastrado!");
+			modelAndView.addObject("mensagem", MensagensAlertas.EMAIL_JA_CADASTRADO.getMensagem());
 			modelAndView.setViewName("cadastroPessoa");
 		} 
 		else {
@@ -75,13 +75,12 @@ public class CadastroPessoaController {
 				usuario2.setRua(usuario.getRua());
 				usuario2.setUf(usuario.getSenha());
 				usuario2.setSenha(usuario.getSenha());
-				usuarioService.salvarUsuario(usuario2);
+				usuarioService.salvarUsuario(usuario2);				
 				return login.logar(usuario);
-			}
-			
-			
+			}		
 			
 		}
 		return modelAndView;
 	}
+	
 }

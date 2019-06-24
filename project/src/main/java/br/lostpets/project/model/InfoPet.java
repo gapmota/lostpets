@@ -1,5 +1,7 @@
 package br.lostpets.project.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class InfoPet {
@@ -24,8 +26,15 @@ public class InfoPet {
 	public InfoPet(PetPerdido pet) {
 		setAnimalID(pet.getIdAnimal());
 		setAnimalName(pet.getNomeAnimal());
-		setLostDate(new Date(pet.getDataPerdido()));
-		//setAnimalInfos();
+		
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			setLostDate(formato.parse(pet.getDataPerdido()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setAnimalInfos(pet.getDescricaoAnimal());
 		setAnimalType(pet.getTipoAnimal());
 		setAnimalImgPath(pet.getPathImg());
 		setOwnerEmail(pet.getUsuario().getEmail());

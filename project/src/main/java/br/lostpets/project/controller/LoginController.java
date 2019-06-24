@@ -38,11 +38,10 @@ public class LoginController {
 	
 	@RequestMapping(value = { "/", "/LostPets" }, method = RequestMethod.GET)
 	public String loginPage(Usuario usuario, Model model) {
-		
 		List<PetPerdido> pets;		
 		pets = petPerdidoService.encontrarPetsAtivosNNull();
 		model.addAttribute("fotoAnimais", pets);
-		
+		System.err.println("cadastroAnimalController: "+CadastroAnimalController.isCadastrado());
 		if (session.existsSessionUsuario()) {
 			historicoAcessoLog.dataHora(usuario.getNome());
 			return "redirect:/Dashboard";
@@ -52,6 +51,10 @@ public class LoginController {
 			if(msn) {
 				msn = !msn;
 				mensagem = MensagensAlertas.EMAIL_SENHA_INCORRETO.getMensagem();
+			}
+			else if(CadastroAnimalController.isCadastrado()) {
+				CadastroAnimalController.setCadastrado(false);
+				mensagem = MensagensAlertas.PET_CADASTRADO_SUCESSO.getMensagem();
 			}
 			else {
 				mensagem = MensagensAlertas.VAZIO.getMensagem(); 

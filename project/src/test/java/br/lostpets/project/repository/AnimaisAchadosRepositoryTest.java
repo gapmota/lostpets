@@ -19,7 +19,7 @@ import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
 
 @Transactional
-@Commit
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class AnimaisAchadosRepositoryTest {
