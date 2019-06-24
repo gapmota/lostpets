@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.lostpets.project.model.Usuario;
 
 @Transactional
-//@Commit
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class UsuarioRepositoryTest {

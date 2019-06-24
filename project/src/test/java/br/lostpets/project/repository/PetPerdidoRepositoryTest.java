@@ -20,7 +20,6 @@ import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.UsuarioService;
 
 @Transactional
-//@Commit
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class PetPerdidoRepositoryTest {

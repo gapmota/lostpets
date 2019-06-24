@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import br.lostpets.project.components.CadastroPessoaAnimalComponent;
 import br.lostpets.project.model.Endereco;
 import br.lostpets.project.model.PetPerdido;
 import br.lostpets.project.model.Usuario;
+import br.lostpets.project.service.PdfRequestService;
 import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.UsuarioService;
 import br.lostpets.project.service.ViaCep;
@@ -25,6 +27,9 @@ public class CadastroAnimalController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private PdfRequestService pdf;
 
 	@Autowired
 	private PetPerdidoService petPerdidoService;
@@ -63,8 +68,7 @@ public class CadastroAnimalController {
 		if (usuario != null) {
 
 			petPerdido.setUsuario(usuario);
-			// chama o pdf aqui
-
+			
 			for (MultipartFile file : files) {
 				petPerdido.setPathImg("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
 			}
@@ -82,7 +86,8 @@ public class CadastroAnimalController {
 			petPerdidoService.salvarPet(petPerdido);
 		}
 		cadastrado = true;
-		return new ModelAndView("redirect:/LostPets");
+		
+		return new ModelAndView("redirect:/LostPets?pdf="+pdf.downloadPdf(petPerdido));
 	}
 
 	static boolean isCadastrado() {

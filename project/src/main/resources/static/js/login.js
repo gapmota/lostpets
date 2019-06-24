@@ -24,3 +24,21 @@ $(document).ready(function () {
 });
 
 
+let url_pdf = window.location.href;
+let split_pdf = url_pdf.split("?id=");
+
+console.log();
+if(split_pdf[1] != undefined){
+	window.open('https://drive.google.com/uc?id='+split_pdf[1],'_blank');
+}
+
+
+
+
+
+
+
+
+
+
+
