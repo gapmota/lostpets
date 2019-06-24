@@ -18,6 +18,7 @@ import br.lostpets.project.model.PetPerdido;
 public class PdfRequestService {
 	
 	private static final String URL_REQUEST = "http://localhost:8081/exportpdf";
+	//private static final String URL_REQUEST = "http://pdflostpets.azurewebsites.net/exportpdf";
 	
 	private Client client;
  	private WebTarget webTarget;
