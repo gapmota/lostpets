@@ -25,7 +25,7 @@ $(document).ready(function () {
 
 
 let url_pdf = window.location.href;
-let split_pdf = url_pdf.split("?id=");
+let split_pdf = url_pdf.split("?pdf=");
 
 console.log();
 if(split_pdf[1] != undefined){
