@@ -2,6 +2,8 @@ package br.lostpets.project.service;
 
 import org.junit.Test;
 
+import br.lostpets.project.utils.ViaCep;
+
 public class ViaCepTest {
 
 	private ViaCep viaCep = new ViaCep();

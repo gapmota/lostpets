@@ -1,4 +1,4 @@
-package br.lostpets.project.service;
+package br.lostpets.project.utils;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;

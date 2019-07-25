@@ -19,8 +19,8 @@ import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.PdfRequestService;
 import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.UsuarioService;
-import br.lostpets.project.service.ViaCep;
-import br.lostpets.project.utils.GoogleDriveConfig;
+import br.lostpets.project.utils.GoogleDriveAPI;
+import br.lostpets.project.utils.ViaCep;
 
 @Controller
 public class CadastroAnimalController {
@@ -70,7 +70,7 @@ public class CadastroAnimalController {
 			petPerdido.setUsuario(usuario);
 			
 			for (MultipartFile file : files) {
-				petPerdido.setPathImg("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
+				petPerdido.setPathImg("https://drive.google.com/uc?id="+GoogleDriveAPI.uploadFile(file));
 			}
 			
 			petPerdidoService.salvarPet(petPerdido);
@@ -80,7 +80,7 @@ public class CadastroAnimalController {
 			petPerdido.setUsuario(usuario1);
 			
 			for (MultipartFile file : files) {
-				petPerdido.setPathImg("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
+				petPerdido.setPathImg("https://drive.google.com/uc?id="+GoogleDriveAPI.uploadFile(file));
 			}
 			
 			petPerdidoService.salvarPet(petPerdido);

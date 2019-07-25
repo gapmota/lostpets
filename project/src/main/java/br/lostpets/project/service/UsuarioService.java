@@ -13,6 +13,7 @@ import br.lostpets.project.model.PontosUsuario;
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.repository.AnimaisAchadosRepository;
 import br.lostpets.project.repository.UsuarioRepository;
+import br.lostpets.project.utils.ViaCep;
 
 @Service
 public class UsuarioService {

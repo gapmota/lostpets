@@ -19,6 +19,7 @@ import br.lostpets.project.service.PetPerdidoService;
 import br.lostpets.project.service.SessionService;
 import br.lostpets.project.service.UsuarioService;
 import br.lostpets.project.utils.HistoricoAcessoLog;
+import br.lostpets.project.utils.MensagensAlertas;
 
 @Controller
 public class LoginController {

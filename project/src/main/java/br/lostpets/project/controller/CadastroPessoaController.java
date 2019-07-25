@@ -16,7 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.lostpets.project.model.Usuario;
 import br.lostpets.project.service.UsuarioService;
-import br.lostpets.project.utils.GoogleDriveConfig;
+import br.lostpets.project.utils.GoogleDriveAPI;
+import br.lostpets.project.utils.MensagensAlertas;
 
 @Controller
 public class CadastroPessoaController {
@@ -56,7 +57,7 @@ public class CadastroPessoaController {
 				
 				for (MultipartFile file : files) {
 					if(!file.isEmpty())
-						usuario.setIdImagem("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
+						usuario.setIdImagem("https://drive.google.com/uc?id="+GoogleDriveAPI.uploadFile(file));
 				}
 				
 				usuarioService.salvarUsuario(usuario); 
@@ -66,7 +67,7 @@ public class CadastroPessoaController {
 				
 				for (MultipartFile file : files) {
 					if(!file.isEmpty())
-						usuario.setIdImagem("https://drive.google.com/uc?id="+GoogleDriveConfig.uploadFile(file));
+						usuario.setIdImagem("https://drive.google.com/uc?id="+GoogleDriveAPI.uploadFile(file));
 				}
 				
 				usuario2.setBairro(usuario.getBairro());

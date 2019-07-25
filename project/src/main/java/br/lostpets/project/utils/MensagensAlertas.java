@@ -1,4 +1,4 @@
-package br.lostpets.project.controller;
+package br.lostpets.project.utils;
 
 public enum MensagensAlertas {
 

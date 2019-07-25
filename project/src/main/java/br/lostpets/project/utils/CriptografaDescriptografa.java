@@ -1,4 +1,4 @@
-package br.lostpets.project.service;
+package br.lostpets.project.utils;
 
 public class CriptografaDescriptografa {
 
