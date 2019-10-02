@@ -73,6 +73,19 @@ function requestLostPets(){
       data: null,
       success: function (response) {
         carregarListaMapa(response);
+        
+        if(localStorage["color_theme"] == null){
+    		localStorage.setItem("color_theme", "0");
+    	}else{
+
+    		if(localStorage["color_theme"] == "0"){
+    			localStorage.setItem("color_theme", "1");
+    		}else{
+    			localStorage.setItem("color_theme", "0");
+    		}
+    		changeModel();
+    	}
+        
       },
       error: function () {
       }
